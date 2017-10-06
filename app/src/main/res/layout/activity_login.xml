@@ -32,7 +32,9 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:layout_marginBottom="@dimen/txv_singIn_margin"/>
+        android:layout_marginBottom="@dimen/txv_singIn_margin"
+        android:background="@drawable/shape_edtext"
+        style="@style/LoginEditText"/>
 
     <TextView
         android:id="@+id/txv_password"
@@ -46,7 +48,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPassword" />
+        android:inputType="textPassword"
+        android:background="@drawable/shape_edtext"
+        style="@style/LoginEditText"/>
 
     <LinearLayout
         android:id="@+id/lly_signOptions"
@@ -57,10 +61,13 @@
 
         <CheckBox
             android:id="@+id/cb_remember"
+            style="@style/LoginCheckBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.7"
-            android:text="@string/cb_remember" />
+            android:text="@string/cb_remember"
+            android:textAppearance="@android:style/TextAppearance.Small"
+            android:theme="@style/LoginCheckBox" />
 
         <TextView
             android:id="@+id/txv_signUp"

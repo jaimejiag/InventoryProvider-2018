@@ -19,4 +19,13 @@
         <item name="android:textAppearance">?android:attr/textAppearanceSmall</item>
         <item name="android:textColor">@android:color/white</item>
     </style>
+
+    <style name="LoginEditText">
+        <item name="android:padding">8dp</item>
+    </style>
+
+    <style name="LoginCheckBox" parent="@android:style/Widget.CompoundButton.CheckBox">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="colorControlActivated">@android:color/darker_gray</item>
+    </style>
 </resources>

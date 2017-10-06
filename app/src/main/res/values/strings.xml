@@ -6,5 +6,5 @@
     <string name="cb_remember">Recordar</string>
     <string name="txv_signup">Registrarse</string>
     <string name="btn_googleSignIn" translatable="false">Google</string>
-    <string name="btn_facebookSignIn" translatable="false">\"   Facebook\"</string>
+    <string name="btn_facebookSignIn" translatable="false">"    Facebook"</string>
 </resources>
