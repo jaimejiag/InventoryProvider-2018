@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">LoginLinearLayout</string>
+    <string name="txv_singIn">Sing In</string>
+    <string name="txv_user">User name/email</string>
+    <string name="txv_password">Password</string>
+    <string name="cb_remember">Remember</string>
+    <string name="txv_signup">Sign Up</string>
+    <string name="btn_googleSignIn">Sign In with Google</string>
+    <string name="btn_facebookSignIn">" Sign In with Facebook"</string>
+</resources>

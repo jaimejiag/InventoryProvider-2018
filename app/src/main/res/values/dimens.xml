@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="lly_login_padding">32dp</dimen>
+    <dimen name="txv_singIn_margin">24dp</dimen>
+    <dimen name="btn_singIn">64dp</dimen>
+    <dimen name="lly_signInOptions">8dp</dimen>
+    <dimen name="btn_google">8dp</dimen>
+    <dimen name="btn_singInWidth">200dp</dimen>
+</resources>
