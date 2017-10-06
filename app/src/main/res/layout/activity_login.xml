@@ -84,17 +84,17 @@
 
     <Button
         android:id="@+id/btn_googleSingIn"
-        style="@style/Widget.AppCompat.Button.Borderless"
+        style="@style/Widget.Button.Transparent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/btn_google"
         android:background="@color/colorGoogle"
         android:drawableStart="@drawable/ic_google"
-        android:text="@string/btn_googleSignIn"
-        android:layout_marginBottom="@dimen/btn_google"/>
+        android:text="@string/btn_googleSignIn" />
 
     <Button
         android:id="@+id/btn_facebooksingIn"
-        style="@style/Widget.AppCompat.Button.Borderless"
+        style="@style/Widget.Button.Transparent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorFacebook"
