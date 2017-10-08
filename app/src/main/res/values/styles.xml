@@ -24,7 +24,8 @@
         <item name="android:padding">8dp</item>
     </style>
 
-    <style name="LoginCheckBox" parent="@android:style/Widget.CompoundButton.CheckBox">
+    
+    <style name="CustomCheckBox" parent="Theme.AppCompat">
         <item name="android:textColor">@android:color/white</item>
         <item name="colorControlActivated">@android:color/darker_gray</item>
     </style>

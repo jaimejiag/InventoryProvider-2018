@@ -61,13 +61,12 @@
 
         <CheckBox
             android:id="@+id/cb_remember"
-            style="@style/LoginCheckBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.7"
             android:text="@string/cb_remember"
             android:textAppearance="@android:style/TextAppearance.Small"
-            android:theme="@style/LoginCheckBox" />
+            android:theme="@style/CustomCheckBox" />
 
         <TextView
             android:id="@+id/txv_signUp"
@@ -75,7 +74,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.3"
             android:text="@string/txv_signup"
-            android:textAppearance="@android:style/TextAppearance.Small" />
+            android:textAppearance="@android:style/TextAppearance.Small"/>
 
     </LinearLayout>
 

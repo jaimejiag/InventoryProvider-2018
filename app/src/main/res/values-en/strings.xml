@@ -5,5 +5,5 @@
     <string name="txv_user">User name/email</string>
     <string name="txv_password">Password</string>
     <string name="cb_remember">Remember</string>
-    <string name="txv_signup">Sign Up</string>
+    <string name="txv_signup"><u>Sign Up</u></string>
 </resources>
