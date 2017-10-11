@@ -1,4 +1,4 @@
-package com.example.jaime.loginlinearlayout;
+package com.example.jaime.inventory;
 
 import android.content.Intent;
 import android.os.Handler;

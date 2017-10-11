@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">LoginLinearLayout</string>
+    <string name="app_name">Inventory</string>
     <string name="txv_singIn">Acceder</string>
     <string name="txv_user">Nombre usuario/email</string>
     <string name="txv_password">Contraseña</string>
@@ -7,4 +7,8 @@
     <string name="txv_signup"><u>Registrarse</u></string>
     <string name="btn_googleSignIn" translatable="false">Google</string>
     <string name="btn_facebookSignIn" translatable="false">"    Facebook"</string>
+    <string name="txvName">Nombre</string>
+    <string name="txvDescription">Descripción</string>
+    <string name="txvCreationDate">Fecha de creación</string>
+    <string name="btnChangeState">Cambiar Estado</string>
 </resources>

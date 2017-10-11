@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:columnCount="5"
+    android:orientation="horizontal"
+    tools:context="com.example.jaime.inventory.DashBoardActivity">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="@dimen/imgDashboardWidth"
+        android:layout_height="@dimen/imgDashboardHeight"
+        app:srcCompat="@drawable/inventory" />
+    <Space android:layout_width="30dp"/>
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="@dimen/imgDashboardWidth"
+        android:layout_height="@dimen/imgDashboardHeight"
+        app:srcCompat="@drawable/closet" />
+    <Space android:layout_width="30dp"/>
+
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="@dimen/imgDashboardWidth"
+        android:layout_height="@dimen/imgDashboardHeight"
+        app:srcCompat="@drawable/keyboard" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="@dimen/imgDashboardWidth"
+        android:layout_height="@dimen/imgDashboardHeight"
+        app:srcCompat="@drawable/cpu" />
+    <Space android:layout_width="30dp"/>
+
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="@dimen/imgDashboardWidth"
+        android:layout_height="@dimen/imgDashboardHeight"
+        app:srcCompat="@drawable/chair" />
+    <Space android:layout_width="30dp"/>
+
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="@dimen/imgDashboardWidth"
+        android:layout_height="@dimen/imgDashboardHeight"
+        app:srcCompat="@drawable/monitor" />
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="@dimen/imgDashboardWidth"
+        android:layout_height="@dimen/imgDashboardHeight"
+        app:srcCompat="@drawable/mouse" />
+    <Space android:layout_width="30dp"/>
+
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="@dimen/imgDashboardWidth"
+        android:layout_height="@dimen/imgDashboardHeight"
+        app:srcCompat="@drawable/printer" />
+    <Space android:layout_width="30dp"/>
+
+
+    <ImageView
+        android:id="@+id/imageView9"
+        android:layout_width="@dimen/imgDashboardWidth"
+        android:layout_height="@dimen/imgDashboardHeight"
+        app:srcCompat="@drawable/proyector" />
+
+    <ImageView
+        android:id="@+id/imageView10"
+        android:layout_width="@dimen/imgDashboardWidth"
+        android:layout_height="@dimen/imgDashboardHeight"
+        app:srcCompat="@drawable/table" />
+    <Space android:layout_width="30dp"/>
+
+
+    <ImageView
+        android:id="@+id/imageView11"
+        android:layout_width="@dimen/imgDashboardWidth"
+        android:layout_height="@dimen/imgDashboardHeight"
+        app:srcCompat="@drawable/whiteboard" />
+    <Space android:layout_width="30dp"/>
+
+</GridLayout>

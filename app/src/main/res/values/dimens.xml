@@ -6,4 +6,6 @@
     <dimen name="lly_signInOptions">8dp</dimen>
     <dimen name="btn_google">8dp</dimen>
     <dimen name="btn_singInWidth">200dp</dimen>
+    <dimen name="imgDashboardWidth">0dp</dimen>
+    <dimen name="imgDashboardHeight">0dp</dimen>
 </resources>

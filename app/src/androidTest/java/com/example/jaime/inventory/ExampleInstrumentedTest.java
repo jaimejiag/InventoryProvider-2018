@@ -1,4 +1,4 @@
-package com.example.jaime.loginlinearlayout;
+package com.example.jaime.inventory;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
