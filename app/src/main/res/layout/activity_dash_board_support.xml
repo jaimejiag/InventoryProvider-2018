@@ -6,8 +6,10 @@
     android:layout_height="match_parent"
     app:columnCount="3"
     app:orientation="horizontal"
+    android:id="@+id/gridDashboard"
     tools:context="com.example.jaime.inventory.DashBoardActivity">
 
+    <!--
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="@dimen/imgDashboardWidth"
@@ -106,5 +108,5 @@
         app:layout_columnWeight="1"
         app:layout_rowWeight="1"
         app:layout_gravity="fill"/>
-
+    -->
 </android.support.v7.widget.GridLayout>
