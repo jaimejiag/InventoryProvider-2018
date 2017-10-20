@@ -19,8 +19,9 @@
         <activity
             android:name=".LoginActivity"
             android:theme="@style/LoginTheme" />
-        <activity android:name=".InventoryActivity"></activity>
-        <activity android:name=".DashBoardActivity"></activity>
+        <activity android:name=".InventoryActivity" />
+        <activity android:name=".DashBoardActivity" />
+        <activity android:name=".ProductActivity"></activity>
     </application>
 
 </manifest>
