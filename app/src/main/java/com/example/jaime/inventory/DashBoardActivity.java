@@ -68,6 +68,9 @@ public class DashBoardActivity extends AppCompatActivity {
                 case R.mipmap.ic_product :
                     intent = new Intent(DashBoardActivity.this, ProductActivity.class);
                     break;
+
+                case R.mipmap.ic_dependencias:
+                    intent = new Intent(DashBoardActivity.this, DependencyActivity.class);
             }
 
             if (intent != null)
