@@ -10,6 +10,9 @@ import android.widget.ImageView;
 import java.util.ArrayList;
 import java.util.Vector;
 
+/**
+ * Clase que muestra el dashboard principal a modo de menú principal.
+ */
 public class DashBoardActivity extends AppCompatActivity {
     private GridLayout gridDashboard;
     private CLickListenerDashboard mListenerDashboard;

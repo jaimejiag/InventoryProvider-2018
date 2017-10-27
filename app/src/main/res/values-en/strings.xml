@@ -10,4 +10,14 @@
     <string name="txvDescription">Description</string>
     <string name="txvCreationDate">Creation date</string>
     <string name="btnChangeState">Change State</string>
+    <string name="product_name">Name:</string>
+    <string name="product_seller">Seller:</string>
+    <string name="product_model">Model:</string>
+    <string name="product_category">Category:</string>
+    <string name="product_subcategory">Subcategory:</string>
+    <string name="product_type">Type:</string>
+    <string name="product_description">Description:</string>
+    <string name="product_price">Price:</string>
+    <string name="product_date">D. purchase:</string>
+    <string name="product_notes">Notes:</string>
 </resources>

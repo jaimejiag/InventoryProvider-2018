@@ -1,7 +1,7 @@
 package com.example.jaime.inventory.pojo;
 
 /**
- * Created by usuario on 25/10/17.
+ * Clase POJO de dependencias.
  */
 
 public class Dependency {

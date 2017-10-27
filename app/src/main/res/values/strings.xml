@@ -12,7 +12,7 @@
     <string name="txvCreationDate">Fecha de creación</string>
     <string name="btnChangeState">Cambiar Estado</string>
     <string name="product_name">Nombre:</string>
-    <string name="product_serial">Serial:</string>
+    <string name="product_serial" translatable="false">Serial:</string>
     <string name="product_seller">Vendedor:</string>
     <string name="product_model">Modelo:</string>
     <string name="product_category">Categoría:</string>
@@ -21,6 +21,6 @@
     <string name="product_description">Descripción:</string>
     <string name="product_price">Precio:</string>
     <string name="product_date">F. compra:</string>
-    <string name="product_url">Url:</string>
+    <string name="product_url" translatable="false">Url:</string>
     <string name="product_notes">Notas:</string>
 </resources>

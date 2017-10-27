@@ -8,4 +8,8 @@
     <dimen name="btn_singInWidth">200dp</dimen>
     <dimen name="imgDashboardWidth">0dp</dimen>
     <dimen name="imgDashboardHeight">0dp</dimen>
+    <dimen name="letter_icon_size">48dp</dimen>
+    <dimen name="letter_icon_padding_top">8dp</dimen>
+    <dimen name="list_primary_text">16dp</dimen>
+    <dimen name="list_secondary_text">14dp</dimen>
 </resources>
