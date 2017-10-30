@@ -34,8 +34,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:barrierDirection="left"
-            app:constraint_referenced_ids="edt_product_name,edt_product_serial,edt_product_seller,editText2,sp_product_category,sp_product_subcategory,sp_product_type,editText3,edt_product_price,edt_product_date"
-            tools:layout_editor_absoluteX="122dp" />
+            app:constraint_referenced_ids="edt_product_name,edt_product_serial,edt_product_seller,editText2,sp_product_category,sp_product_subcategory,sp_product_type,editText3,edt_product_price,edt_product_date" />
 
         <TextView
             android:id="@+id/txv_product_name"

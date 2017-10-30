@@ -3,13 +3,12 @@
     package="com.example.jaime.inventory">
 
     <application
+        android:name=".InventoryApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        android:name=".InventoryApplication">
-
+        android:theme="@style/AppTheme">
         <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,7 +22,8 @@
         <activity android:name=".InventoryActivity" />
         <activity android:name=".DashBoardActivity" />
         <activity android:name=".ProductActivity" />
-        <activity android:name=".DependencyActivity"></activity>
+        <activity android:name=".DependencyActivity" />
+        <activity android:name=".SectorActivity" android:theme="@style/SectorTheme"></activity>
     </application>
 
 </manifest>

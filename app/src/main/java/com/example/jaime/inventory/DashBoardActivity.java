@@ -74,6 +74,10 @@ public class DashBoardActivity extends AppCompatActivity {
 
                 case R.mipmap.ic_dependencias:
                     intent = new Intent(DashBoardActivity.this, DependencyActivity.class);
+                    break;
+
+                case  R.mipmap.ic_section:
+                    intent = new Intent(DashBoardActivity.this, SectorActivity.class);
             }
 
             if (intent != null)

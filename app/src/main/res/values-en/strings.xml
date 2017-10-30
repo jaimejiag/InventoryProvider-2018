@@ -20,4 +20,6 @@
     <string name="product_price">Price:</string>
     <string name="product_date">D. purchase:</string>
     <string name="product_notes">Notes:</string>
+    <string name="txv_sectorDefault">default sector</string>
+    <string name="menu_save">Save</string>
 </resources>

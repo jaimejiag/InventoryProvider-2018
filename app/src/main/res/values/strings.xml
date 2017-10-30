@@ -23,4 +23,6 @@
     <string name="product_date">F. compra:</string>
     <string name="product_url" translatable="false">Url:</string>
     <string name="product_notes">Notas:</string>
+    <string name="txv_sectorDefault">Sector por defecto</string>
+    <string name="menu_save">Guardar</string>
 </resources>
