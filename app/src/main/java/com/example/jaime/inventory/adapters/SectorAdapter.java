@@ -27,18 +27,20 @@ public class SectorAdapter extends RecyclerView.Adapter<SectorAdapter.SectorView
     public SectorAdapter() {
         sectors = SectorRepository.getInstance().getSectors();
         sectorsModified = new ArrayList<>();
+        changeListener = new OnSwitchCheckedChangeListener();
     }
 
 
     /**
      * Constructor que se llamará cuando SectorActivity venga de un cambio de configuración
      * y se haya salvado el estado dinámico.
-     * @param sectorsModified
+     * @param
      */
-    public SectorAdapter(ArrayList<Sector> sectorsModified) {
+    /*public SectorAdapter(ArrayList<Sector> sectorsModified) {
         sectors = SectorRepository.getInstance().getSectors();
         this.sectorsModified = sectorsModified;
-    }
+        identifySectorsModified();
+    }*/
 
 
     @Override
@@ -55,6 +57,7 @@ public class SectorAdapter extends RecyclerView.Adapter<SectorAdapter.SectorView
     public void onBindViewHolder(SectorViewHolder holder, int position) {
         holder.swSector.setChecked(sectors.get(position).isEnabled());
         holder.swSector.setOnCheckedChangeListener(changeListener);
+        holder.swSector.setId(sectors.get(position).get_ID());
         holder.txvSectorName.setText(sectors.get(position).getName());
 
         if (sectors.get(position).isSectorDefault())
@@ -83,6 +86,23 @@ public class SectorAdapter extends RecyclerView.Adapter<SectorAdapter.SectorView
     }
 
 
+    /*private void identifySectorsModified() {
+        int index;
+
+        for (int i = 0; i < sectors.size(); i++) {
+            index = 0;
+
+            while (index < sectorsModified.size()) {
+                if (sectors.get(i).get_ID() == sectorsModified.get(index).get_ID()) {
+                    sectors.get(i).setEnabled(sectorsModified.get(index).isEnabled());
+                    index = sectorsModified.size();
+                } else
+                    index++;
+            }
+        }
+    }*/
+
+
     public static class SectorViewHolder extends RecyclerView.ViewHolder {
         private Switch swSector;
         private TextView txvSectorName;
@@ -103,7 +123,8 @@ public class SectorAdapter extends RecyclerView.Adapter<SectorAdapter.SectorView
 
         @Override
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-
+            int sectorID = buttonView.getId();
+            SectorRepository.getInstance().modifySector(sectorID, isChecked);
         }
     }
 }
