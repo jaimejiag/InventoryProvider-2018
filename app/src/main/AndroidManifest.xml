@@ -20,10 +20,17 @@
             android:name=".LoginActivity"
             android:theme="@style/LoginTheme" />
         <activity android:name=".InventoryActivity" />
-        <activity android:name=".DashBoardActivity" />
+        <activity
+            android:name=".DashBoardActivity"
+            android:theme="@style/ActionBarTheme" />
         <activity android:name=".ProductActivity" />
         <activity android:name=".DependencyActivity" />
-        <activity android:name=".SectorActivity" android:theme="@style/SectorTheme"></activity>
+        <activity
+            android:name=".SectorActivity"
+            android:theme="@style/ActionBarTheme" />
+        <activity android:name=".AccountSettingActivity" />
+        <activity android:name=".GeneralSettingActivity" />
+        <activity android:name=".AboutUsActivity"></activity>
     </application>
 
 </manifest>

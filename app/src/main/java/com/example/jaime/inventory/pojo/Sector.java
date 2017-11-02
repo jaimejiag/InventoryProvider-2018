@@ -126,4 +126,16 @@ public class Sector implements Parcelable {
     public void setSectorDefault(boolean sectorDefault) {
         this.isSectorDefault = sectorDefault;
     }
+
+
+    @Override
+    public boolean equals(Object obj) {
+        Sector sector = (Sector) obj;
+        boolean result = false;
+
+        if (sector._ID == _ID)
+            result = true;
+
+        return result;
+    }
 }

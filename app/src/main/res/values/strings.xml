@@ -24,5 +24,8 @@
     <string name="product_url" translatable="false">Url:</string>
     <string name="product_notes">Notas:</string>
     <string name="txv_sectorDefault">Sector por defecto</string>
-    <string name="menu_save">Guardar</string>
+
+    <string name="action_save">Guardar</string>
+    <string name="action_general_setting">Ajustes Generales</string>
+    <string name="action_account_setting">Ajustes de Cuenta</string>
 </resources>

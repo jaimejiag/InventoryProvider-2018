@@ -11,7 +11,7 @@ import com.example.jaime.inventory.adapters.SectorAdapter;
 import com.example.jaime.inventory.pojo.Sector;
 
 public class SectorActivity extends AppCompatActivity {
-    //private static final String SECTORS_MODIFIED_KEY = "sector";
+    private static final String SECTORS_MODIFIED_KEY = "sector";
 
     private RecyclerView rvSector;
     private SectorAdapter mAdapter;
@@ -26,21 +26,21 @@ public class SectorActivity extends AppCompatActivity {
         rvSector.setHasFixedSize(true);
         rvSector.setLayoutManager(new GridLayoutManager(this, 2));
 
-        /*if (savedInstanceState != null)
+        if (savedInstanceState != null)
             mAdapter = new SectorAdapter(savedInstanceState.<Sector>getParcelableArrayList(SECTORS_MODIFIED_KEY));
-        else*/
+        else
             mAdapter = new SectorAdapter();
 
         rvSector.setAdapter(mAdapter);
     }
 
 
-    /*@Override
+    @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
 
         outState.putParcelableArrayList(SECTORS_MODIFIED_KEY, mAdapter.getSectorsModified());
-    }*/
+    }
 
 
     @Override

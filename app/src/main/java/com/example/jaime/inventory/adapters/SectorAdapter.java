@@ -36,11 +36,11 @@ public class SectorAdapter extends RecyclerView.Adapter<SectorAdapter.SectorView
      * y se haya salvado el estado dinámico.
      * @param
      */
-    /*public SectorAdapter(ArrayList<Sector> sectorsModified) {
+    public SectorAdapter(ArrayList<Sector> sectorsModified) {
         sectors = SectorRepository.getInstance().getSectors();
         this.sectorsModified = sectorsModified;
         identifySectorsModified();
-    }*/
+    }
 
 
     @Override
@@ -86,21 +86,21 @@ public class SectorAdapter extends RecyclerView.Adapter<SectorAdapter.SectorView
     }
 
 
-    /*private void identifySectorsModified() {
+    private void identifySectorsModified() {
         int index;
 
         for (int i = 0; i < sectors.size(); i++) {
             index = 0;
 
             while (index < sectorsModified.size()) {
-                if (sectors.get(i).get_ID() == sectorsModified.get(index).get_ID()) {
+                if (sectors.get(i).equals(sectorsModified.get(index))) {
                     sectors.get(i).setEnabled(sectorsModified.get(index).isEnabled());
                     index = sectorsModified.size();
                 } else
                     index++;
             }
         }
-    }*/
+    }
 
 
     public static class SectorViewHolder extends RecyclerView.ViewHolder {
@@ -124,7 +124,36 @@ public class SectorAdapter extends RecyclerView.Adapter<SectorAdapter.SectorView
         @Override
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
             int sectorID = buttonView.getId();
-            SectorRepository.getInstance().modifySector(sectorID, isChecked);
+            //SectorRepository.getInstance().modifySector(sectorID, isChecked);
+            setSectorsModified(sectorID, isChecked);
+        }
+
+
+        private void setSectorsModified(int id, boolean isEnabled) {
+            int index = 0;
+            Sector sectorTmp = null;
+
+            while (index < sectors.size()) {
+                if (sectors.get(index).get_ID() == id) {
+                    sectorTmp = sectors.get(index);
+                    sectorTmp.setEnabled(isEnabled);
+                    index = sectors.size();
+                } else
+                    index++;
+            }
+
+            index = 0;
+
+            if (!sectorsModified.contains(sectorTmp))
+                sectorsModified.add(sectorTmp);
+            else
+                while (index < sectorsModified.size()) {
+                    if (sectorsModified.get(index).equals(sectorTmp)) {
+                        sectorsModified.get(index).setEnabled(sectorTmp.isEnabled());
+                        index = sectorsModified.size();
+                    } else
+                        index++;
+                }
         }
     }
 }

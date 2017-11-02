@@ -21,5 +21,7 @@
     <string name="product_date">D. purchase:</string>
     <string name="product_notes">Notes:</string>
     <string name="txv_sectorDefault">default sector</string>
-    <string name="menu_save">Save</string>
+    <string name="action_save">Save</string>
+    <string name="pref_category_general">General preferences</string>
+    <string name="pref_title_showIcon">Show Image</string>
 </resources>
