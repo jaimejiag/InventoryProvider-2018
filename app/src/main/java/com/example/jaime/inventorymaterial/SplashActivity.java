@@ -1,4 +1,4 @@
-package com.example.jaime.inventory;
+package com.example.jaime.inventorymaterial;
 
 import android.content.Intent;
 import android.os.Handler;

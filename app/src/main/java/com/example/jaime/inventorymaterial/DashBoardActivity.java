@@ -1,4 +1,4 @@
-package com.example.jaime.inventory;
+package com.example.jaime.inventorymaterial;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -9,9 +9,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-
-import java.util.ArrayList;
-import java.util.Vector;
 
 /**
  * Clase que muestra el dashboard principal a modo de menú principal.

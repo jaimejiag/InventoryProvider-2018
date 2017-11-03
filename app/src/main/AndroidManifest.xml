@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.jaime.inventory">
+    package="com.example.jaime.inventorymaterial">
 
     <application
         android:name=".InventoryApplication"
@@ -25,12 +25,11 @@
             android:theme="@style/ActionBarTheme" />
         <activity android:name=".ProductActivity" />
         <activity android:name=".DependencyActivity" />
-        <activity
-            android:name=".SectorActivity"
-            android:theme="@style/ActionBarTheme" />
+        <activity android:name=".SectorActivity" />
         <activity android:name=".AccountSettingActivity" />
         <activity android:name=".GeneralSettingActivity" />
-        <activity android:name=".AboutUsActivity"></activity>
+        <activity android:name=".AboutUsActivity" />
+        <activity android:name=".AddDependencyActivity"></activity>
     </application>
 
 </manifest>

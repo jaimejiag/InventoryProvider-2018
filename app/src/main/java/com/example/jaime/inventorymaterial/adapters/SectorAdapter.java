@@ -1,4 +1,4 @@
-package com.example.jaime.inventory.adapters;
+package com.example.jaime.inventorymaterial.adapters;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -8,9 +8,9 @@ import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
 
-import com.example.jaime.inventory.R;
-import com.example.jaime.inventory.pojo.Sector;
-import com.example.jaime.inventory.repository.SectorRepository;
+import com.example.jaime.inventorymaterial.R;
+import com.example.jaime.inventorymaterial.pojo.Sector;
+import com.example.jaime.inventorymaterial.repository.SectorRepository;
 
 import java.util.ArrayList;
 
@@ -33,12 +33,13 @@ public class SectorAdapter extends RecyclerView.Adapter<SectorAdapter.SectorView
 
     /**
      * Constructor que se llamará cuando SectorActivity venga de un cambio de configuración
-     * y se haya salvado el estado dinámico.
+     * y se haya salvado el estado dinámico.1
      * @param
      */
     public SectorAdapter(ArrayList<Sector> sectorsModified) {
         sectors = SectorRepository.getInstance().getSectors();
         this.sectorsModified = sectorsModified;
+        changeListener = new OnSwitchCheckedChangeListener();
         identifySectorsModified();
     }
 
@@ -57,7 +58,7 @@ public class SectorAdapter extends RecyclerView.Adapter<SectorAdapter.SectorView
     public void onBindViewHolder(SectorViewHolder holder, int position) {
         holder.swSector.setChecked(sectors.get(position).isEnabled());
         holder.swSector.setOnCheckedChangeListener(changeListener);
-        holder.swSector.setId(sectors.get(position).get_ID());
+        holder.swSector.setTag(sectors.get(position));
         holder.txvSectorName.setText(sectors.get(position).getName());
 
         if (sectors.get(position).isSectorDefault())
@@ -123,37 +124,22 @@ public class SectorAdapter extends RecyclerView.Adapter<SectorAdapter.SectorView
 
         @Override
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-            int sectorID = buttonView.getId();
-            //SectorRepository.getInstance().modifySector(sectorID, isChecked);
-            setSectorsModified(sectorID, isChecked);
-        }
-
-
-        private void setSectorsModified(int id, boolean isEnabled) {
+            Sector sectorSelected = (Sector) buttonView.getTag();
             int index = 0;
-            Sector sectorTmp = null;
+            int sectorModifiedKey = sectorsModified.size() + 1;
 
-            while (index < sectors.size()) {
-                if (sectors.get(index).get_ID() == id) {
-                    sectorTmp = sectors.get(index);
-                    sectorTmp.setEnabled(isEnabled);
-                    index = sectors.size();
+            sectorSelected.setEnabled(isChecked);
+
+            while (index < sectorsModified.size()) {
+                if (sectorSelected.equals(sectorsModified.get(index))) {
+                    sectorsModified.get(index).setEnabled(sectorSelected.isEnabled());
+                    index = sectorModifiedKey;
                 } else
                     index++;
             }
 
-            index = 0;
-
-            if (!sectorsModified.contains(sectorTmp))
-                sectorsModified.add(sectorTmp);
-            else
-                while (index < sectorsModified.size()) {
-                    if (sectorsModified.get(index).equals(sectorTmp)) {
-                        sectorsModified.get(index).setEnabled(sectorTmp.isEnabled());
-                        index = sectorsModified.size();
-                    } else
-                        index++;
-                }
+            if (index == sectorsModified.size())
+                sectorsModified.add(sectorSelected);
         }
     }
 }

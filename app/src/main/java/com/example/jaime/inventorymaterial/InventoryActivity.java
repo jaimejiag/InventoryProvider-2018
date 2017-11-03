@@ -1,4 +1,4 @@
-package com.example.jaime.inventory;
+package com.example.jaime.inventorymaterial;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

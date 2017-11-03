@@ -1,4 +1,4 @@
-package com.example.jaime.inventory;
+package com.example.jaime.inventorymaterial;
 
 import org.junit.Test;
 

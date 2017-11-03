@@ -1,10 +1,6 @@
-package com.example.jaime.inventory;
+package com.example.jaime.inventorymaterial;
 
 import android.app.Application;
-
-import com.example.jaime.inventory.pojo.Dependency;
-
-import java.util.ArrayList;
 
 /**
  * Created by Jaime on 25/10/17.

@@ -1,4 +1,4 @@
-package com.example.jaime.inventory;
+package com.example.jaime.inventorymaterial;
 
 import android.preference.PreferenceActivity;
 import android.os.Bundle;

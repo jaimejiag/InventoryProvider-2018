@@ -1,7 +1,6 @@
-package com.example.jaime.inventory;
+package com.example.jaime.inventorymaterial;
 
 import android.preference.PreferenceActivity;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 public class GeneralSettingActivity extends PreferenceActivity {

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Inventory</string>
+    <string name="app_name">InventoryMaterial</string>
     <string name="txv_singIn">Acceder</string>
     <string name="txv_user">Nombre usuario/email</string>
     <string name="txv_password">Contraseña</string>
@@ -26,6 +26,10 @@
     <string name="txv_sectorDefault">Sector por defecto</string>
 
     <string name="action_save">Guardar</string>
+    <string name="action_save_dependency">Guardar Dependencia</string>
     <string name="action_general_setting">Ajustes Generales</string>
     <string name="action_account_setting">Ajustes de Cuenta</string>
+    <string name="edt_dependencyName">Escribe el nombre</string>
+    <string name="edt_dependencySortname">Escriba el nombre corto</string>
+    <string name="edt_dependencyDescription">Escriba descripción</string>
 </resources>

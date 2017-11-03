@@ -1,4 +1,4 @@
-package com.example.jaime.inventory;
+package com.example.jaime.inventorymaterial;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
