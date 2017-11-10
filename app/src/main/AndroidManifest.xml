@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.jaime.inventorymaterial">
+    package="com.example.jaime.inventorymvp">
 
     <application
-        android:name=".InventoryApplication"
+        android:name="com.example.jaime.inventorymvp.InventoryApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SplashActivity">
+        <activity android:name="com.example.jaime.inventorymvp.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -17,19 +17,19 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".LoginActivity"
+            android:name="com.example.jaime.inventorymvp.ui.login.LoginViewImpl"
             android:theme="@style/LoginTheme" />
-        <activity android:name=".InventoryActivity" />
+        <activity android:name="com.example.jaime.inventorymvp.ui.inventory.InventoryActivity" />
         <activity
-            android:name=".DashBoardActivity"
+            android:name="com.example.jaime.inventorymvp.DashBoardActivity"
             android:theme="@style/ActionBarTheme" />
-        <activity android:name=".ProductActivity" />
-        <activity android:name=".DependencyActivity" />
-        <activity android:name=".SectorActivity" />
-        <activity android:name=".AccountSettingActivity" />
-        <activity android:name=".GeneralSettingActivity" />
-        <activity android:name=".AboutUsActivity" />
-        <activity android:name=".AddDependencyActivity"></activity>
+        <activity android:name="com.example.jaime.inventorymvp.ui.product.ProductActivity" />
+        <activity android:name="com.example.jaime.inventorymvp.ui.dependency.DependencyActivity" />
+        <activity android:name="com.example.jaime.inventorymvp.ui.sector.SectorActivity" />
+        <activity android:name="com.example.jaime.inventorymvp.ui.prefs.AccountSettingActivity" />
+        <activity android:name="com.example.jaime.inventorymvp.ui.prefs.GeneralSettingActivity" />
+        <activity android:name="com.example.jaime.inventorymvp.ui.about.AboutUsActivity" />
+        <activity android:name="com.example.jaime.inventorymvp.ui.dependency.AddDependencyActivity"></activity>
     </application>
 
 </manifest>
