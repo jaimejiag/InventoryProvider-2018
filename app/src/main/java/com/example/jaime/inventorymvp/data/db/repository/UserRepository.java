@@ -28,7 +28,7 @@ public class UserRepository {
 
 
     private void initialize() {
-        addUser(new User(1, "jaime", "jaime", "Jaime",
+        addUser(new User(1, "jaime", "Jaime1", "Jaime",
                 "jaime.ji.ag@gmail.com", true, true));
 
         addUser(new User(2, "julia", "julia", "Julia",
@@ -56,5 +56,17 @@ public class UserRepository {
     public boolean isUserExits(User user) {
 
         return true;
+    }
+
+
+    public boolean validateCredentials(String user, String password) {
+        boolean result = false;
+
+        for (int i = 0; i < users.size(); i++) {
+            if (users.get(i).getUser().equals(user) && users.get(i).getPassword().equals(password))
+                result = true;
+        }
+
+        return result;
     }
 }

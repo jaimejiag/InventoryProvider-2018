@@ -1,5 +1,8 @@
 package com.example.jaime.inventorymvp.ui.login;
 
+import com.example.jaime.inventorymvp.data.db.repository.UserRepository;
+import com.example.jaime.inventorymvp.ui.utils.CommonUtils;
+
 /**
  * Created by usuario on 10/11/17.
  */
@@ -12,9 +15,9 @@ public class LoginInteractorImpl implements LoginInteractor {
             listener.onPasswordEmptyError();
         else if (user.isEmpty())
             listener.onUserEmptyError();
-        else if ()
+        else if (!CommonUtils.isPasswordValid(password))
             listener.onPasswordError();
-        else
+        else if (UserRepository.getInstance().validateCredentials(user, password))
             listener.onSuccess();
     }
 }

@@ -37,4 +37,17 @@ public class LoginPresenterImpl implements LoginPresenter, LoginInteractor.OnLog
     public void onPasswordError() {
         loginView.setPasswordError();
     }
+
+
+    @Override
+    public void onSuccess() {
+        loginView.navigateToHome();
+    }
+
+
+    @Override
+    public void onDestroy() {
+        loginView = null;
+        loginInteractor = null;
+    }
 }

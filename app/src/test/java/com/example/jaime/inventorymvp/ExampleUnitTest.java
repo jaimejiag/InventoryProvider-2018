@@ -2,6 +2,7 @@ package com.example.jaime.inventorymvp;
 
 import com.example.jaime.inventorymvp.data.db.model.User;
 import com.example.jaime.inventorymvp.data.db.repository.UserRepository;
+import com.example.jaime.inventorymvp.ui.utils.CommonUtils;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -31,7 +32,7 @@ public class ExampleUnitTest {
         users = new ArrayList<>();
         userRepository = mock(UserRepository.class);
 
-        users.add(new User(1, "jaime", "jaime", "Jaime",
+        users.add(new User(1, "jaime", "Jaime1", "Jaime",
                 "jaime@gmail.com", true, true));
 
         users.add(new User(2, "julia", "julia", "Julia",
@@ -86,6 +87,10 @@ public class ExampleUnitTest {
 
 
     //4. Comprobar la constraseña sea correcta.
+    @Test
+    public void password_isCorrect() {
+        assertTrue(CommonUtils.isPasswordValid(users.get(0).getPassword()));
+    }
 
 
 

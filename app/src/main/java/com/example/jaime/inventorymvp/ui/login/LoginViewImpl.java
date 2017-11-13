@@ -1,19 +1,22 @@
 package com.example.jaime.inventorymvp.ui.login;
 
 import android.content.Intent;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 
 import com.example.jaime.inventorymvp.DashBoardActivity;
 import com.example.jaime.inventorymvp.R;
+import com.example.jaime.inventorymvp.ui.base.BaseActivity;
 
 /**
  * Clase encargada del funcionamiento del login de la aplicación.
  */
-public class LoginViewImpl extends AppCompatActivity implements View.OnClickListener{
+public class LoginViewImpl extends BaseActivity implements View.OnClickListener, LoginView {
     private EditText edtUser;
     private EditText edtPassword;
     private Button btnSingIn;
@@ -26,6 +29,8 @@ public class LoginViewImpl extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        mLoginPresenter = new LoginPresenterImpl(this);
+
         edtUser = (EditText) findViewById(R.id.edt_user);
         edtPassword = (EditText) findViewById(R.id.edt_password);
         btnSingIn = (Button) findViewById(R.id.btn_singIn);
@@ -37,8 +42,37 @@ public class LoginViewImpl extends AppCompatActivity implements View.OnClickList
     public void onClick(View v) {
         mLoginPresenter.
                 validateCredentials(edtUser.getText().toString(), edtPassword.getText().toString());
+    }
 
+
+    @Override
+    public void navigateToHome() {
         Intent intent = new Intent(this, DashBoardActivity.class);
         startActivity(intent);
+    }
+
+
+    @Override
+    public void setUserEmptyError() {
+        onError(R.string.errorUserEmpty);
+    }
+
+
+    @Override
+    public void setPasswordEmptyError() {
+        onError(R.string.errorPasswordEmpty);
+    }
+
+
+    @Override
+    public void setPasswordError() {
+        onError(R.string.errorPasswordLenght);
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mLoginPresenter.onDestroy();
     }
 }
