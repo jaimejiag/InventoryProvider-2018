@@ -32,6 +32,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:text="jaime"
         android:inputType="textPersonName"
         android:layout_marginBottom="@dimen/txv_singIn_margin"
         android:background="@drawable/shape_edtext"
@@ -49,6 +50,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:text="Jaime1"
         android:inputType="textPassword"
         android:background="@drawable/shape_edtext"
         style="@style/LoginEditText"/>

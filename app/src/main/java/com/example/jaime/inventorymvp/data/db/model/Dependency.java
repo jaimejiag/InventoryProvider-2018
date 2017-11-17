@@ -1,10 +1,14 @@
 package com.example.jaime.inventorymvp.data.db.model;
 
+import android.support.annotation.NonNull;
+
+import java.util.Comparator;
+
 /**
  * Clase POJO de dependencias.
  */
 
-public class Dependency {
+public class Dependency implements Comparable {
     private int _ID;
     private String name;
     private String shortname;
@@ -60,5 +64,20 @@ public class Dependency {
                 ", shortname='" + shortname + '\'' +
                 ", description='" + description + '\'' +
                 '}';
+    }
+
+
+    @Override
+    public int compareTo(Object o) {
+        return name.compareTo(((Dependency)o).getName());
+    }
+
+
+    public static class DependencyOrderByShortName implements Comparator<Dependency> {
+
+        @Override
+        public int compare(Dependency o1, Dependency o2) {
+            return o1.getShortname().compareTo(o2.getShortname());
+        }
     }
 }

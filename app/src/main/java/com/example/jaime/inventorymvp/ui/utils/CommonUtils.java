@@ -19,7 +19,7 @@ public final class CommonUtils {
      * @return
      */
     public static boolean isPasswordValid(String password) {
-        final String PASSWORD_PATTERN = "([0-9]+[A-Z]+[a-z]+)";
+        final String PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z]).{6,}$";
         Pattern pattern;
         Matcher matcher;
 

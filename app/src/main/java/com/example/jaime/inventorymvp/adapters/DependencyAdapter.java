@@ -12,13 +12,21 @@ import com.example.jaime.inventorymvp.data.db.model.Dependency;
 import com.example.jaime.inventorymvp.data.db.repository.DependencyRepository;
 import com.github.ivbaranov.mli.MaterialLetterIcon;
 
+import java.util.ArrayList;
+
 /**
  * Clase adapter que contiene el listado de Dependency.
  */
 public class DependencyAdapter extends ArrayAdapter<Dependency> {
 
+    /**
+     * Se crea una copia del ArrayList que se tiene en DependencyRepository para tener una copia
+     * local en el Adapater que se pueda modificar sin cambiar los datos del repositorio.
+     * @param context
+     */
     public DependencyAdapter(Context context) {
-        super(context, R.layout.item_dependency, DependencyRepository.getInstance().getDependencies());
+        super(context, R.layout.item_dependency,
+                new ArrayList<>(DependencyRepository.getInstance().getDependencies()));
     }
 
 
