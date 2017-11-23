@@ -5,7 +5,7 @@
     android:id="@+id/android.R.id.content"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.jaime.inventorymvp.ui.login.LoginViewImpl"
+    tools:context="com.example.jaime.inventoryfragment.ui.login.LoginViewImpl"
     android:orientation="vertical"
     android:padding="@dimen/lly_login_padding"
     android:background="@color/colorPrimary"

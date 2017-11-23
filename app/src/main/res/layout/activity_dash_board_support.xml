@@ -7,7 +7,7 @@
     app:columnCount="3"
     app:orientation="horizontal"
     android:id="@+id/gridDashboard"
-    tools:context="com.example.jaime.inventorymvp.DashBoardActivity">
+    tools:context="com.example.jaime.inventoryfragment.DashBoardActivity">
 
     <!--
     <ImageView

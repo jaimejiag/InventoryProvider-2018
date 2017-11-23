@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">InventoryMVP</string>
+    <string name="app_name">InventoryFragment</string>
     <string name="txv_singIn">Acceder</string>
     <string name="txv_user">Nombre usuario/email</string>
     <string name="txv_password">Contraseña</string>
@@ -32,4 +32,7 @@
     <string name="edt_dependencyName">Escribe el nombre</string>
     <string name="edt_dependencySortname">Escriba el nombre corto</string>
     <string name="edt_dependencyDescription">Escriba descripción</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
