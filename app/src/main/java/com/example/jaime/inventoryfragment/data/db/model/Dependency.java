@@ -66,6 +66,20 @@ public class Dependency implements Comparable {
 
 
     @Override
+    public boolean equals(Object obj) {
+        Dependency dependency = (Dependency) obj;
+        boolean result = true;
+
+        if (name.equals(dependency.getName()))
+            result = false;
+        else if (shortname.equals(dependency.getShortname()))
+            result = false;
+
+        return result;
+    }
+
+
+    @Override
     public int compareTo(Object o) {
         return name.compareTo(((Dependency)o).getName());
     }

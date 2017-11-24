@@ -29,7 +29,7 @@ public class UserRepository {
 
     private void initialize() {
         addUser(new User(1, "jaime", "Jaime1", "Jaime",
-                "jaime.ji.ag@gmail.com", true, true));
+                "jaime@gmail.com", true, true));
 
         addUser(new User(2, "julia", "julia", "Julia",
                 "julia@gmail.com", false, false));

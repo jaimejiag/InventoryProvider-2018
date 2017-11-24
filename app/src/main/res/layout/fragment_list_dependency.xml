@@ -27,13 +27,13 @@
             android:paddingTop="@dimen/letter_icon_padding_top" />
 
         <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fab_dependencyAdd"
+            android:id="@+id/fab_dependency_add"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
             android:clickable="true"
-            android:src="@drawable/ic_action_add"
             app:fabSize="normal"
+            android:src="@drawable/ic_action_add"
             android:layout_margin="@dimen/margin_fab"
             app:elevation="6dp"
             app:pressedTranslationZ="12dp"/>

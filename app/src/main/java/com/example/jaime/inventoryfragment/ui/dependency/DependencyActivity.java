@@ -12,7 +12,8 @@ import com.example.jaime.inventoryfragment.ui.dependency.presenters.ListDependen
 /**
  * Activity que muestra un listado de objetos Dependency.
  */
-public class DependencyActivity extends BaseActivity implements ListDependencyFragment.ListDependencyListener {
+public class DependencyActivity extends BaseActivity implements ListDependencyFragment.ListDependencyListener,
+        AddeditDependencyFragment.AddeditDependencyListener {
     private ListDependencyFragment mListDependency;
     private ListDependencyPresenter mListPresenter;
     private AddeditDependencyFragment mAddeditDependency;
@@ -52,5 +53,15 @@ public class DependencyActivity extends BaseActivity implements ListDependencyFr
 
         mAddeditPresenter = new AddeditDependencyPresenter(mAddeditDependency);
         mAddeditDependency.setPresenter(mAddeditPresenter);
+    }
+
+
+    @Override
+    public void listDependency() {
+        if (mListDependency == null) {
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            mListDependency = ListDependencyFragment.newInstance(null);
+            transaction.replace(android.R.id.content, mListDependency, ListDependencyFragment.TAG).commit();
+        }
     }
 }

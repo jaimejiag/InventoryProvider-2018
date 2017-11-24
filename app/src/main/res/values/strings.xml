@@ -35,4 +35,8 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="errorDependencyNameEmptyError">Nombre vacío.</string>
+    <string name="errorDependencySortNameEmptyError">Nombre corto vacío.</string>
+    <string name="errorDependencySortNameLengthError">Tamaño entre 2 y 5</string>
+    <string name="errorDependencyDescriptionEmptyError">Descripción vacío.</string>
 </resources>

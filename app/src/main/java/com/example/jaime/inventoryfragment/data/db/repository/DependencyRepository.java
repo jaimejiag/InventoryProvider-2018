@@ -65,4 +65,9 @@ public class DependencyRepository {
     public int getLastId() {
         return dependencies.get(dependencies.size() - 1).get_ID();
     }
+
+
+    public boolean validateDependency(String name, String sortname) {
+        return true;
+    }
 }

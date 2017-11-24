@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 
 import com.example.jaime.inventoryfragment.R;
 import com.example.jaime.inventoryfragment.adapters.DependencyAdapter;
+import com.example.jaime.inventoryfragment.ui.base.BasePresenter;
 import com.example.jaime.inventoryfragment.ui.dependency.contracts.ListDependencyContract;
 
 /**
@@ -23,7 +24,7 @@ public class ListDependencyFragment extends ListFragment implements ListDependen
     private ListDependencyContract.Presenter mListPresenter;
     private ListDependencyListener mCallback;
 
-    private FloatingActionButton fabAdd;
+    private FloatingActionButton fabDependency;
 
 
     interface ListDependencyListener {
@@ -58,13 +59,7 @@ public class ListDependencyFragment extends ListFragment implements ListDependen
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_list_dependency, container, false);
 
-        fabAdd = (FloatingActionButton) root.findViewById(R.id.fab_dependencyAdd);
-        fabAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mCallback.addNewDependency();
-            }
-        });
+        fabDependency = (FloatingActionButton) root.findViewById(R.id.fab_dependency_add);
 
         return root;
     }
@@ -74,11 +69,18 @@ public class ListDependencyFragment extends ListFragment implements ListDependen
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         setListAdapter(new DependencyAdapter(getActivity()));
+
+        fabDependency.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mCallback.addNewDependency();
+            }
+        });
     }
 
 
     @Override
-    public void setPresenter(ListDependencyContract.Presenter presenter) {
-        mListPresenter = presenter;
+    public void setPresenter(BasePresenter presenter) {
+        mListPresenter = (ListDependencyContract.Presenter) presenter;
     }
 }
