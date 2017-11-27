@@ -50,7 +50,8 @@ public class AddeditDependencyPresenter implements AddeditDependencyContract.Pre
 
 
     @Override
-    public void onSuccess() {
+    public void onSuccess(String name, String sortname, String description) {
+        mInteractor.addDependency(name, sortname, description);
         view.navigateToListDependency();
     }
 }

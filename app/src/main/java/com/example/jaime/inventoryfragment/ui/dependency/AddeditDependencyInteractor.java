@@ -1,5 +1,6 @@
 package com.example.jaime.inventoryfragment.ui.dependency;
 
+import com.example.jaime.inventoryfragment.data.db.model.Dependency;
 import com.example.jaime.inventoryfragment.data.db.repository.DependencyRepository;
 import com.example.jaime.inventoryfragment.data.db.repository.UserRepository;
 import com.example.jaime.inventoryfragment.ui.dependency.contracts.AddeditDependencyContract;
@@ -22,6 +23,13 @@ public class AddeditDependencyInteractor implements AddeditDependencyContract.In
         else if (description.isEmpty())
             listener.onDescriptionEmptyError();
         else if (DependencyRepository.getInstance().validateDependency(name, sortname))
-            listener.onSuccess();
+            listener.onSuccess(name, sortname, description);
+    }
+
+
+    @Override
+    public void addDependency(String name, String sortname, String description) {
+        Dependency dependency = new Dependency(11, name, sortname, description);
+        DependencyRepository.getInstance().addDependency(dependency);
     }
 }

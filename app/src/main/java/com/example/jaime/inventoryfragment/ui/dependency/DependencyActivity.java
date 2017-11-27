@@ -58,10 +58,6 @@ public class DependencyActivity extends BaseActivity implements ListDependencyFr
 
     @Override
     public void listDependency() {
-        if (mListDependency == null) {
-            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            mListDependency = ListDependencyFragment.newInstance(null);
-            transaction.replace(android.R.id.content, mListDependency, ListDependencyFragment.TAG).commit();
-        }
+        getSupportFragmentManager().popBackStack();
     }
 }

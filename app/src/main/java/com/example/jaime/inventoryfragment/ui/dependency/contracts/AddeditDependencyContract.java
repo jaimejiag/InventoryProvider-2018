@@ -27,6 +27,7 @@ public interface AddeditDependencyContract {
 
     interface Interactor {
         void validateDependecy(String name, String sortname, String description, Interactor.OnAddeditFinishedListener listener);
+        void addDependency(String name, String sortname, String description);
 
         interface OnAddeditFinishedListener {
             void onNameEmptyError();
@@ -37,7 +38,7 @@ public interface AddeditDependencyContract {
 
             void onDescriptionEmptyError();
 
-            void onSuccess();
+            void onSuccess(String name, String sortname, String description);
         }
     }
 }

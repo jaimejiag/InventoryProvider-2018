@@ -28,9 +28,11 @@ public class AddeditDependencyFragment extends Fragment implements AddeditDepend
 
     private FloatingActionButton fabDependency;
     private TextInputLayout tilName;
-    private EditText edtName;
     private TextInputLayout tilSortName;
     private TextInputLayout tilDescription;
+    private EditText edtName;
+    private EditText edtSortname;
+    private EditText edtDescription;
 
 
     interface AddeditDependencyListener {
@@ -59,6 +61,7 @@ public class AddeditDependencyFragment extends Fragment implements AddeditDepend
         }
     }
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -86,7 +89,42 @@ public class AddeditDependencyFragment extends Fragment implements AddeditDepend
         });
 
         tilSortName = (TextInputLayout) root.findViewById(R.id.til_dependency_sortname);
+        edtSortname = (EditText) root.findViewById(R.id.edt_dependency_sortname);
+        edtSortname.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                tilSortName.setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
         tilDescription = (TextInputLayout) root.findViewById(R.id.til_dependency_description);
+        edtDescription = (EditText) root.findViewById(R.id.edt_dependency_description);
+        edtDescription.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                tilDescription.setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
 
         if (getArguments() != null) {
 
