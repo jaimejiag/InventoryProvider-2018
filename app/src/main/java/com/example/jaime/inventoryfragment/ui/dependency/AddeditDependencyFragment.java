@@ -21,7 +21,8 @@ import com.example.jaime.inventoryfragment.ui.dependency.contracts.AddeditDepend
 /**
  * A simple {@link Fragment} subclass.
  */
-public class AddeditDependencyFragment extends Fragment implements AddeditDependencyContract.View {
+public class AddeditDependencyFragment extends Fragment implements AddeditDependencyContract.View,
+        TextWatcher {
     public static final String TAG = "addeditdependency";
     private AddeditDependencyContract.Presenter mPresenter;
     private AddeditDependencyListener mCallback;
@@ -34,12 +35,11 @@ public class AddeditDependencyFragment extends Fragment implements AddeditDepend
     private EditText edtSortname;
     private EditText edtDescription;
 
-
     interface AddeditDependencyListener {
+
+
         void listDependency();
     }
-
-
     public static AddeditDependencyFragment newInstance(Bundle bundle) {
         AddeditDependencyFragment addeditDependencyFragment = new AddeditDependencyFragment();
 
@@ -70,61 +70,15 @@ public class AddeditDependencyFragment extends Fragment implements AddeditDepend
         fabDependency = (FloatingActionButton) root.findViewById(R.id.fab_dependency_save);
         tilName = (TextInputLayout) root.findViewById(R.id.til_dependency_name);
         edtName = (EditText) root.findViewById(R.id.edt_dependency_name);
-        edtName.addTextChangedListener(new TextWatcher() {
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                tilName.setError(null);
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
+        edtName.addTextChangedListener(this);
 
         tilSortName = (TextInputLayout) root.findViewById(R.id.til_dependency_sortname);
         edtSortname = (EditText) root.findViewById(R.id.edt_dependency_sortname);
-        edtSortname.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                tilSortName.setError(null);
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
+        edtSortname.addTextChangedListener(this);
 
         tilDescription = (TextInputLayout) root.findViewById(R.id.til_dependency_description);
         edtDescription = (EditText) root.findViewById(R.id.edt_dependency_description);
-        edtDescription.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                tilDescription.setError(null);
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
+        edtDescription.addTextChangedListener(this);
 
         if (getArguments() != null) {
 
@@ -189,6 +143,26 @@ public class AddeditDependencyFragment extends Fragment implements AddeditDepend
 
     @Override
     public void setValidateDependencyError() {
+
+    }
+
+
+    @Override
+    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+    }
+
+
+    @Override
+    public void onTextChanged(CharSequence s, int start, int before, int count) {
+        tilName.setError(null);
+        tilSortName.setError(null);
+        tilDescription.setError(null);
+    }
+
+
+    @Override
+    public void afterTextChanged(Editable s) {
 
     }
 }

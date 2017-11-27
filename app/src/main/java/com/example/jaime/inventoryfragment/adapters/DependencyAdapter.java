@@ -25,8 +25,7 @@ public class DependencyAdapter extends ArrayAdapter<Dependency> {
      * @param context
      */
     public DependencyAdapter(Context context) {
-        super(context, R.layout.item_dependency,
-                new ArrayList<>(DependencyRepository.getInstance().getDependencies()));
+        super(context, R.layout.item_dependency, new ArrayList<Dependency>());
     }
 
 

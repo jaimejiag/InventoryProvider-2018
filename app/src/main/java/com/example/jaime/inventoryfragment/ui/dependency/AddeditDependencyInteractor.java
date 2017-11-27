@@ -18,7 +18,7 @@ public class AddeditDependencyInteractor implements AddeditDependencyContract.In
             listener.onNameEmptyError();
         else if (sortname.isEmpty())
             listener.onSortNameEmptyError();
-        else if (sortname.length() < 2 && sortname.length() > 5)
+        else if (sortname.length() < 2 || sortname.length() > 5)
             listener.onSortNameLengthError();
         else if (description.isEmpty())
             listener.onDescriptionEmptyError();
