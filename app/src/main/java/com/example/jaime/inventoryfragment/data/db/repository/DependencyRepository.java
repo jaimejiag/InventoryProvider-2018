@@ -9,21 +9,21 @@ import java.util.Collections;
  * Repositorio con los datos de Dependency.
  */
 public class DependencyRepository {
-    private ArrayList<Dependency> dependencies;
-    private static DependencyRepository instance;
+    private ArrayList<Dependency> mDependencies;
+    private static DependencyRepository mInstance;
 
 
     private DependencyRepository() {
-        this.dependencies = new ArrayList<>();
+        this.mDependencies = new ArrayList<>();
         initialize();
     }
 
 
     public static DependencyRepository getInstance() {
-        if (instance == null)
-            instance = new DependencyRepository();
+        if (mInstance == null)
+            mInstance = new DependencyRepository();
 
-        return instance;
+        return mInstance;
     }
 
 
@@ -52,22 +52,46 @@ public class DependencyRepository {
 
 
     public void addDependency(Dependency dependency) {
-        dependencies.add(dependency);
+        mDependencies.add(dependency);
     }
 
 
     public ArrayList<Dependency> getDependencies() {
-        Collections.sort(dependencies, new Dependency.DependencyOrderByShortName());
-        return dependencies;
+        Collections.sort(mDependencies, new Dependency.DependencyOrderByShortName());
+        return mDependencies;
     }
 
 
     public int getLastId() {
-        return dependencies.get(dependencies.size() - 1).get_ID();
+        return mDependencies.get(mDependencies.size() - 1).get_ID();
     }
 
 
     public boolean validateDependency(String name, String sortname) {
-        return true;
+        boolean result = true;
+        int index = 0;
+
+        while (index < mDependencies.size()) {
+            if (name.equals(mDependencies.get(index).getName()) || sortname.equals(mDependencies.get(index).getShortname())) {
+                result = false;
+                index = mDependencies.size();
+            } else
+                index++;
+        }
+
+        return result;
+    }
+
+
+    public void editDependency(Dependency dependency) {
+        int index = 0;
+
+        while (index < mDependencies.size()) {
+            if (dependency.get_ID() == mDependencies.get(index).get_ID()) {
+                mDependencies.get(index).setDescription(dependency.getDescription());
+                index = mDependencies.size();
+            } else
+                index++;
+        }
     }
 }

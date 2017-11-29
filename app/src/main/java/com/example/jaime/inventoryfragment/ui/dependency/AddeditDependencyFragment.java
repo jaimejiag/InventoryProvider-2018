@@ -15,17 +15,23 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 import com.example.jaime.inventoryfragment.R;
+import com.example.jaime.inventoryfragment.data.db.model.Dependency;
+import com.example.jaime.inventoryfragment.ui.base.BaseFragment;
 import com.example.jaime.inventoryfragment.ui.base.BasePresenter;
 import com.example.jaime.inventoryfragment.ui.dependency.contracts.AddeditDependencyContract;
+import com.example.jaime.inventoryfragment.ui.utils.AddEdit;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class AddeditDependencyFragment extends Fragment implements AddeditDependencyContract.View,
+public class AddeditDependencyFragment extends BaseFragment implements AddeditDependencyContract.View,
         TextWatcher {
     public static final String TAG = "addeditdependency";
+    public static final String EDIT_KEY = "edit";
+
     private AddeditDependencyContract.Presenter mPresenter;
     private AddeditDependencyListener mCallback;
+    private AddEdit mMode;
 
     private FloatingActionButton fabDependency;
     private TextInputLayout tilName;
@@ -81,9 +87,9 @@ public class AddeditDependencyFragment extends Fragment implements AddeditDepend
         edtDescription.addTextChangedListener(this);
 
         if (getArguments() != null) {
-
-        }
-
+            mMode = new AddEdit(AddEdit.EDIT_MODE);
+        } else
+            mMode = new AddEdit();
 
         return root;
     }
@@ -96,12 +102,31 @@ public class AddeditDependencyFragment extends Fragment implements AddeditDepend
         fabDependency.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mPresenter.saveDependency(
-                        tilName.getEditText().getText().toString(),
-                        tilSortName.getEditText().getText().toString(),
-                        tilDescription.getEditText().getText().toString());
+                if (mMode.getMode() == AddEdit.ADD_MODE) {
+                    mPresenter.saveDependency(
+                            tilName.getEditText().getText().toString(),
+                            tilSortName.getEditText().getText().toString(),
+                            tilDescription.getEditText().getText().toString());
+
+                } else if (mMode.getMode() == AddEdit.EDIT_MODE) {
+                    Dependency dependency = getArguments().getParcelable(EDIT_KEY);
+                    dependency.setDescription(edtDescription.getText().toString());
+                    mPresenter.editDependency(dependency);
+                }
             }
         });
+
+        if (mMode.getMode() == AddEdit.EDIT_MODE) {
+            Dependency dependency = getArguments().getParcelable(EDIT_KEY);
+
+            edtName.setText(dependency.getName());
+            edtName.setEnabled(false);
+
+            edtSortname.setText(dependency.getShortname());
+            edtSortname.setEnabled(false);
+
+            edtDescription.setText(dependency.getDescription());
+        }
     }
 
 
@@ -143,7 +168,7 @@ public class AddeditDependencyFragment extends Fragment implements AddeditDepend
 
     @Override
     public void setValidateDependencyError() {
-
+        onError(getActivity().findViewById(android.R.id.content), "Dependencia ya existe");
     }
 
 

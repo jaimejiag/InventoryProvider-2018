@@ -1,5 +1,6 @@
 package com.example.jaime.inventoryfragment.ui.dependency.presenters;
 
+import com.example.jaime.inventoryfragment.data.db.model.Dependency;
 import com.example.jaime.inventoryfragment.ui.dependency.AddeditDependencyInteractor;
 import com.example.jaime.inventoryfragment.ui.dependency.contracts.AddeditDependencyContract;
 
@@ -22,6 +23,12 @@ public class AddeditDependencyPresenter implements AddeditDependencyContract.Pre
     @Override
     public void saveDependency(String name, String sortname, String description) {
         mInteractor.validateDependecy(name, sortname, description, this);
+    }
+
+
+    @Override
+    public void editDependency(Dependency dependency) {
+        mInteractor.editDependency(dependency, this);
     }
 
 
@@ -50,8 +57,13 @@ public class AddeditDependencyPresenter implements AddeditDependencyContract.Pre
 
 
     @Override
-    public void onSuccess(String name, String sortname, String description) {
-        mInteractor.addDependency(name, sortname, description);
+    public void onDependencyExists() {
+        view.setValidateDependencyError();
+    }
+
+
+    @Override
+    public void onSuccess() {
         view.navigateToListDependency();
     }
 }

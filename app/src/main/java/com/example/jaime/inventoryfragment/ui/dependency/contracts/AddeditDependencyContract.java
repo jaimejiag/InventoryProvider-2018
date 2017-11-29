@@ -1,5 +1,6 @@
 package com.example.jaime.inventoryfragment.ui.dependency.contracts;
 
+import com.example.jaime.inventoryfragment.data.db.model.Dependency;
 import com.example.jaime.inventoryfragment.ui.base.BasePresenter;
 import com.example.jaime.inventoryfragment.ui.base.BaseView;
 import com.example.jaime.inventoryfragment.ui.login.LoginInteractor;
@@ -22,12 +23,14 @@ public interface AddeditDependencyContract {
 
     interface Presenter extends BasePresenter {
         void saveDependency(String name, String sortName, String description);
+        void editDependency(Dependency dependency);
     }
 
 
     interface Interactor {
         void validateDependecy(String name, String sortname, String description, Interactor.OnAddeditFinishedListener listener);
         void addDependency(String name, String sortname, String description);
+        void editDependency(Dependency dependency,OnAddeditFinishedListener listener);
 
         interface OnAddeditFinishedListener {
             void onNameEmptyError();
@@ -38,7 +41,9 @@ public interface AddeditDependencyContract {
 
             void onDescriptionEmptyError();
 
-            void onSuccess(String name, String sortname, String description);
+            void onDependencyExists();
+
+            void onSuccess();
         }
     }
 }

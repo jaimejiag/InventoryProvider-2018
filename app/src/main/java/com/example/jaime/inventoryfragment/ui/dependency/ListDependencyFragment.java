@@ -10,6 +10,7 @@ import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 
 import com.example.jaime.inventoryfragment.R;
 import com.example.jaime.inventoryfragment.adapters.DependencyAdapter;
@@ -30,11 +31,13 @@ public class ListDependencyFragment extends ListFragment implements ListDependen
 
     private FloatingActionButton fabDependency;
 
+
     interface ListDependencyListener {
-
-
         void addNewDependency();
+        void editDependecy(Bundle bundle);
     }
+
+
     public static ListDependencyFragment newInstance(Bundle bundle) {
         ListDependencyFragment listDependencyFragment = new ListDependencyFragment();
 
@@ -83,6 +86,17 @@ public class ListDependencyFragment extends ListFragment implements ListDependen
         super.onViewCreated(view, savedInstanceState);
 
         setListAdapter(mAdapter);
+        getListView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Dependency dependency = (Dependency) parent.getItemAtPosition(position);
+                Bundle bundle = new Bundle();
+                bundle.putParcelable(AddeditDependencyFragment.EDIT_KEY, dependency);
+
+                mCallback.editDependecy(bundle);
+            }
+        });
+
         fabDependency.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

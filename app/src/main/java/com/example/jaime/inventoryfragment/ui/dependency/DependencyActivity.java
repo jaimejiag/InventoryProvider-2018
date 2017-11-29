@@ -57,6 +57,23 @@ public class DependencyActivity extends BaseActivity implements ListDependencyFr
 
 
     @Override
+    public void editDependecy(Bundle bundle) {
+        mAddeditDependency = (AddeditDependencyFragment) getSupportFragmentManager().
+                findFragmentByTag(AddeditDependencyFragment.TAG);
+
+        if (mAddeditDependency == null) {
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            mAddeditDependency = AddeditDependencyFragment.newInstance(bundle);
+            transaction.addToBackStack(null);
+            transaction.replace(android.R.id.content, mAddeditDependency, AddeditDependencyFragment.TAG).commit();
+        }
+
+        mAddeditPresenter = new AddeditDependencyPresenter(mAddeditDependency);
+        mAddeditDependency.setPresenter(mAddeditPresenter);
+    }
+
+
+    @Override
     public void listDependency() {
         getSupportFragmentManager().popBackStack();
     }
