@@ -42,8 +42,6 @@ public class AddeditDependencyFragment extends BaseFragment implements AddeditDe
     private EditText edtDescription;
 
     interface AddeditDependencyListener {
-
-
         void listDependency();
     }
     public static AddeditDependencyFragment newInstance(Bundle bundle) {
@@ -189,5 +187,12 @@ public class AddeditDependencyFragment extends BaseFragment implements AddeditDe
     @Override
     public void afterTextChanged(Editable s) {
 
+    }
+
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        //mPresenter.onDestroy();
     }
 }

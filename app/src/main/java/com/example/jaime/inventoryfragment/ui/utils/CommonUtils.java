@@ -1,5 +1,13 @@
 package com.example.jaime.inventoryfragment.ui.utils;
 
+import android.app.Dialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
+
+import com.example.jaime.inventoryfragment.R;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -15,6 +23,7 @@ public final class CommonUtils {
      * Debe contener al menos un carácter en mayúscula.
      * Debe contener al menos un carácter en minúscula.
      * Debe contener una logintud de al menos 6 carácteres.
+     *
      * @param password
      * @return
      */

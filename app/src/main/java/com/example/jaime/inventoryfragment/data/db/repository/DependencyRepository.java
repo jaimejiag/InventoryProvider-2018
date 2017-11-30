@@ -94,4 +94,17 @@ public class DependencyRepository {
                 index++;
         }
     }
+
+
+    public void deleteDependency(Dependency dependency) {
+        int index = 0;
+
+        while (index < mDependencies.size()) {
+            if (dependency.get_ID() == mDependencies.get(index).get_ID()) {
+                mDependencies.remove(index);
+                index = mDependencies.size();
+            } else
+                index++;
+        }
+    }
 }

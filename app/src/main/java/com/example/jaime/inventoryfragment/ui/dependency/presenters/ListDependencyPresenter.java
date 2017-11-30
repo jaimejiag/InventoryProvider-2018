@@ -1,7 +1,7 @@
 package com.example.jaime.inventoryfragment.ui.dependency.presenters;
 
 import com.example.jaime.inventoryfragment.data.db.model.Dependency;
-import com.example.jaime.inventoryfragment.ui.dependency.ListDependencyInteractor;
+import com.example.jaime.inventoryfragment.ui.dependency.interactors.ListDependencyInteractor;
 import com.example.jaime.inventoryfragment.ui.dependency.contracts.ListDependencyContract;
 
 import java.util.List;
@@ -29,7 +29,20 @@ public class ListDependencyPresenter implements ListDependencyContract.Presenter
 
 
     @Override
+    public void deleteDependency(Dependency dependency) {
+        listDependencyInteractor.deleteDependency(dependency, this);
+    }
+
+
+    @Override
     public void onSuccess(List<Dependency> dependencies) {
         view.showDependencies(dependencies);
+    }
+
+
+    @Override
+    public void onDestroy() {
+        view = null;
+        listDependencyInteractor = null;
     }
 }

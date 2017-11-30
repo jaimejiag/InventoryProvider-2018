@@ -39,4 +39,7 @@
     <string name="errorDependencySortNameEmptyError">Nombre corto vacío.</string>
     <string name="errorDependencySortNameLengthError">Tamaño entre 2 y 5</string>
     <string name="errorDependencyDescriptionEmptyError">Descripción vacío.</string>
+    <string name="fragment_listdependency_delete">Eliminar Dependencia</string>
+    <string name="btnOk">OK</string>
+    <string name="btnCancel">Cancelar</string>
 </resources>

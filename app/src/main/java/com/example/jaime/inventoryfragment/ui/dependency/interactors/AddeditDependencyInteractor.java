@@ -1,4 +1,4 @@
-package com.example.jaime.inventoryfragment.ui.dependency;
+package com.example.jaime.inventoryfragment.ui.dependency.interactors;
 
 import com.example.jaime.inventoryfragment.data.db.model.Dependency;
 import com.example.jaime.inventoryfragment.data.db.repository.DependencyRepository;

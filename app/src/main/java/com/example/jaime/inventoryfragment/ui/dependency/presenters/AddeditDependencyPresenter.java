@@ -1,7 +1,7 @@
 package com.example.jaime.inventoryfragment.ui.dependency.presenters;
 
 import com.example.jaime.inventoryfragment.data.db.model.Dependency;
-import com.example.jaime.inventoryfragment.ui.dependency.AddeditDependencyInteractor;
+import com.example.jaime.inventoryfragment.ui.dependency.interactors.AddeditDependencyInteractor;
 import com.example.jaime.inventoryfragment.ui.dependency.contracts.AddeditDependencyContract;
 
 /**
@@ -65,5 +65,12 @@ public class AddeditDependencyPresenter implements AddeditDependencyContract.Pre
     @Override
     public void onSuccess() {
         view.navigateToListDependency();
+    }
+
+
+    @Override
+    public void onDestroy() {
+        view = null;
+        mInteractor = null;
     }
 }
