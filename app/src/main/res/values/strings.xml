@@ -42,4 +42,6 @@
     <string name="fragment_listdependency_delete">Eliminar Dependencia</string>
     <string name="btnOk">OK</string>
     <string name="btnCancel">Cancelar</string>
+    <string name="action_sortbyname">Ordenar por nombre</string>
+    <string name="action_sortbyid">Ordenar por ID</string>
 </resources>

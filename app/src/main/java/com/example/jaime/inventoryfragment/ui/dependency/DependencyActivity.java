@@ -15,9 +15,9 @@ import com.example.jaime.inventoryfragment.ui.dependency.presenters.ListDependen
 public class DependencyActivity extends BaseActivity implements ListDependencyFragment.ListDependencyListener,
         AddeditDependencyFragment.AddeditDependencyListener {
     private ListDependencyFragment mListDependency;
-    private ListDependencyPresenter mListPresenter;
+    //private ListDependencyPresenter mListPresenter;
     private AddeditDependencyFragment mAddeditDependency;
-    private AddeditDependencyPresenter mAddeditPresenter;
+    //private AddeditDependencyPresenter mAddeditPresenter;
     private Fragment mDetailFragment;
 
 
@@ -34,8 +34,8 @@ public class DependencyActivity extends BaseActivity implements ListDependencyFr
             transaction.add(android.R.id.content, mListDependency, ListDependencyFragment.TAG).commit();
         }
 
-        mListPresenter = new ListDependencyPresenter(mListDependency);
-        mListDependency.setPresenter(mListPresenter);
+        //mListPresenter = new ListDependencyPresenter(mListDependency);
+        //mListDependency.setPresenter(mListPresenter);
     }
 
 
@@ -51,15 +51,15 @@ public class DependencyActivity extends BaseActivity implements ListDependencyFr
             transaction.replace(android.R.id.content, mAddeditDependency, AddeditDependencyFragment.TAG).commit();
         }
 
-        mAddeditPresenter = new AddeditDependencyPresenter(mAddeditDependency);
-        mAddeditDependency.setPresenter(mAddeditPresenter);
+        //mAddeditPresenter = new AddeditDependencyPresenter(mAddeditDependency);
+        //mAddeditDependency.setPresenter(mAddeditPresenter);
     }
 
 
     @Override
     public void listDependency() {
         getSupportFragmentManager().popBackStack();
-        mAddeditPresenter = new AddeditDependencyPresenter(mAddeditDependency);
-        mListDependency.setPresenter(mListPresenter);
+        //mAddeditPresenter = new AddeditDependencyPresenter(mAddeditDependency);
+        //mListDependency.setPresenter(mListPresenter);
     }
 }

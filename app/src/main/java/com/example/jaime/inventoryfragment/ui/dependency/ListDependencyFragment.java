@@ -6,21 +6,23 @@ import android.app.Dialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
+import android.support.v7.app.AppCompatActivity;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
 import android.widget.AdapterView;
+import android.widget.Toolbar;
 
 import com.example.jaime.inventoryfragment.R;
 import com.example.jaime.inventoryfragment.adapters.DependencyAdapter;
 import com.example.jaime.inventoryfragment.data.db.model.Dependency;
-import com.example.jaime.inventoryfragment.ui.base.BasePresenter;
 import com.example.jaime.inventoryfragment.ui.dependency.contracts.ListDependencyContract;
+import com.example.jaime.inventoryfragment.ui.dependency.presenters.ListDependencyPresenter;
 import com.example.jaime.inventoryfragment.ui.utils.CommonDialog;
 
 import java.util.List;
@@ -30,12 +32,13 @@ import java.util.List;
  */
 public class ListDependencyFragment extends ListFragment implements ListDependencyContract.View {
     public static final String TAG = "listdependency";
+
+    private FloatingActionButton fabDependency;
+
     private ListDependencyContract.Presenter mListPresenter;
     private ListDependencyListener mCallback;
     private DependencyAdapter mAdapter;
-    private Dependency mDeleteDependency;
-
-    private FloatingActionButton fabDependency;
+    private Toolbar mToolbar;
 
 
     interface ListDependencyListener {
@@ -68,8 +71,7 @@ public class ListDependencyFragment extends ListFragment implements ListDependen
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        mAdapter = new DependencyAdapter(getActivity());
+        setHasOptionsMenu(true);
         setRetainInstance(true);
     }
 
@@ -80,7 +82,12 @@ public class ListDependencyFragment extends ListFragment implements ListDependen
         View root = inflater.inflate(R.layout.fragment_list_dependency, container, false);
 
         fabDependency = (FloatingActionButton) root.findViewById(R.id.fab_dependency_add);
+        mAdapter = new DependencyAdapter(getActivity());
+        //Como el fragment mantiene el estado (y sólo se elimina la vista
+        mListPresenter = new ListDependencyPresenter(this);
         mListPresenter.loadDependency();
+        mToolbar = (Toolbar) root.findViewById(R.id.tb_dependency);
+        //((AppCompatActivity)getActivity()).setSupportActionBar(mToolbar);
 
         return root;
     }
@@ -113,19 +120,6 @@ public class ListDependencyFragment extends ListFragment implements ListDependen
     }
 
 
-    @Override
-    public void setPresenter(BasePresenter presenter) {
-        mListPresenter = (ListDependencyContract.Presenter) presenter;
-    }
-
-
-    @Override
-    public void showDependencies(List<Dependency> dependencies) {
-        mAdapter.clear();
-        mAdapter.addAll(dependencies);
-    }
-
-
     /**
      * Menú contextual sobre la lista
      * @param menu
@@ -137,7 +131,7 @@ public class ListDependencyFragment extends ListFragment implements ListDependen
         super.onCreateContextMenu(menu, v, menuInfo);
 
         menu.setHeaderTitle("Opciones lista de dependencia");
-        getActivity().getMenuInflater().inflate(R.menu.menu_listdependency, menu);
+        getActivity().getMenuInflater().inflate(R.menu.menu_context_listdependency, menu);
     }
 
 
@@ -164,7 +158,20 @@ public class ListDependencyFragment extends ListFragment implements ListDependen
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        //mListPresenter.onDestroy();
-        //mAdapter = null;
+        mListPresenter.onDestroy();
+        mAdapter = null;
+    }
+
+
+    @Override
+    public void showDependencies(List<Dependency> dependencies) {
+        mAdapter.clear();
+        mAdapter.addAll(dependencies);
+    }
+
+
+    @Override
+    public void showDeleteMessage() {
+        Snackbar.make(getView(), "Dependencia eliminada con éxito", Snackbar.LENGTH_SHORT).show();
     }
 }

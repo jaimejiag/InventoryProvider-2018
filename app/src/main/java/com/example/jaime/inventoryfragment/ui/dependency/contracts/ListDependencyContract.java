@@ -14,6 +14,7 @@ public interface ListDependencyContract {
 
     interface View extends BaseView {
         void showDependencies(List<Dependency> dependencies);
+        void showDeleteMessage();
     }
 
 

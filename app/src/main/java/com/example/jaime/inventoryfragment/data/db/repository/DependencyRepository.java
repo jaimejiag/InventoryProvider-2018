@@ -4,6 +4,7 @@ import com.example.jaime.inventoryfragment.data.db.model.Dependency;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 
 /**
  * Repositorio con los datos de Dependency.
@@ -97,14 +98,16 @@ public class DependencyRepository {
 
 
     public void deleteDependency(Dependency dependency) {
-        int index = 0;
+        Iterator<Dependency> iterator = mDependencies.iterator();
+        Dependency tmpDependency;
 
-        while (index < mDependencies.size()) {
-            if (dependency.get_ID() == mDependencies.get(index).get_ID()) {
-                mDependencies.remove(index);
-                index = mDependencies.size();
-            } else
-                index++;
+        while (iterator.hasNext()) {
+            tmpDependency = iterator.next();
+
+            if (dependency.get_ID() == tmpDependency.get_ID()) {
+                iterator.remove();
+                break;
+            }
         }
     }
 }

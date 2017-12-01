@@ -17,8 +17,8 @@ import android.widget.EditText;
 import com.example.jaime.inventoryfragment.R;
 import com.example.jaime.inventoryfragment.data.db.model.Dependency;
 import com.example.jaime.inventoryfragment.ui.base.BaseFragment;
-import com.example.jaime.inventoryfragment.ui.base.BasePresenter;
 import com.example.jaime.inventoryfragment.ui.dependency.contracts.AddeditDependencyContract;
+import com.example.jaime.inventoryfragment.ui.dependency.presenters.AddeditDependencyPresenter;
 import com.example.jaime.inventoryfragment.ui.utils.AddEdit;
 
 /**
@@ -29,10 +29,6 @@ public class AddeditDependencyFragment extends BaseFragment implements AddeditDe
     public static final String TAG = "addeditdependency";
     public static final String EDIT_KEY = "edit";
 
-    private AddeditDependencyContract.Presenter mPresenter;
-    private AddeditDependencyListener mCallback;
-    private AddEdit mMode;
-
     private FloatingActionButton fabDependency;
     private TextInputLayout tilName;
     private TextInputLayout tilSortName;
@@ -41,9 +37,16 @@ public class AddeditDependencyFragment extends BaseFragment implements AddeditDe
     private EditText edtSortname;
     private EditText edtDescription;
 
+    private AddeditDependencyContract.Presenter mPresenter;
+    private AddeditDependencyListener mCallback;
+    private AddEdit mMode;
+
+
     interface AddeditDependencyListener {
         void listDependency();
     }
+
+
     public static AddeditDependencyFragment newInstance(Bundle bundle) {
         AddeditDependencyFragment addeditDependencyFragment = new AddeditDependencyFragment();
 
@@ -63,6 +66,13 @@ public class AddeditDependencyFragment extends BaseFragment implements AddeditDe
         } catch (ClassCastException e) {
             throw new ClassCastException(getActivity().getLocalClassName() + " must implements ListDepedencyListener");
         }
+    }
+
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mPresenter = new AddeditDependencyPresenter(this);
     }
 
 
@@ -129,12 +139,6 @@ public class AddeditDependencyFragment extends BaseFragment implements AddeditDe
 
 
     @Override
-    public void setPresenter(BasePresenter presenter) {
-        mPresenter = (AddeditDependencyContract.Presenter) presenter;
-    }
-
-
-    @Override
     public void navigateToListDependency() {
         mCallback.listDependency();
     }
@@ -193,6 +197,6 @@ public class AddeditDependencyFragment extends BaseFragment implements AddeditDe
     @Override
     public void onDestroy() {
         super.onDestroy();
-        //mPresenter.onDestroy();
+        mPresenter.onDestroy();
     }
 }

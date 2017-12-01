@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+
     <item
-        android:id="@+id/action_listdependency_delete"
-        android:title="@string/fragment_listdependency_delete">Eliminar</item>
+        android:id="@+id/action_sortbyname"
+        android:title="@string/action_sortbyname"/>
+
+    <item
+        android:id="@+id/action_sortbyid"
+        android:title="@string/action_sortbyid"/>
+
 </menu>

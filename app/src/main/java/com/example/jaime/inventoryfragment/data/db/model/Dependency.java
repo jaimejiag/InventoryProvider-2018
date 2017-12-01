@@ -10,6 +10,21 @@ import java.util.Comparator;
  */
 
 public class Dependency implements Comparable, Parcelable {
+    public static final Comparator<Dependency> COMPARATOR_ID = new Comparator<Dependency>() {
+        @Override
+        public int compare(Dependency o1, Dependency o2) {
+            return o1.get_ID() > o2.get_ID() ? 1 : -1;
+        }
+    };
+
+    public static final Comparator<Dependency> COMPARATOR_NAME = new Comparator<Dependency>() {
+        @Override
+        public int compare(Dependency o1, Dependency o2) {
+            return o1.getName().compareToIgnoreCase(o2.getName());
+        }
+    };
+
+
     private int _ID;
     private String name;
     private String shortname;
@@ -100,12 +115,12 @@ public class Dependency implements Comparable, Parcelable {
     @Override
     public boolean equals(Object obj) {
         Dependency dependency = (Dependency) obj;
-        boolean result = true;
+        boolean result = false;
 
         if (name.equals(dependency.getName()))
-            result = false;
+            result = true;
         else if (shortname.equals(dependency.getShortname()))
-            result = false;
+            result = true;
 
         return result;
     }
@@ -114,6 +129,7 @@ public class Dependency implements Comparable, Parcelable {
     public int compareTo(Object o) {
         return name.compareTo(((Dependency)o).getName());
     }
+
 
     @Override
     public int describeContents() {

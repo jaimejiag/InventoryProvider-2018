@@ -31,6 +31,7 @@ public class ListDependencyPresenter implements ListDependencyContract.Presenter
     @Override
     public void deleteDependency(Dependency dependency) {
         listDependencyInteractor.deleteDependency(dependency, this);
+        view.showDeleteMessage();
     }
 
 
