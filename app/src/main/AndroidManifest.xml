@@ -23,7 +23,7 @@
             android:name="com.example.jaime.inventoryfragment.DashBoardActivity"
             android:theme="@style/ActionBarTheme" />
         <activity android:name="com.example.jaime.inventoryfragment.ui.product.ProductActivity" />
-        <activity android:name="com.example.jaime.inventoryfragment.ui.dependency.DependencyActivity" />
+        <activity android:name="com.example.jaime.inventoryfragment.ui.dependency.DependencyActivity"/>
         <activity android:name="com.example.jaime.inventoryfragment.ui.sector.SectorActivity" />
         <activity android:name="com.example.jaime.inventoryfragment.ui.prefs.AccountSettingActivity" />
         <activity android:name="com.example.jaime.inventoryfragment.ui.prefs.GeneralSettingActivity" />

@@ -7,6 +7,8 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -40,6 +42,7 @@ public class AddeditDependencyFragment extends BaseFragment implements AddeditDe
     private AddeditDependencyContract.Presenter mPresenter;
     private AddeditDependencyListener mCallback;
     private AddEdit mMode;
+    private Toolbar mToolbar;
 
 
     interface AddeditDependencyListener {
@@ -81,6 +84,7 @@ public class AddeditDependencyFragment extends BaseFragment implements AddeditDe
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_addedit_dependency, container, false);
 
+        mToolbar = (Toolbar) root.findViewById(R.id.tb_addeditDependency);
         fabDependency = (FloatingActionButton) root.findViewById(R.id.fab_dependency_save);
         tilName = (TextInputLayout) root.findViewById(R.id.til_dependency_name);
         edtName = (EditText) root.findViewById(R.id.edt_dependency_name);
@@ -106,6 +110,8 @@ public class AddeditDependencyFragment extends BaseFragment implements AddeditDe
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        ((AppCompatActivity)getActivity()).setSupportActionBar(mToolbar);
 
         fabDependency.setOnClickListener(new View.OnClickListener() {
             @Override

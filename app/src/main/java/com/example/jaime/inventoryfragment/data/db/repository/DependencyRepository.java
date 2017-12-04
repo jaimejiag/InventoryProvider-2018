@@ -63,6 +63,18 @@ public class DependencyRepository {
     }
 
 
+    public ArrayList<Dependency> getDependenciesOrderByName() {
+        Collections.sort(mDependencies, Dependency.COMPARATOR_NAME);
+        return mDependencies;
+    }
+
+
+    public ArrayList<Dependency> getDependenciesOrderByID() {
+        Collections.sort(mDependencies, Dependency.COMPARATOR_ID);
+        return mDependencies;
+    }
+
+
     public int getLastId() {
         return mDependencies.get(mDependencies.size() - 1).get_ID();
     }

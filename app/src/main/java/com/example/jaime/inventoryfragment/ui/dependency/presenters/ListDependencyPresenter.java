@@ -29,6 +29,18 @@ public class ListDependencyPresenter implements ListDependencyContract.Presenter
 
 
     @Override
+    public void loadDependencyOrderByName() {
+        listDependencyInteractor.loadDependenciesOrderByName(this);
+    }
+
+
+    @Override
+    public void loadDependencyOrderByID() {
+        listDependencyInteractor.loadDependenciesOrderByID(this);
+    }
+
+
+    @Override
     public void deleteDependency(Dependency dependency) {
         listDependencyInteractor.deleteDependency(dependency, this);
         view.showDeleteMessage();

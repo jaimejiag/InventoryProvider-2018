@@ -17,6 +17,18 @@ public class ListDependencyInteractor implements ListDependencyContract.Interact
 
 
     @Override
+    public void loadDependenciesOrderByName(OnFinishedLoadDependency onFinishedLoadDependency) {
+        onFinishedLoadDependency.onSuccess(DependencyRepository.getInstance().getDependenciesOrderByName());
+    }
+
+
+    @Override
+    public void loadDependenciesOrderByID(OnFinishedLoadDependency onFinishedLoadDependency) {
+        onFinishedLoadDependency.onSuccess(DependencyRepository.getInstance().getDependenciesOrderByID());
+    }
+
+
+    @Override
     public void deleteDependency(Dependency dependency, OnFinishedLoadDependency onFinishedLoadDependency) {
         DependencyRepository.getInstance().deleteDependency(dependency);
         onFinishedLoadDependency.onSuccess(DependencyRepository.getInstance().getDependencies());

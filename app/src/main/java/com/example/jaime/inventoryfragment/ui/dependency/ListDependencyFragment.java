@@ -12,11 +12,13 @@ import android.support.v4.app.ListFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.Toolbar;
+import android.support.v7.widget.Toolbar;
 
 import com.example.jaime.inventoryfragment.R;
 import com.example.jaime.inventoryfragment.adapters.DependencyAdapter;
@@ -83,11 +85,12 @@ public class ListDependencyFragment extends ListFragment implements ListDependen
 
         fabDependency = (FloatingActionButton) root.findViewById(R.id.fab_dependency_add);
         mAdapter = new DependencyAdapter(getActivity());
-        //Como el fragment mantiene el estado (y sólo se elimina la vista
+
         mListPresenter = new ListDependencyPresenter(this);
         mListPresenter.loadDependency();
+
         mToolbar = (Toolbar) root.findViewById(R.id.tb_dependency);
-        //((AppCompatActivity)getActivity()).setSupportActionBar(mToolbar);
+        ((AppCompatActivity)getActivity()).setSupportActionBar(mToolbar);
 
         return root;
     }
@@ -152,6 +155,29 @@ public class ListDependencyFragment extends ListFragment implements ListDependen
         }
 
         return super.onContextItemSelected(item);
+    }
+
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_listdependency, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_sortbyname:
+                mListPresenter.loadDependencyOrderByName();
+                break;
+
+            case R.id.action_sortbyid:
+                mListPresenter.loadDependencyOrderByID();
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
 

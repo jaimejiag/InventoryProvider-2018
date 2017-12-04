@@ -13,7 +13,16 @@ public class Dependency implements Comparable, Parcelable {
     public static final Comparator<Dependency> COMPARATOR_ID = new Comparator<Dependency>() {
         @Override
         public int compare(Dependency o1, Dependency o2) {
-            return o1.get_ID() > o2.get_ID() ? 1 : -1;
+            int result = 0;
+
+            if (o1.get_ID() > o2.get_ID())
+                result = 1;
+            else if (o1.get_ID() < o2.get_ID())
+                result = -1;
+            else if (o1.get_ID() == o2.get_ID())
+                result = 0;
+
+            return result;
         }
     };
 
