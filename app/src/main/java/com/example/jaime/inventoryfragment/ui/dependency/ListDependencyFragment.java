@@ -90,7 +90,6 @@ public class ListDependencyFragment extends ListFragment implements ListDependen
         mListPresenter.loadDependency();
 
         mToolbar = (Toolbar) root.findViewById(R.id.tb_dependency);
-        ((AppCompatActivity)getActivity()).setSupportActionBar(mToolbar);
 
         return root;
     }
@@ -100,6 +99,8 @@ public class ListDependencyFragment extends ListFragment implements ListDependen
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+
+        ((AppCompatActivity)getActivity()).setSupportActionBar(mToolbar);
         registerForContextMenu(getListView());
         setListAdapter(mAdapter);
 

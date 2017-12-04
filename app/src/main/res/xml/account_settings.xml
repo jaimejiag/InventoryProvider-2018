@@ -5,19 +5,19 @@
 
         <SwitchPreference
             android:defaultValue="false"
-            android:key="rememberuser"
+            android:key="pref_key_current_user_remember"
             android:title="@string/pref_title_rememberUser"
             android:summary="@string/pref_summary_rememberUser"/>
 
         <EditTextPreference
             android:defaultValue="Jaime"
-            android:key="username"
+            android:key="pref_key_current_user_name"
             android:selectAllOnFocus="true"
             android:singleLine="true"
             android:title="@string/pref_title_userName" />
 
         <EditTextPreference
-            android:key="userpassword"
+            android:key="pref_key_current_user_password"
             android:selectAllOnFocus="true"
             android:singleLine="true"
             android:title="@string/pref_title_userPassword"

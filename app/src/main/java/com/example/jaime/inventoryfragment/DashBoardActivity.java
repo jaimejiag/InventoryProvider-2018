@@ -9,7 +9,9 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
+import com.example.jaime.inventoryfragment.data.prefs.AppPreferencesHelper;
 import com.example.jaime.inventoryfragment.ui.dependency.DependencyActivity;
 import com.example.jaime.inventoryfragment.ui.inventory.InventoryActivity;
 import com.example.jaime.inventoryfragment.ui.prefs.AccountSettingActivity;
@@ -24,6 +26,12 @@ public class DashBoardActivity extends AppCompatActivity {
     private GridLayout gridDashboard;
     private CLickListenerDashboard mListenerDashboard;
 
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        showAppPreferences();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +93,15 @@ public class DashBoardActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+
+    private void showAppPreferences() {
+        AppPreferencesHelper sharedPreferences = ((InventoryApplication)getApplicationContext()).getAppPreferencesHelper();
+        String message = "Tu usuario es " + sharedPreferences.getCurrentUserName();
+
+        sharedPreferences.setCurrentUserName("Francisco Franco");
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
 
