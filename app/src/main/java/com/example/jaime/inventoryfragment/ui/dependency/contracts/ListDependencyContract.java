@@ -23,6 +23,16 @@ public interface ListDependencyContract {
         void loadDependencyOrderByName();
         void loadDependencyOrderByID();
         void deleteDependency(Dependency dependency);
+
+        void setNewSelection(int position);
+
+        void removeSelection(int position);
+
+        void deleteSelection();
+
+        boolean isPositionChecked(int position);
+
+        void clearSelection();
     }
 
 
@@ -31,6 +41,8 @@ public interface ListDependencyContract {
         void loadDependenciesOrderByName(OnFinishedLoadDependency onFinishedLoadDependency);
         void loadDependenciesOrderByID(OnFinishedLoadDependency onFinishedLoadDependency);
         void deleteDependency(Dependency dependency, OnFinishedLoadDependency listener);
+        Dependency getDependency(int position);
+
 
         interface OnFinishedLoadDependency {
             void onSuccess(List<Dependency> dependencies);

@@ -122,4 +122,9 @@ public class DependencyRepository {
             }
         }
     }
+
+
+    public Dependency getDependencyAtPosition(int position){
+        return mDependencies.get(position);
+    }
 }

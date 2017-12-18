@@ -19,6 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.support.v7.widget.Toolbar;
+import android.widget.ListView;
 
 import com.example.jaime.inventoryfragment.R;
 import com.example.jaime.inventoryfragment.adapters.DependencyAdapter;
@@ -37,7 +38,7 @@ public class ListDependencyFragment extends ListFragment implements ListDependen
 
     private FloatingActionButton fabDependency;
 
-    private ListDependencyContract.Presenter mListPresenter;
+    private ListDependencyContract.Presenter mPresenter;
     private ListDependencyListener mCallback;
     private DependencyAdapter mAdapter;
     private Toolbar mToolbar;
@@ -86,8 +87,8 @@ public class ListDependencyFragment extends ListFragment implements ListDependen
         fabDependency = (FloatingActionButton) root.findViewById(R.id.fab_dependency_add);
         mAdapter = new DependencyAdapter(getActivity());
 
-        mListPresenter = new ListDependencyPresenter(this);
-        mListPresenter.loadDependency();
+        mPresenter = new ListDependencyPresenter(this);
+        mPresenter.loadDependency();
 
         mToolbar = (Toolbar) root.findViewById(R.id.tb_dependency);
 
@@ -101,7 +102,7 @@ public class ListDependencyFragment extends ListFragment implements ListDependen
 
 
         ((AppCompatActivity)getActivity()).setSupportActionBar(mToolbar);
-        registerForContextMenu(getListView());
+        //registerForContextMenu(getListView());
         setListAdapter(mAdapter);
 
         fabDependency.setOnClickListener(new View.OnClickListener() {
@@ -119,6 +120,16 @@ public class ListDependencyFragment extends ListFragment implements ListDependen
                 bundle.putParcelable(AddeditDependencyFragment.EDIT_KEY, dependency);
 
                 mCallback.addNewDependency(bundle);
+            }
+        });
+
+        getListView().setChoiceMode(ListView.CHOICE_MODE_MULTIPLE_MODAL);
+        getListView().setMultiChoiceModeListener(new DependencyMultipleListener(mPresenter));
+        getListView().setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                getListView().setItemChecked(position, !mPresenter.isPositionChecked(position));
+                return true;
             }
         });
     }
@@ -150,7 +161,7 @@ public class ListDependencyFragment extends ListFragment implements ListDependen
                 bundle.putString(CommonDialog.MESSAGE, "Desea eliminar la dependencia");
                 bundle.putString(CommonDialog.TITTLE, "Eliminar dependencia");
                 bundle.putParcelable(CommonDialog.DEPENDENCY, dependency);
-                Dialog dialog = CommonDialog.showConfirmDialog(bundle, getActivity(), mListPresenter);
+                Dialog dialog = CommonDialog.showConfirmDialog(bundle, getActivity(), mPresenter);
                 dialog.show();
                 break;
         }
@@ -170,11 +181,11 @@ public class ListDependencyFragment extends ListFragment implements ListDependen
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_sortbyname:
-                mListPresenter.loadDependencyOrderByName();
+                mPresenter.loadDependencyOrderByName();
                 break;
 
             case R.id.action_sortbyid:
-                mListPresenter.loadDependencyOrderByID();
+                mPresenter.loadDependencyOrderByID();
                 break;
         }
 
@@ -185,7 +196,7 @@ public class ListDependencyFragment extends ListFragment implements ListDependen
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        mListPresenter.onDestroy();
+        mPresenter.onDestroy();
         mAdapter = null;
     }
 

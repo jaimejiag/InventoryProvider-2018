@@ -4,7 +4,9 @@ import com.example.jaime.inventoryfragment.data.db.model.Dependency;
 import com.example.jaime.inventoryfragment.ui.dependency.interactors.ListDependencyInteractor;
 import com.example.jaime.inventoryfragment.ui.dependency.contracts.ListDependencyContract;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by usuario on 23/11/17.
@@ -13,37 +15,75 @@ import java.util.List;
 public class ListDependencyPresenter implements ListDependencyContract.Presenter,
         ListDependencyContract.Interactor.OnFinishedLoadDependency {
     private ListDependencyContract.View view;
-    private ListDependencyInteractor listDependencyInteractor;
+    HashMap<Integer, Boolean> mSelection = new HashMap<>();
+
+
+    private ListDependencyInteractor mInteractor;
 
 
     public ListDependencyPresenter(ListDependencyContract.View view) {
         this.view = view;
-        listDependencyInteractor = new ListDependencyInteractor();
+        mInteractor = new ListDependencyInteractor();
     }
 
 
     @Override
     public void loadDependency() {
-        listDependencyInteractor.loadDependencies(this);
+        mInteractor.loadDependencies(this);
     }
 
 
     @Override
     public void loadDependencyOrderByName() {
-        listDependencyInteractor.loadDependenciesOrderByName(this);
+        mInteractor.loadDependenciesOrderByName(this);
     }
 
 
     @Override
     public void loadDependencyOrderByID() {
-        listDependencyInteractor.loadDependenciesOrderByID(this);
+        mInteractor.loadDependenciesOrderByID(this);
     }
 
 
     @Override
     public void deleteDependency(Dependency dependency) {
-        listDependencyInteractor.deleteDependency(dependency, this);
+        mInteractor.deleteDependency(dependency, this);
         view.showDeleteMessage();
+    }
+
+
+    @Override
+    public void setNewSelection(int position) {
+        mSelection.put(position, true);
+    }
+
+
+    @Override
+    public void removeSelection(int position) {
+        mSelection.remove(position);
+    }
+
+
+    @Override
+    public void deleteSelection() {
+        Dependency dependency = null;
+
+        for (Map.Entry<Integer, Boolean> tmp : mSelection.entrySet()) {
+            dependency = mInteractor.getDependency(tmp.getKey());
+            mInteractor.deleteDependency(dependency, this);
+        }
+    }
+
+
+    @Override
+    public boolean isPositionChecked(int position) {
+        return mSelection.get(position) == null ? false : true;
+    }
+
+
+    @Override
+    public void clearSelection() {
+        mSelection.clear();
     }
 
 
@@ -56,6 +96,6 @@ public class ListDependencyPresenter implements ListDependencyContract.Presenter
     @Override
     public void onDestroy() {
         view = null;
-        listDependencyInteractor = null;
+        mInteractor = null;
     }
 }

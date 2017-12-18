@@ -33,4 +33,10 @@ public class ListDependencyInteractor implements ListDependencyContract.Interact
         DependencyRepository.getInstance().deleteDependency(dependency);
         onFinishedLoadDependency.onSuccess(DependencyRepository.getInstance().getDependencies());
     }
+
+
+    @Override
+    public Dependency getDependency(int position) {
+        return DependencyRepository.getInstance().getDependencyAtPosition(position);
+    }
 }
