@@ -4,6 +4,7 @@ import com.example.jaime.inventoryfragment.data.db.model.Dependency;
 import com.example.jaime.inventoryfragment.ui.dependency.interactors.ListDependencyInteractor;
 import com.example.jaime.inventoryfragment.ui.dependency.contracts.ListDependencyContract;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -66,12 +67,7 @@ public class ListDependencyPresenter implements ListDependencyContract.Presenter
 
     @Override
     public void deleteSelection() {
-        Dependency dependency = null;
-
-        for (Map.Entry<Integer, Boolean> tmp : mSelection.entrySet()) {
-            dependency = mInteractor.getDependency(tmp.getKey());
-            mInteractor.deleteDependency(dependency, this);
-        }
+        view.deleteSelectedDependencies(mSelection.keySet());
     }
 
 
@@ -84,6 +80,12 @@ public class ListDependencyPresenter implements ListDependencyContract.Presenter
     @Override
     public void clearSelection() {
         mSelection.clear();
+    }
+
+
+    @Override
+    public void deleteSelectedDependencies(ArrayList<Dependency> dependencies) {
+        mInteractor.deleteDependencies(dependencies, this);
     }
 
 

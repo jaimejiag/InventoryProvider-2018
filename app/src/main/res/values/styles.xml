@@ -6,7 +6,12 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <!-- Para que la ActionMode se sitúe sobre la Toolbar y no la desplaze -->
+        <item name="windowActionModeOverlay">true</item>
+        <item name="actionModeStyle">@style/Widget.ActionMode</item>
     </style>
+
+    <style name="Widget.ActionMode" parent="Widget.AppCompat.ActionBar.Solid"></style>
 
     <style name="LoginTheme" parent="AppTheme">
         <item name="android:textColor">@color/colorPrimaryLogin</item>
@@ -31,9 +36,10 @@
         <item name="android:padding">8dp</item>
     </style>
 
-    
+
     <style name="CustomCheckBox" parent="Theme.AppCompat">
         <item name="android:textColor">@android:color/white</item>
         <item name="colorControlActivated">@android:color/darker_gray</item>
     </style>
+
 </resources>

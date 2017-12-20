@@ -17,6 +17,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.support.v7.widget.Toolbar;
 import android.widget.ListView;
@@ -28,7 +29,10 @@ import com.example.jaime.inventoryfragment.ui.dependency.contracts.ListDependenc
 import com.example.jaime.inventoryfragment.ui.dependency.presenters.ListDependencyPresenter;
 import com.example.jaime.inventoryfragment.ui.utils.CommonDialog;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -108,6 +112,7 @@ public class ListDependencyFragment extends ListFragment implements ListDependen
         fabDependency.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                getListView().setChoiceMode(ListView.CHOICE_MODE_NONE);
                 mCallback.addNewDependency(null);
             }
         });
@@ -211,5 +216,17 @@ public class ListDependencyFragment extends ListFragment implements ListDependen
     @Override
     public void showDeleteMessage() {
         Snackbar.make(getView(), "Dependencia eliminada con éxito", Snackbar.LENGTH_SHORT).show();
+    }
+
+
+    @Override
+    public void deleteSelectedDependencies(Set<Integer> positions) {
+        Iterator<Integer> iterator = positions.iterator();
+        ArrayList<Dependency> dependencies = new ArrayList<>();
+
+        while (iterator.hasNext())
+            dependencies.add((Dependency) getListView().getItemAtPosition(iterator.next().intValue()));
+
+        mPresenter.deleteSelectedDependencies(dependencies);
     }
 }

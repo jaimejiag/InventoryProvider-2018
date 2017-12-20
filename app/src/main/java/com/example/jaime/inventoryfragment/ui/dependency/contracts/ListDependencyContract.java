@@ -4,7 +4,9 @@ import com.example.jaime.inventoryfragment.data.db.model.Dependency;
 import com.example.jaime.inventoryfragment.ui.base.BasePresenter;
 import com.example.jaime.inventoryfragment.ui.base.BaseView;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by usuario on 23/11/17.
@@ -15,6 +17,7 @@ public interface ListDependencyContract {
     interface View extends BaseView {
         void showDependencies(List<Dependency> dependencies);
         void showDeleteMessage();
+        void deleteSelectedDependencies(Set<Integer> positions);
     }
 
 
@@ -33,6 +36,8 @@ public interface ListDependencyContract {
         boolean isPositionChecked(int position);
 
         void clearSelection();
+
+        void deleteSelectedDependencies(ArrayList<Dependency> dependencies);
     }
 
 
@@ -41,6 +46,7 @@ public interface ListDependencyContract {
         void loadDependenciesOrderByName(OnFinishedLoadDependency onFinishedLoadDependency);
         void loadDependenciesOrderByID(OnFinishedLoadDependency onFinishedLoadDependency);
         void deleteDependency(Dependency dependency, OnFinishedLoadDependency listener);
+        void deleteDependencies(ArrayList<Dependency> dependencies, OnFinishedLoadDependency listener);
         Dependency getDependency(int position);
 
 
