@@ -33,7 +33,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:textSize="@dimen/list_primary_text"
-        android:textColor="@android:color/primary_text_light"/>
+        android:textColor="@android:color/primary_text_light" />
 
     <TextView
         android:id="@+id/txv_item_shortname"

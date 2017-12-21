@@ -2,6 +2,7 @@ package com.example.jaime.inventoryfragment.data.prefs;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 import com.example.jaime.inventoryfragment.InventoryApplication;
 import com.example.jaime.inventoryfragment.ui.utils.AppConstans;
@@ -11,16 +12,28 @@ import com.example.jaime.inventoryfragment.ui.utils.AppConstans;
  */
 
 public class AppPreferencesHelper implements AccountPreferencesHelper, GeneralPreferencesHelper {
-    //1. Se define todas las KEY posibles del fichero de preferencias.
+    private static final String TAG = "AppPreferencesHelper";
 
-
-    //2. Objeto para editar las preferencias.
     private final SharedPreferences mPreferences;
     private static AppPreferencesHelper mInstance;
+    private SharedPreferences.OnSharedPreferenceChangeListener mListener;
+
+
+    public interface AppPreferencesListener {
+        void onSharedPreferenceChanged();
+    }
+
 
     private AppPreferencesHelper() {
         //Si es el fichero por defecto de las preferencias
         mPreferences = InventoryApplication.getContext().getSharedPreferences(AppConstans.PREF_NAME, Context.MODE_PRIVATE);
+
+        mListener = new SharedPreferences.OnSharedPreferenceChangeListener() {
+            @Override
+            public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+                Log.i(TAG, "se ha cambiado la key surmano: " + key);
+            }
+        };
     }
 
 

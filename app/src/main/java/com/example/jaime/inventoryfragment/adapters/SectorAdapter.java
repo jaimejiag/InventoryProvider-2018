@@ -22,12 +22,19 @@ public class SectorAdapter extends RecyclerView.Adapter<SectorAdapter.SectorView
     private ArrayList<Sector> sectors;
     private ArrayList<Sector> sectorsModified;  //Guarda los sectores modificados en la interfaz.
     private OnSwitchCheckedChangeListener changeListener;
+    private OnItemClickListener mListener;
 
 
-    public SectorAdapter() {
+    public interface OnItemClickListener {
+        void onItemClick(Sector sector);
+    }
+
+
+    public SectorAdapter(OnItemClickListener listener) {
         sectors = SectorRepository.getInstance().getSectors();
         sectorsModified = new ArrayList<>();
         changeListener = new OnSwitchCheckedChangeListener();
+        mListener = listener;
     }
 
 
@@ -36,8 +43,9 @@ public class SectorAdapter extends RecyclerView.Adapter<SectorAdapter.SectorView
      * y se haya salvado el estado dinámico.1
      * @param
      */
-    public SectorAdapter(ArrayList<Sector> sectorsModified) {
+    public SectorAdapter(ArrayList<Sector> sectorsModified, OnItemClickListener listener) {
         sectors = SectorRepository.getInstance().getSectors();
+        mListener = listener;
         this.sectorsModified = sectorsModified;
         changeListener = new OnSwitchCheckedChangeListener();
         identifySectorsModified();
@@ -63,6 +71,8 @@ public class SectorAdapter extends RecyclerView.Adapter<SectorAdapter.SectorView
 
         if (sectors.get(position).isSectorDefault())
             holder.txvSectorDefault.setText(R.string.txv_sectorDefault);
+
+        holder.bind(sectors.get(position), mListener);
     }
 
 
@@ -116,6 +126,16 @@ public class SectorAdapter extends RecyclerView.Adapter<SectorAdapter.SectorView
             swSector = (Switch) itemView.findViewById(R.id.sw_sector);
             txvSectorName = (TextView) itemView.findViewById(R.id.txv_sectorName);
             txvSectorDefault = (TextView) itemView.findViewById(R.id.txv_sectorDefault);
+        }
+
+
+        public void bind(final Sector sector, final OnItemClickListener listener) {
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    listener.onItemClick(sector);
+                }
+            });
         }
     }
 

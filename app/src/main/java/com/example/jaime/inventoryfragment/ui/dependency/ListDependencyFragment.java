@@ -206,6 +206,7 @@ public class ListDependencyFragment extends ListFragment implements ListDependen
     }
 
 
+
     @Override
     public void showDependencies(List<Dependency> dependencies) {
         mAdapter.clear();

@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.widget.Toast;
 
 import com.example.jaime.inventoryfragment.R;
 import com.example.jaime.inventoryfragment.adapters.SectorAdapter;
@@ -18,6 +19,7 @@ public class SectorActivity extends AppCompatActivity {
     private RecyclerView rvSector;
     private SectorAdapter mAdapter;
     private Toolbar mToolbar;
+    private SectorAdapter.OnItemClickListener mListener;
     //private ViewGroup mLayout;
 
 
@@ -32,10 +34,17 @@ public class SectorActivity extends AppCompatActivity {
         rvSector.setHasFixedSize(true);
         rvSector.setLayoutManager(new LinearLayoutManager(this));
 
+        mListener = new SectorAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Sector sector) {
+                Toast.makeText(SectorActivity.this, sector.getName() + " " + sector.getSortname(), Toast.LENGTH_SHORT).show();
+            }
+        };
+
         if (savedInstanceState != null)
-            mAdapter = new SectorAdapter(savedInstanceState.<Sector>getParcelableArrayList(SECTORS_MODIFIED_KEY));
+            mAdapter = new SectorAdapter(savedInstanceState.<Sector>getParcelableArrayList(SECTORS_MODIFIED_KEY), mListener);
         else
-            mAdapter = new SectorAdapter();
+            mAdapter = new SectorAdapter(mListener);
 
         setSupportActionBar(mToolbar);
         rvSector.setAdapter(mAdapter);
