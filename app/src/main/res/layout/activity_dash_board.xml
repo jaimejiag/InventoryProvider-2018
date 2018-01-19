@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:columnCount="5"
     android:orientation="horizontal"
-    tools:context="com.example.jaime.inventoryfragment.DashBoardActivity">
+    tools:context="com.example.jaime.inventorydb.DashBoardActivity">
 
     <ImageView
         android:id="@+id/imageView"
