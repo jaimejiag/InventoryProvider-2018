@@ -7,6 +7,8 @@ import android.os.Build;
 import com.example.jaime.inventorydb.InventoryApplication;
 import com.example.jaime.inventorydb.data.db.InventoryContract;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 /**
  * Created by usuario on 19/01/18.
  */
@@ -14,6 +16,7 @@ import com.example.jaime.inventorydb.data.db.InventoryContract;
 public class InventoryOpenHelper extends SQLiteOpenHelper {
     private static InventoryOpenHelper mInstance;
     private SQLiteDatabase mDatabase;
+    private AtomicInteger mOpenCounter = new AtomicInteger();
 
 
     private InventoryOpenHelper() {
@@ -62,7 +65,17 @@ public class InventoryOpenHelper extends SQLiteOpenHelper {
     }
 
 
-    public void openDatabase() {
-        mDatabase = getWritableDatabase();
+    public synchronized SQLiteDatabase openDatabase(){
+        if(mOpenCounter.incrementAndGet()==1)
+            mDatabase = getWritableDatabase();
+
+        return mDatabase;
+    }
+
+
+    public synchronized void closeDatabase(){
+        if(mOpenCounter.decrementAndGet() ==0){
+            mDatabase.close();
+        }
     }
 }

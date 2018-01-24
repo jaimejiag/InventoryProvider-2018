@@ -1,6 +1,9 @@
 package com.example.jaime.inventorydb.data.db.repository;
 
+import android.database.Cursor;
+
 import com.example.jaime.inventorydb.data.db.model.Dependency;
+import com.example.jaime.inventorydb.data.db.repository.dao.DependencyDao;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -12,11 +15,12 @@ import java.util.Iterator;
 public class DependencyRepository {
     private ArrayList<Dependency> mDependencies;
     private static DependencyRepository mInstance;
+    private DependencyDao mDao;
 
 
     private DependencyRepository() {
         this.mDependencies = new ArrayList<>();
-        initialize();
+        this.mDao = new DependencyDao();
     }
 
 
@@ -28,38 +32,29 @@ public class DependencyRepository {
     }
 
 
-    private void initialize() {
-        addDependency(new Dependency(1, "1º Ciclo Formativo Grado Superior",
-                "ZZZ", "1CFGS Desarrollo de Aplicaciones Multiplataformma"));
-        addDependency(new Dependency(2, "2º Ciclo Formativo Grado Superior",
-                "GGG", "2CFGS Desarrollo de Aplicaciones Multiplataformma"));
-        addDependency(new Dependency(3, "1º Ciclo Formativo Grado Superior",
-                "BBB", "1CFGS Desarrollo de Aplicaciones Multiplataformma"));
-        addDependency(new Dependency(4, "2º Ciclo Formativo Grado Superior",
-                "BBB", "2CFGS Desarrollo de Aplicaciones Multiplataformma"));
-        addDependency(new Dependency(5, "1º Ciclo Formativo Grado Superior",
-                "HHH", "1CFGS Desarrollo de Aplicaciones Multiplataformma"));
-        addDependency(new Dependency(6, "2º Ciclo Formativo Grado Superior",
-                "HHH", "2CFGS Desarrollo de Aplicaciones Multiplataformma"));
-        addDependency(new Dependency(7, "1º Ciclo Formativo Grado Superior",
-                "EEE", "1CFGS Desarrollo de Aplicaciones Multiplataformma"));
-        addDependency(new Dependency(8, "2º Ciclo Formativo Grado Superior",
-                "EEE", "2CFGS Desarrollo de Aplicaciones Multiplataformma"));
-        addDependency(new Dependency(9, "1º Ciclo Formativo Grado Superior",
-                "KKK", "1CFGS Desarrollo de Aplicaciones Multiplataformma"));
-        addDependency(new Dependency(10, "2º Ciclo Formativo Grado Superior",
-                "KKK", "2CFGS Desarrollo de Aplicaciones Multiplataformma"));
-    }
-
-
     public void addDependency(Dependency dependency) {
-        mDependencies.add(dependency);
+        //mDao.addDependency(dependency);
     }
 
 
     public ArrayList<Dependency> getDependencies() {
-        Collections.sort(mDependencies, new Dependency.DependencyOrderByShortName());
+        mDependencies.clear();
+        Cursor cursor = getDependenciesCursor();
+        if(cursor.moveToFirst()){
+            do{
+                Dependency dependency = new Dependency(cursor.getInt(0),cursor.getString(1),cursor.getString(2), cursor.getString(3),
+                        cursor.getString(4));
+                mDependencies.add(dependency);
+            } while(cursor.moveToNext());
+        }
+
         return mDependencies;
+    }
+
+
+    public Cursor getDependenciesCursor(){
+        return mDao.loadAll();
+
     }
 
 

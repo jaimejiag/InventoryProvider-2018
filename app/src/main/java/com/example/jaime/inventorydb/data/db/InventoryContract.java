@@ -30,6 +30,8 @@ public final class InventoryContract {
                 _ID, COLUMN_NAME, COLUMN_SORTNAME, COLUMN_DESCRIPTION, COLUMN_IMAGE
         };
 
+        public static final String ORDER_BY="name";
+
         public static final String SQL_CREATE_ENTRIES = String.format("CREATE TABLE %s (" +
                 "%s INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "%s TEXT NOT NULL, " +
