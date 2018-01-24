@@ -21,7 +21,7 @@ public class AddeditDependencyInteractor implements AddeditDependencyContract.In
         else if (description.isEmpty())
             listener.onDescriptionEmptyError();
         else if (DependencyRepository.getInstance().validateDependency(name, sortname)) {
-            DependencyRepository.getInstance().addDependency(
+            DependencyRepository.getInstance().saveDependency(
                     new Dependency(11, name, sortname, description, ""));
             listener.onSuccess();
         } else
@@ -32,7 +32,7 @@ public class AddeditDependencyInteractor implements AddeditDependencyContract.In
     @Override
     public void addDependency(String name, String sortname, String description) {
         Dependency dependency = new Dependency(11, name, sortname, description, "");
-        DependencyRepository.getInstance().addDependency(dependency);
+        DependencyRepository.getInstance().saveDependency(dependency);
     }
 
 
