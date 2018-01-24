@@ -51,28 +51,13 @@ public class DependencyRepository {
     }
 
 
-    /*public int getLastId() {
-        return mDependencies.get(mDependencies.size() - 1).get_ID();
-    }
-    */
-
-
     public boolean validateDependency(String name, String sortname) {
         return mDao.exists(name, sortname);
     }
 
 
     public void editDependency(Dependency dependency) {
-        /*int index = 0;
-
-        while (index < mDependencies.size()) {
-            if (dependency.get_ID() == mDependencies.get(index).get_ID()) {
-                mDependencies.get(index).setDescription(dependency.getDescription());
-                index = mDependencies.size();
-            } else
-                index++;
-        }
-        */
+        mDao.update(dependency);
     }
 
 
@@ -86,7 +71,14 @@ public class DependencyRepository {
     }
 
 
-    public Dependency getDependencyAtPosition(int position){
+    /*public int getLastId() {
+        return mDependencies.get(mDependencies.size() - 1).get_ID();
+    }
+    */
+
+
+    /*public Dependency getDependencyAtPosition(int position){
         return mDependencies.get(position);
     }
+    */
 }

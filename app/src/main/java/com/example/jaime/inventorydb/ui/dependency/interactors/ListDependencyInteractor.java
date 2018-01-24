@@ -48,6 +48,7 @@ public class ListDependencyInteractor implements ListDependencyContract.Interact
 
     @Override
     public Dependency getDependency(int position) {
-        return DependencyRepository.getInstance().getDependencyAtPosition(position);
+        //return DependencyRepository.getInstance().getDependencyAtPosition(position);
+        return null;
     }
 }

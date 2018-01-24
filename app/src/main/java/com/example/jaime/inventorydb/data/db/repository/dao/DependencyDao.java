@@ -86,4 +86,20 @@ public class DependencyDao {
 
         InventoryOpenHelper.getInstance().closeDatabase();
     }
+
+
+    public void update(Dependency dependency) {
+        SQLiteDatabase database = InventoryOpenHelper.getInstance().openDatabase();
+        ContentValues values = new ContentValues();
+        String whereClause = InventoryContract.DependencyEntry._ID + "=?";
+        String[] whereArgs = new String[] {String.valueOf(dependency.get_ID())};
+
+        values.put(InventoryContract.DependencyEntry.COLUMN_NAME, dependency.getName());
+        values.put(InventoryContract.DependencyEntry.COLUMN_SORTNAME, dependency.getShortname());
+        values.put(InventoryContract.DependencyEntry.COLUMN_DESCRIPTION, dependency.getDescription());
+        values.put(InventoryContract.DependencyEntry.COLUMN_IMAGE, dependency.getImage());
+
+        database.update(InventoryContract.DependencyEntry.TABLE_NAME, values, whereClause, whereArgs);
+        InventoryOpenHelper.getInstance().closeDatabase();
+    }
 }
