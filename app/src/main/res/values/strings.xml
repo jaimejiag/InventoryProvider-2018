@@ -44,4 +44,7 @@
     <string name="btnCancel">Cancelar</string>
     <string name="action_sortbyname">Ordenar por nombre</string>
     <string name="action_sortbyid">Ordenar por ID</string>
+    <string name="add_dependency_error">Error al añadir dependencia</string>
+    <string name="edit_dependency_error">Error al editar dependencia</string>
+    <string name="delete_dependency_error">Error al eliminar la dependencia</string>
 </resources>

@@ -2,6 +2,7 @@ package com.example.jaime.inventorydb.ui.dependency.interactors;
 
 import com.example.jaime.inventorydb.data.db.model.Dependency;
 import com.example.jaime.inventorydb.data.db.repository.DependencyRepository;
+import com.example.jaime.inventorydb.ui.dependency.contracts.InteractorCallback;
 import com.example.jaime.inventorydb.ui.dependency.contracts.ListDependencyContract;
 
 import java.util.ArrayList;
@@ -10,7 +11,8 @@ import java.util.ArrayList;
  * Created by usuario on 27/11/17.
  */
 
-public class ListDependencyInteractor implements ListDependencyContract.Interactor {
+public class ListInteractorInteractor implements ListDependencyContract.Interactor,
+        InteractorCallback {
 
     @Override
     public void loadDependencies(OnFinishedLoadDependency onFinishedLoadDependency) {
@@ -32,7 +34,7 @@ public class ListDependencyInteractor implements ListDependencyContract.Interact
 
     @Override
     public void deleteDependency(Dependency dependency, OnFinishedLoadDependency onFinishedLoadDependency) {
-        DependencyRepository.getInstance().deleteDependency(dependency);
+        DependencyRepository.getInstance().deleteDependency(dependency, this);
         onFinishedLoadDependency.onSuccess(DependencyRepository.getInstance().getDependencies());
     }
 
@@ -40,7 +42,7 @@ public class ListDependencyInteractor implements ListDependencyContract.Interact
     @Override
     public void deleteDependencies(ArrayList<Dependency> dependencies, OnFinishedLoadDependency listener) {
         for (int i = 0; i < dependencies.size(); i++)
-            DependencyRepository.getInstance().deleteDependency(dependencies.get(i));
+            DependencyRepository.getInstance().deleteDependency(dependencies.get(i), this);
 
         listener.onSuccess(DependencyRepository.getInstance().getDependencies());
     }
@@ -50,5 +52,16 @@ public class ListDependencyInteractor implements ListDependencyContract.Interact
     public Dependency getDependency(int position) {
         //return DependencyRepository.getInstance().getDependencyAtPosition(position);
         return null;
+    }
+
+
+    @Override
+    public void onSuccess() {
+
+    }
+
+    @Override
+    public void onError(Error error) {
+
     }
 }

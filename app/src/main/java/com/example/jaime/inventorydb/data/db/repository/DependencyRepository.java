@@ -2,6 +2,7 @@ package com.example.jaime.inventorydb.data.db.repository;
 
 import com.example.jaime.inventorydb.data.db.model.Dependency;
 import com.example.jaime.inventorydb.data.db.repository.dao.DependencyDao;
+import com.example.jaime.inventorydb.ui.dependency.contracts.InteractorCallback;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -27,11 +28,6 @@ public class DependencyRepository {
     }
 
 
-    public void addDependency(Dependency dependency) {
-        //mDao.addDependency(dependency);
-    }
-
-
     public ArrayList<Dependency> getDependencies() {
         return mDao.loadAll();
     }
@@ -51,30 +47,42 @@ public class DependencyRepository {
     }
 
 
+    public void addDependency(Dependency dependency, InteractorCallback callback) {
+        long id = mDao.add(dependency);
+        Error error = new Error();
+
+        if (id == -1)
+            callback.onError(error);
+        else
+            callback.onSuccess();
+    }
+
+
     public boolean validateDependency(String name, String sortname) {
         return mDao.exists(name, sortname);
     }
 
 
-    public void editDependency(Dependency dependency) {
-        mDao.update(dependency);
+    public void editDependency(Dependency dependency, InteractorCallback callback) {
+        int rows = mDao.update(dependency);
+        Error error = new Error();
+
+        if (rows == 0)
+            callback.onError(error);
+        else
+            callback.onSuccess();
     }
 
 
-    public long saveDependency(Dependency dependency) {
-        return mDao.save(dependency);
+    public void deleteDependency(Dependency dependency, InteractorCallback callback) {
+        int rows = mDao.delete(dependency);
+        Error error = new Error();
+
+        if (rows == 0)
+            callback.onError(error);
+        else
+            callback.onSuccess();
     }
-
-
-    public void deleteDependency(Dependency dependency) {
-        mDao.delete(dependency);
-    }
-
-
-    /*public int getLastId() {
-        return mDependencies.get(mDependencies.size() - 1).get_ID();
-    }
-    */
 
 
     /*public Dependency getDependencyAtPosition(int position){

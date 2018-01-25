@@ -18,6 +18,8 @@ public interface ListDependencyContract {
         void showDependencies(List<Dependency> dependencies);
         void showDeleteMessage();
         void deleteSelectedDependencies(Set<Integer> positions);
+        void showProgressDialog();
+        void dismissProgressDialog();
     }
 
 

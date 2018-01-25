@@ -1,5 +1,12 @@
 package com.example.jaime.inventorydb.ui.utils;
 
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+
+import com.example.jaime.inventorydb.R;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -28,5 +35,21 @@ public final class CommonUtils {
         matcher = pattern.matcher(password);
 
         return matcher.matches();
+    }
+
+
+    public static ProgressDialog ShowLoadinfDialog(Context context){
+        ProgressDialog progressDialog = new ProgressDialog(context);
+        progressDialog.show();
+
+        if (progressDialog.getWindow() != null)
+            progressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        progressDialog.setProgressStyle(ProgressDialog. STYLE_SPINNER );
+        progressDialog.setIndeterminate(true);
+        progressDialog.setCancelable(false);
+        progressDialog.setCanceledOnTouchOutside(false);
+
+        return progressDialog;
     }
 }

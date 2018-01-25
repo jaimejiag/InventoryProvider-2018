@@ -17,6 +17,7 @@ public interface AddeditDependencyContract {
         void setSortNameLengthError();
         void setDescriptionEmptyError();
         void setValidateDependencyError();
+        void showDatabaseError(Error error);
     }
 
 
@@ -43,6 +44,8 @@ public interface AddeditDependencyContract {
             void onDependencyExists();
 
             void onSuccess();
+
+            void onDatabaseError(Error error);
         }
     }
 }

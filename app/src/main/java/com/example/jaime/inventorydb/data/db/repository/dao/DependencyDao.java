@@ -3,6 +3,7 @@ package com.example.jaime.inventorydb.data.db.repository.dao;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.AsyncTask;
 
 import com.example.jaime.inventorydb.data.db.InventoryContract;
 import com.example.jaime.inventorydb.data.db.model.Dependency;
@@ -60,7 +61,7 @@ public class DependencyDao {
      * @param dependency
      * @return
      */
-    public long save(Dependency dependency) {
+    public long add(Dependency dependency) {
         SQLiteDatabase database = InventoryOpenHelper.getInstance().openDatabase();
         ContentValues values = new ContentValues();
         long id;
@@ -77,29 +78,61 @@ public class DependencyDao {
     }
 
 
-    public void delete(Dependency dependency) {
+    public int delete(Dependency dependency) {
         SQLiteDatabase database = InventoryOpenHelper.getInstance().openDatabase();
         String whereClause = InventoryContract.DependencyEntry._ID + "=?";
         String[] whereArgs = new String[] {String.valueOf(dependency.get_ID())};
+        int rows;
 
-        database.delete(InventoryContract.DependencyEntry.TABLE_NAME, whereClause, whereArgs);
-
+        rows = database.delete(InventoryContract.DependencyEntry.TABLE_NAME, whereClause, whereArgs);
         InventoryOpenHelper.getInstance().closeDatabase();
+
+        return rows;
     }
 
 
-    public void update(Dependency dependency) {
+    public int update(Dependency dependency) {
         SQLiteDatabase database = InventoryOpenHelper.getInstance().openDatabase();
         ContentValues values = new ContentValues();
         String whereClause = InventoryContract.DependencyEntry._ID + "=?";
         String[] whereArgs = new String[] {String.valueOf(dependency.get_ID())};
+        int rows;
 
         values.put(InventoryContract.DependencyEntry.COLUMN_NAME, dependency.getName());
         values.put(InventoryContract.DependencyEntry.COLUMN_SORTNAME, dependency.getShortname());
         values.put(InventoryContract.DependencyEntry.COLUMN_DESCRIPTION, dependency.getDescription());
         values.put(InventoryContract.DependencyEntry.COLUMN_IMAGE, dependency.getImage());
 
-        database.update(InventoryContract.DependencyEntry.TABLE_NAME, values, whereClause, whereArgs);
+        rows = database.update(InventoryContract.DependencyEntry.TABLE_NAME, values, whereClause, whereArgs);
         InventoryOpenHelper.getInstance().closeDatabase();
+
+        return rows;
+    }
+
+
+    class DependencyAsyncTask extends AsyncTask<SQLiteDatabase, Dependency, Void> {
+
+
+        @Override
+        protected Void doInBackground(SQLiteDatabase... sqLiteDatabases) {
+            Cursor cursor = sqLiteDatabases[0].query(InventoryContract.DependencyEntry.TABLE_NAME,InventoryContract.DependencyEntry.ALL_COLUMN,
+                    null,null,null,null,InventoryContract.DependencyEntry.ORDER_BY,null);
+
+            if(cursor.moveToFirst()){
+                do{
+                    Dependency dependency = new Dependency(cursor.getInt(0),cursor.getString(1),cursor.getString(2), cursor.getString(3),
+                            cursor.getString(4));
+                    mDependencies.add(dependency);
+                } while(cursor.moveToNext());
+            }
+
+            return null;
+        }
+
+
+        @Override
+        protected void onProgressUpdate(Dependency... values) {
+            super.onProgressUpdate(values);
+        }
     }
 }

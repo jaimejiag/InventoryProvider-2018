@@ -1,7 +1,7 @@
 package com.example.jaime.inventorydb.ui.dependency.presenters;
 
 import com.example.jaime.inventorydb.data.db.model.Dependency;
-import com.example.jaime.inventorydb.ui.dependency.interactors.AddeditDependencyInteractor;
+import com.example.jaime.inventorydb.ui.dependency.interactors.AddeditInteractorInteractor;
 import com.example.jaime.inventorydb.ui.dependency.contracts.AddeditDependencyContract;
 
 /**
@@ -16,7 +16,7 @@ public class AddeditDependencyPresenter implements AddeditDependencyContract.Pre
 
     public AddeditDependencyPresenter (AddeditDependencyContract.View view) {
         this.view = view;
-        mInteractor = new AddeditDependencyInteractor();
+        mInteractor = new AddeditInteractorInteractor(this);
     }
 
 
@@ -65,6 +65,12 @@ public class AddeditDependencyPresenter implements AddeditDependencyContract.Pre
     @Override
     public void onSuccess() {
         view.navigateToListDependency();
+    }
+
+
+    @Override
+    public void onDatabaseError(Error error) {
+        view.showDatabaseError(error);
     }
 
 

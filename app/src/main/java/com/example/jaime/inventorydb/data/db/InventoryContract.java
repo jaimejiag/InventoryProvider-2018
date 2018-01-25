@@ -9,13 +9,8 @@ import java.security.PublicKey;
  */
 
 public final class InventoryContract {
-    public static final int DATABASE_VERSION = 4;
+    public static final int DATABASE_VERSION = 5;
     public static final String DATABASE_NAME = "inventory.db";
-
-
-    private InventoryContract() {
-
-    }
 
 
     //Por cada tabla se crea una clase que implementa la interfaz BaseColumns.
@@ -37,7 +32,7 @@ public final class InventoryContract {
                 "%s TEXT NOT NULL, " +
                 "%s TEXT NOT NULL, " +
                 "%s TEXT NOT NULL, " +
-                "%s TEXT NOT NULL)",
+                "%s TEXT)",
                 TABLE_NAME,
                 _ID,
                 COLUMN_NAME,

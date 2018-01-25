@@ -27,6 +27,7 @@ import com.example.jaime.inventorydb.data.db.model.Dependency;
 import com.example.jaime.inventorydb.ui.dependency.contracts.ListDependencyContract;
 import com.example.jaime.inventorydb.ui.dependency.presenters.ListDependencyPresenter;
 import com.example.jaime.inventorydb.ui.utils.CommonDialog;
+import com.example.jaime.inventorydb.ui.utils.CommonUtils;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -228,5 +229,17 @@ public class ListDependencyFragment extends ListFragment implements ListDependen
             dependencies.add((Dependency) getListView().getItemAtPosition(iterator.next().intValue()));
 
         mPresenter.deleteSelectedDependencies(dependencies);
+    }
+
+
+    @Override
+    public void showProgressDialog() {
+        CommonUtils.ShowLoadinfDialog(getActivity()).show();
+    }
+
+
+    @Override
+    public void dismissProgressDialog() {
+        CommonUtils.ShowLoadinfDialog(getActivity()).dismiss();
     }
 }

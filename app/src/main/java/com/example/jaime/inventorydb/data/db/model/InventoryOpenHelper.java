@@ -1,8 +1,10 @@
 package com.example.jaime.inventorydb.data.db.model;
 
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Build;
+import android.util.Log;
 
 import com.example.jaime.inventorydb.InventoryApplication;
 import com.example.jaime.inventorydb.data.db.InventoryContract;
@@ -35,20 +37,38 @@ public class InventoryOpenHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(InventoryContract.DependencyEntry.SQL_CREATE_ENTRIES);
-        db.execSQL(InventoryContract.SectorEntry.SQL_CREATE_ENTRIES);
+        try {
+            db.beginTransaction();
+            db.execSQL(InventoryContract.DependencyEntry.SQL_CREATE_ENTRIES);
+            db.execSQL(InventoryContract.SectorEntry.SQL_CREATE_ENTRIES);
 
-        db.execSQL(InventoryContract.DependencyEntry.SQL_INSERT_ENTRIES);
-        db.execSQL(InventoryContract.SectorEntry.SQL_INSERT_ENTRIES);
+            db.execSQL(InventoryContract.DependencyEntry.SQL_INSERT_ENTRIES);
+            db.execSQL(InventoryContract.SectorEntry.SQL_INSERT_ENTRIES);
+
+            db.setTransactionSuccessful();
+        } catch (SQLiteException e) {
+            Log.d("InventoryOpenHelper", e.getMessage());
+        } finally {
+            db.endTransaction();
+        }
     }
 
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL(InventoryContract.DependencyEntry.SQL_DELETE_ENTRIES);
-        db.execSQL(InventoryContract.SectorEntry.SQL_DELETE_ENTRIES);
+        try {
+            db.beginTransaction();
 
-        onCreate(db);
+            db.execSQL(InventoryContract.DependencyEntry.SQL_DELETE_ENTRIES);
+            db.execSQL(InventoryContract.SectorEntry.SQL_DELETE_ENTRIES);
+            onCreate(db);
+
+            db.setTransactionSuccessful();
+        } catch (SQLiteException e) {
+            Log.d("InventoryOpenHelper", e.getMessage());
+        } finally {
+            db.endTransaction();
+        }
     }
 
 

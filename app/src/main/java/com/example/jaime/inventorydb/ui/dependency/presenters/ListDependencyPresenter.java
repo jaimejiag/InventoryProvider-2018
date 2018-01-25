@@ -1,7 +1,7 @@
 package com.example.jaime.inventorydb.ui.dependency.presenters;
 
 import com.example.jaime.inventorydb.data.db.model.Dependency;
-import com.example.jaime.inventorydb.ui.dependency.interactors.ListDependencyInteractor;
+import com.example.jaime.inventorydb.ui.dependency.interactors.ListInteractorInteractor;
 import com.example.jaime.inventorydb.ui.dependency.contracts.ListDependencyContract;
 
 import java.util.ArrayList;
@@ -18,30 +18,33 @@ public class ListDependencyPresenter implements ListDependencyContract.Presenter
     HashMap<Integer, Boolean> mSelection = new HashMap<>();
 
 
-    private ListDependencyInteractor mInteractor;
+    private ListInteractorInteractor mInteractor;
 
 
     public ListDependencyPresenter(ListDependencyContract.View view) {
         this.view = view;
-        mInteractor = new ListDependencyInteractor();
+        mInteractor = new ListInteractorInteractor();
     }
 
 
     @Override
     public void loadDependency() {
         mInteractor.loadDependencies(this);
+        view.showProgressDialog();
     }
 
 
     @Override
     public void loadDependencyOrderByName() {
         mInteractor.loadDependenciesOrderByName(this);
+        view.showProgressDialog();
     }
 
 
     @Override
     public void loadDependencyOrderByID() {
         mInteractor.loadDependenciesOrderByID(this);
+        view.showProgressDialog();
     }
 
 
@@ -91,6 +94,7 @@ public class ListDependencyPresenter implements ListDependencyContract.Presenter
     @Override
     public void onSuccess(List<Dependency> dependencies) {
         view.showDependencies(dependencies);
+        view.dismissProgressDialog();
     }
 
 
