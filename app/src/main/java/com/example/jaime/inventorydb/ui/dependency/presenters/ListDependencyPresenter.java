@@ -30,21 +30,21 @@ public class ListDependencyPresenter implements ListDependencyContract.Presenter
     @Override
     public void loadDependency() {
         mInteractor.loadDependencies(this);
-        view.showProgressDialog();
+        //view.showProgressDialog();
     }
 
 
     @Override
     public void loadDependencyOrderByName() {
         mInteractor.loadDependenciesOrderByName(this);
-        view.showProgressDialog();
+        //view.showProgressDialog();
     }
 
 
     @Override
     public void loadDependencyOrderByID() {
         mInteractor.loadDependenciesOrderByID(this);
-        view.showProgressDialog();
+        //view.showProgressDialog();
     }
 
 
@@ -93,8 +93,8 @@ public class ListDependencyPresenter implements ListDependencyContract.Presenter
 
     @Override
     public void onSuccess(List<Dependency> dependencies) {
+        //view.dismissProgressDialog();
         view.showDependencies(dependencies);
-        view.dismissProgressDialog();
     }
 
 

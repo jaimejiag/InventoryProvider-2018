@@ -21,21 +21,17 @@ public class DependencyDao {
 
     public ArrayList<Dependency> loadAll() {
         SQLiteDatabase sqLiteDatabase = InventoryOpenHelper.getInstance().openDatabase();
+        DependencyAsyncTask asyncTask = new DependencyAsyncTask();
         mDependencies = new ArrayList<>();
 
-        Cursor cursor = sqLiteDatabase.query(InventoryContract.DependencyEntry.TABLE_NAME,InventoryContract.DependencyEntry.ALL_COLUMN,
-                null,null,null,null,InventoryContract.DependencyEntry.ORDER_BY,null);
-
-        if(cursor.moveToFirst()){
-            do{
-                Dependency dependency = new Dependency(cursor.getInt(0),cursor.getString(1),cursor.getString(2), cursor.getString(3),
-                        cursor.getString(4));
-                mDependencies.add(dependency);
-            } while(cursor.moveToNext());
+        try {
+            asyncTask.execute(sqLiteDatabase);
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
 
         InventoryOpenHelper.getInstance().closeDatabase();
-
         return mDependencies;
     }
 
@@ -110,8 +106,7 @@ public class DependencyDao {
     }
 
 
-    class DependencyAsyncTask extends AsyncTask<SQLiteDatabase, Dependency, Void> {
-
+    class DependencyAsyncTask extends AsyncTask<SQLiteDatabase, Void, Void> {
 
         @Override
         protected Void doInBackground(SQLiteDatabase... sqLiteDatabases) {
@@ -127,12 +122,6 @@ public class DependencyDao {
             }
 
             return null;
-        }
-
-
-        @Override
-        protected void onProgressUpdate(Dependency... values) {
-            super.onProgressUpdate(values);
         }
     }
 }

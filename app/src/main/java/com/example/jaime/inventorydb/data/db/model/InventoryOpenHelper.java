@@ -86,7 +86,7 @@ public class InventoryOpenHelper extends SQLiteOpenHelper {
 
 
     public synchronized SQLiteDatabase openDatabase(){
-        if(mOpenCounter.incrementAndGet()==1)
+        if(mOpenCounter.incrementAndGet() == 1)
             mDatabase = getWritableDatabase();
 
         return mDatabase;
@@ -94,7 +94,7 @@ public class InventoryOpenHelper extends SQLiteOpenHelper {
 
 
     public synchronized void closeDatabase(){
-        if(mOpenCounter.decrementAndGet() ==0){
+        if(mOpenCounter.decrementAndGet() == 0){
             mDatabase.close();
         }
     }

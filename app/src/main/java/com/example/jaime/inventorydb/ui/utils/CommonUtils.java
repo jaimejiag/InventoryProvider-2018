@@ -38,7 +38,7 @@ public final class CommonUtils {
     }
 
 
-    public static ProgressDialog ShowLoadinfDialog(Context context){
+    public static ProgressDialog showLoadingDialog(Context context){
         ProgressDialog progressDialog = new ProgressDialog(context);
         progressDialog.show();
 

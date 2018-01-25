@@ -181,6 +181,12 @@ public class AddeditDependencyFragment extends BaseFragment implements AddeditDe
 
 
     @Override
+    public void showDatabaseError(Error error) {
+
+    }
+
+
+    @Override
     public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
     }

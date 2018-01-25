@@ -234,12 +234,12 @@ public class ListDependencyFragment extends ListFragment implements ListDependen
 
     @Override
     public void showProgressDialog() {
-        CommonUtils.ShowLoadinfDialog(getActivity()).show();
+        CommonUtils.showLoadingDialog(getActivity()).show();
     }
 
 
     @Override
     public void dismissProgressDialog() {
-        CommonUtils.ShowLoadinfDialog(getActivity()).dismiss();
+        CommonUtils.showLoadingDialog(getActivity()).dismiss();
     }
 }
