@@ -47,7 +47,7 @@ public class DependencyRepository {
     }
 
 
-    public void addDependency(Dependency dependency, InteractorCallback callback) {
+    public void addDependency(Dependency dependency,  InteractorCallback callback) {
         long id = mDao.add(dependency);
         Error error = new Error();
 

@@ -3,6 +3,7 @@ package com.example.jaime.inventorydb.ui.dependency;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -20,6 +21,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.support.v7.widget.Toolbar;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 
 import com.example.jaime.inventorydb.R;
 import com.example.jaime.inventorydb.adapters.DependencyAdapter;
@@ -46,6 +48,7 @@ public class ListDependencyFragment extends ListFragment implements ListDependen
     private ListDependencyListener mCallback;
     private DependencyAdapter mAdapter;
     private Toolbar mToolbar;
+    private ProgressDialog mProgressDialog;
 
 
     interface ListDependencyListener {
@@ -234,12 +237,14 @@ public class ListDependencyFragment extends ListFragment implements ListDependen
 
     @Override
     public void showProgressDialog() {
-        CommonUtils.showLoadingDialog(getActivity()).show();
+        mProgressDialog = new ProgressDialog(getActivity());
+        mProgressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        mProgressDialog.show();
     }
 
 
     @Override
     public void dismissProgressDialog() {
-        CommonUtils.showLoadingDialog(getActivity()).dismiss();
+        mProgressDialog.dismiss();
     }
 }

@@ -15,7 +15,6 @@ public class SectorRepository {
 
     private SectorRepository() {
         sectors = new ArrayList<>();
-        initialize();
     }
 
 
@@ -24,30 +23,6 @@ public class SectorRepository {
             instance = new SectorRepository();
 
         return instance;
-    }
-
-
-    private void initialize() {
-        addSector(new Sector(1, "Armario_1", "ARM1",
-                "Un armario muy carismático", 1, true, true));
-        addSector(new Sector(2, "Armario_2", "ARM2",
-                "Un armario poco carismático", 2, false, false));
-        addSector(new Sector(3, "Armario_1", "ARM1",
-                "Un armario muy carismático", 1, true, true));
-        addSector(new Sector(4, "Armario_2", "ARM2",
-                "Un armario poco carismático", 2, false, false));
-        addSector(new Sector(5, "Armario_1", "ARM1",
-                "Un armario muy carismático", 1, true, true));
-        addSector(new Sector(6, "Armario_2", "ARM2",
-                "Un armario poco carismático", 2, false, false));
-        addSector(new Sector(7, "Armario_1", "ARM1",
-                "Un armario muy carismático", 1, true, true));
-        addSector(new Sector(8, "Armario_2", "ARM2",
-                "Un armario poco carismático", 2, false, false));
-        addSector(new Sector(9, "Armario_1", "ARM1",
-                "Un armario muy carismático", 1, true, true));
-        addSector(new Sector(10, "Armario_2", "ARM2",
-                "Un armario poco carismático", 2, false, false));
     }
 
 

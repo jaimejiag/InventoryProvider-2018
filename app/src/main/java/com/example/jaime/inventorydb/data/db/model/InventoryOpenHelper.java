@@ -45,6 +45,7 @@ public class InventoryOpenHelper extends SQLiteOpenHelper {
             db.execSQL(InventoryContract.DependencyEntry.SQL_INSERT_ENTRIES);
             db.execSQL(InventoryContract.SectorEntry.SQL_INSERT_ENTRIES);
 
+
             db.setTransactionSuccessful();
         } catch (SQLiteException e) {
             Log.d("InventoryOpenHelper", e.getMessage());

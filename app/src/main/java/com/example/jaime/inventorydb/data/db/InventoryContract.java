@@ -9,7 +9,7 @@ import java.security.PublicKey;
  */
 
 public final class InventoryContract {
-    public static final int DATABASE_VERSION = 5;
+    public static final int DATABASE_VERSION = 10;
     public static final String DATABASE_NAME = "inventory.db";
 
 
@@ -67,10 +67,12 @@ public final class InventoryContract {
         public static final String COLUMN_NAME = "name";
         public static final String COLUMN_SORTNAME = "sortName";
         public static final String COLUMN_DESCRIPTION = "description";
-        public static final String COLUMN_IMAGE = "imageName";
+        public static final String COLUMN_ENABLE = "isEnable";
+        public static final String COLUMN_SECTOR_DEFAULT = "isSectorDeafault";
 
         public static final String[] ALL_COLUMNS = new String[] {
-                _ID, COLUMN_DEPENDENCY_ID, COLUMN_NAME, COLUMN_SORTNAME, COLUMN_DESCRIPTION, COLUMN_IMAGE
+                _ID, COLUMN_DEPENDENCY_ID, COLUMN_NAME, COLUMN_SORTNAME, COLUMN_DESCRIPTION,
+                COLUMN_ENABLE, COLUMN_SECTOR_DEFAULT
         };
 
         public static final String REFERENCES_DEPENDENCY_ID = String.format(
@@ -83,35 +85,40 @@ public final class InventoryContract {
                 "%s TEXT NOT NULL, " +
                 "%s TEXT NOT NULL, " +
                 "%s TEXT NOT NULL, " +
-                "%s TEXT NOT NULL)",
+                "%s INTEGER NOT NULL, " +
+                "%s INTEGER NOT NULL)",
                 TABLE_NAME,
                 _ID,
                 COLUMN_DEPENDENCY_ID, REFERENCES_DEPENDENCY_ID,
                 COLUMN_NAME,
                 COLUMN_SORTNAME,
                 COLUMN_DESCRIPTION,
-                COLUMN_IMAGE);
+                COLUMN_ENABLE,
+                COLUMN_SECTOR_DEFAULT);
 
         public static final String SQL_DELETE_ENTRIES = String.format("DROP TABLE IF EXISTS %s", TABLE_NAME);
 
         public static final String SQL_INSERT_ENTRIES = String.format("INSERT INTO %s " +
-                "(%s, %s, %s, %s, %s) VALUES (%s, '%s', '%s', '%s', '%s'), ",
+                "(%s, %s, %s, %s, %s, %s) VALUES (%s, '%s', '%s', '%s', %s, %s), ",
                 TABLE_NAME,
                 COLUMN_DEPENDENCY_ID,
                 COLUMN_NAME,
                 COLUMN_SORTNAME,
                 COLUMN_DESCRIPTION,
-                COLUMN_IMAGE,
+                COLUMN_ENABLE,
+                COLUMN_SECTOR_DEFAULT,
                 1,
                 "Sector 1",
                 "S1",
                 "sector número 1",
-                "Sin imagen") +
-                String.format("(%s, '%s', '%s', '%s', '%s')" ,
+                1,
+                1) +
+                String.format("(%s, '%s', '%s', '%s', %s, %s)" ,
                         2,
                         "Sector 2",
                         "S2",
                         "sector número 2",
-                        "Sin imagen");
+                        0,
+                        0);
     }
 }

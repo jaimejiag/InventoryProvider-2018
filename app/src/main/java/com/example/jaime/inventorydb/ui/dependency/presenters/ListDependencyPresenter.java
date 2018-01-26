@@ -1,5 +1,7 @@
 package com.example.jaime.inventorydb.ui.dependency.presenters;
 
+import android.os.AsyncTask;
+
 import com.example.jaime.inventorydb.data.db.model.Dependency;
 import com.example.jaime.inventorydb.ui.dependency.interactors.ListInteractorInteractor;
 import com.example.jaime.inventorydb.ui.dependency.contracts.ListDependencyContract;
@@ -29,22 +31,20 @@ public class ListDependencyPresenter implements ListDependencyContract.Presenter
 
     @Override
     public void loadDependency() {
-        mInteractor.loadDependencies(this);
-        //view.showProgressDialog();
+        DependencyAsyncTask asyncTask = new DependencyAsyncTask();
+        asyncTask.execute();
     }
 
 
     @Override
     public void loadDependencyOrderByName() {
         mInteractor.loadDependenciesOrderByName(this);
-        //view.showProgressDialog();
     }
 
 
     @Override
     public void loadDependencyOrderByID() {
         mInteractor.loadDependenciesOrderByID(this);
-        //view.showProgressDialog();
     }
 
 
@@ -93,7 +93,6 @@ public class ListDependencyPresenter implements ListDependencyContract.Presenter
 
     @Override
     public void onSuccess(List<Dependency> dependencies) {
-        //view.dismissProgressDialog();
         view.showDependencies(dependencies);
     }
 
@@ -102,5 +101,27 @@ public class ListDependencyPresenter implements ListDependencyContract.Presenter
     public void onDestroy() {
         view = null;
         mInteractor = null;
+    }
+
+
+    class DependencyAsyncTask extends AsyncTask<Void, Void, Void> {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            view.showProgressDialog();
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            mInteractor.loadDependencies(ListDependencyPresenter.this);
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            view.dismissProgressDialog();
+        }
     }
 }
