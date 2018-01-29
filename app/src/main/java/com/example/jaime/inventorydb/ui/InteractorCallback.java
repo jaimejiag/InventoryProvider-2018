@@ -1,4 +1,4 @@
-package com.example.jaime.inventorydb.ui.dependency.contracts;
+package com.example.jaime.inventorydb.ui;
 
 /**
  * Created by usuario on 25/01/18.

@@ -9,15 +9,15 @@ import android.os.Parcelable;
 
 public class Sector implements Parcelable {
     private int _ID;
+    private int dependencyId;
     private String name;
     private String sortname;
     private String description;
-    private int dependencyId;
     private boolean isEnabled;
     private boolean isSectorDefault;
 
 
-    public Sector(int _ID, String name, String sortname, String description, int dependencyId,
+    public Sector(int _ID, int dependencyId, String name, String sortname, String description,
                   boolean isEnabled, boolean isSectorDefault) {
         this._ID = _ID;
         this.name = name;

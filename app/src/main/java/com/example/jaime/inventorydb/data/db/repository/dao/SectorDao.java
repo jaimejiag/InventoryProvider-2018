@@ -1,7 +1,9 @@
 package com.example.jaime.inventorydb.data.db.repository.dao;
 
+import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.provider.BaseColumns;
 
 import com.example.jaime.inventorydb.data.db.InventoryContract;
 import com.example.jaime.inventorydb.data.db.model.InventoryOpenHelper;
@@ -14,10 +16,16 @@ import java.util.ArrayList;
  */
 
 public class SectorDao {
+    private ArrayList<Sector> mSectors;
+
+
+    public SectorDao() {
+        mSectors = new ArrayList<>();
+    }
+
 
     public ArrayList<Sector> loadAll() {
         SQLiteDatabase database = InventoryOpenHelper.getInstance().openDatabase();
-        ArrayList<Sector> sectors = new ArrayList<>();
         boolean isEnable;
         boolean isSectorDefault;
 
@@ -36,14 +44,83 @@ public class SectorDao {
                 else
                     isSectorDefault = false;
 
-                Sector sector = new Sector(cursor.getInt(0), cursor.getString(1),
-                        cursor.getString(2), cursor.getString(3), cursor.getInt(4),
+                Sector sector = new Sector(cursor.getInt(0), cursor.getInt(1),
+                        cursor.getString(2), cursor.getString(3), cursor.getString(4),
                         isEnable, isSectorDefault);
 
-                sectors.add(sector);
+                mSectors.add(sector);
             } while (cursor.moveToNext());
         }
 
-        return sectors;
+        return mSectors;
+    }
+
+
+    public boolean exists(Sector sector) {
+        boolean result = false;
+        int index = 0;
+
+        while (index < mSectors.size() && !result) {
+            if (sector.getName().equals(mSectors.get(index).getName()) ||
+                    sector.getSortname().equals(mSectors.get(index).getSortname()))
+                result = true;
+            else
+                index++;
+        }
+
+        return result;
+    }
+
+
+    public long add(Sector sector) {
+        SQLiteDatabase database = InventoryOpenHelper.getInstance().openDatabase();
+        ContentValues values = getContentValues(sector);
+        long id;
+
+        id = database.insert(InventoryContract.SectorEntry.TABLE_NAME, null, values);
+        InventoryOpenHelper.getInstance().closeDatabase();
+
+        return id;
+    }
+
+
+    public int update(Sector sector) {
+        SQLiteDatabase database = InventoryOpenHelper.getInstance().openDatabase();
+        String whereClause = BaseColumns._ID + "=?";
+        String[] whereArgs = new String[] {String.valueOf(sector.get_ID())};
+        ContentValues values = getContentValues(sector);
+        int rows;
+
+        rows = database.update(InventoryContract.SectorEntry.TABLE_NAME, values, whereClause, whereArgs);
+        InventoryOpenHelper.getInstance().closeDatabase();
+
+        return rows;
+    }
+
+
+    public int delete(Sector sector) {
+        SQLiteDatabase database = InventoryOpenHelper.getInstance().openDatabase();
+        String whereClause = BaseColumns._ID + "=?";
+        String[] whereArgs = new String[] {String.valueOf(sector.get_ID())};
+        int rows;
+
+        rows = database.delete(InventoryContract.SectorEntry.TABLE_NAME, whereClause, whereArgs);
+        InventoryOpenHelper.getInstance().closeDatabase();
+
+        return rows;
+    }
+
+
+    private ContentValues getContentValues(Sector sector) {
+        ContentValues values = new ContentValues();
+
+        values.put(InventoryContract.SectorEntry.COLUMN_DEPENDENCY_ID, sector.getDependencyId());
+        values.put(InventoryContract.SectorEntry.COLUMN_NAME, sector.getName());
+        values.put(InventoryContract.SectorEntry.COLUMN_SORTNAME, sector.getSortname());
+        values.put(InventoryContract.SectorEntry.COLUMN_DESCRIPTION, sector.getDescription());
+        values.put(InventoryContract.SectorEntry.COLUMN_ENABLE, sector.isEnabled());
+        values.put(InventoryContract.SectorEntry.COLUMN_SECTOR_DEFAULT, sector.isSectorDefault());
+
+        return values;
     }
 }

@@ -3,7 +3,7 @@ package com.example.jaime.inventorydb.ui.dependency.interactors;
 import com.example.jaime.inventorydb.data.db.model.Dependency;
 import com.example.jaime.inventorydb.data.db.repository.DependencyRepository;
 import com.example.jaime.inventorydb.ui.dependency.contracts.AddeditDependencyContract;
-import com.example.jaime.inventorydb.ui.dependency.contracts.InteractorCallback;
+import com.example.jaime.inventorydb.ui.InteractorCallback;
 
 /**
  * Created by usuario on 24/11/17.
@@ -54,7 +54,7 @@ public class AddeditInteractorInteractor implements AddeditDependencyContract.In
 
     @Override
     public void onSuccess() {
-
+        mListener.onSuccess();
     }
 
 

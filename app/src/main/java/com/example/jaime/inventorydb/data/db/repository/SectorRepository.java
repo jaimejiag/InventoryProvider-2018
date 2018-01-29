@@ -1,6 +1,8 @@
 package com.example.jaime.inventorydb.data.db.repository;
 
 import com.example.jaime.inventorydb.data.db.model.Sector;
+import com.example.jaime.inventorydb.data.db.repository.dao.SectorDao;
+import com.example.jaime.inventorydb.ui.InteractorCallback;
 
 import java.util.ArrayList;
 
@@ -10,11 +12,11 @@ import java.util.ArrayList;
 
 public class SectorRepository {
     private static SectorRepository instance;
-    private ArrayList<Sector> sectors;
+    private SectorDao mDao;
 
 
     private SectorRepository() {
-        sectors = new ArrayList<>();
+        mDao = new SectorDao();
     }
 
 
@@ -26,25 +28,42 @@ public class SectorRepository {
     }
 
 
-    public void addSector(Sector sector) {
-        sectors.add(sector);
-    }
-
-
     public ArrayList<Sector> getSectors() {
-        return sectors;
+        return mDao.loadAll();
     }
 
 
-    public void modifySector(int sectorID, boolean isSectorEnabled) {
-        int index = 0;
+    public boolean validateSector(Sector sector) {
+        return mDao.exists(sector);
+    }
 
-        while (index < sectors.size()){
-            if (sectorID == sectors.get(index).get_ID()) {
-                sectors.get(index).setEnabled(isSectorEnabled);
-                index = sectors.size();
-            } else
-                index++;
-        }
+
+    public void addSector(Sector sector, InteractorCallback callback) {
+        long id = mDao.add(sector);
+
+        if (id == -1)
+            callback.onError(new Error());
+        else
+            callback.onSuccess();
+    }
+
+
+    public void updateSector(Sector sector, InteractorCallback callback) {
+        int rows = mDao.update(sector);
+
+        if (rows == 0)
+            callback.onError(new Error());
+        else
+            callback.onSuccess();
+    }
+
+
+    public void deleteSector(Sector sector, InteractorCallback callback) {
+        int rows = mDao.delete(sector);
+
+        if (rows == 0)
+            callback.onError(new Error());
+        else
+            callback.onSuccess();
     }
 }

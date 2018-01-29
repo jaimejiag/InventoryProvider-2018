@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import com.example.jaime.inventorydb.R;
 import com.example.jaime.inventorydb.data.db.model.Sector;
-import com.example.jaime.inventorydb.data.db.repository.SectorRepository;
 
 import java.util.ArrayList;
 
@@ -19,10 +18,10 @@ import java.util.ArrayList;
  */
 
 public class SectorAdapter extends RecyclerView.Adapter<SectorAdapter.SectorViewHolder> {
-    private ArrayList<Sector> sectors;
-    private ArrayList<Sector> sectorsModified;  //Guarda los sectores modificados en la interfaz.
-    private OnSwitchCheckedChangeListener changeListener;
-    private OnItemClickListener mListener;
+    private ArrayList<Sector> mSectors;
+    private ArrayList<Sector> mSectorsModified;  //Guarda los sectores modificados en la interfaz.
+    private OnSwitchCheckedChangeListener mChangeListener;
+    private OnItemClickListener mClickListener;
 
 
     public interface OnItemClickListener {
@@ -30,11 +29,11 @@ public class SectorAdapter extends RecyclerView.Adapter<SectorAdapter.SectorView
     }
 
 
-    public SectorAdapter(OnItemClickListener listener) {
-        sectors = SectorRepository.getInstance().getSectors();
-        sectorsModified = new ArrayList<>();
-        changeListener = new OnSwitchCheckedChangeListener();
-        mListener = listener;
+    public SectorAdapter(OnItemClickListener clickListener) {
+        mSectors = new ArrayList<>();
+        mSectorsModified = new ArrayList<>();
+        mChangeListener = new OnSwitchCheckedChangeListener();
+        mClickListener = clickListener;
     }
 
 
@@ -43,11 +42,11 @@ public class SectorAdapter extends RecyclerView.Adapter<SectorAdapter.SectorView
      * y se haya salvado el estado dinámico.1
      * @param
      */
-    public SectorAdapter(ArrayList<Sector> sectorsModified, OnItemClickListener listener) {
-        sectors = SectorRepository.getInstance().getSectors();
-        mListener = listener;
-        this.sectorsModified = sectorsModified;
-        changeListener = new OnSwitchCheckedChangeListener();
+    public SectorAdapter(ArrayList<Sector> sectorsModified, OnItemClickListener clickListener) {
+        mSectors = new ArrayList<>();
+        mClickListener = clickListener;
+        mSectorsModified = sectorsModified;
+        mChangeListener = new OnSwitchCheckedChangeListener();
         identifySectorsModified();
     }
 
@@ -64,15 +63,15 @@ public class SectorAdapter extends RecyclerView.Adapter<SectorAdapter.SectorView
 
     @Override
     public void onBindViewHolder(SectorViewHolder holder, int position) {
-        holder.swSector.setChecked(sectors.get(position).isEnabled());
-        holder.swSector.setOnCheckedChangeListener(changeListener);
-        holder.swSector.setTag(sectors.get(position));
-        holder.txvSectorName.setText(sectors.get(position).getName());
+        holder.swSector.setChecked(mSectors.get(position).isEnabled());
+        holder.swSector.setOnCheckedChangeListener(mChangeListener);
+        holder.swSector.setTag(mSectors.get(position));
+        holder.txvSectorName.setText(mSectors.get(position).getName());
 
-        if (sectors.get(position).isSectorDefault())
+        if (mSectors.get(position).isSectorDefault())
             holder.txvSectorDefault.setText(R.string.txv_sectorDefault);
 
-        holder.bind(sectors.get(position), mListener);
+        holder.bind(mSectors.get(position), mClickListener);
     }
 
 
@@ -82,7 +81,7 @@ public class SectorAdapter extends RecyclerView.Adapter<SectorAdapter.SectorView
      */
     @Override
     public int getItemCount() {
-        return sectors.size();
+        return mSectors.size();
     }
 
 
@@ -93,20 +92,27 @@ public class SectorAdapter extends RecyclerView.Adapter<SectorAdapter.SectorView
      * @return ArrayList de sectores modificados
      */
     public ArrayList<Sector> getSectorsModified() {
-        return sectorsModified;
+        return mSectorsModified;
+    }
+
+
+    public void addAll(ArrayList<Sector> sectors) {
+        mSectors.clear();
+        mSectorsModified.clear();
+        mSectors = sectors;
     }
 
 
     private void identifySectorsModified() {
         int index;
 
-        for (int i = 0; i < sectors.size(); i++) {
+        for (int i = 0; i < mSectors.size(); i++) {
             index = 0;
 
-            while (index < sectorsModified.size()) {
-                if (sectors.get(i).equals(sectorsModified.get(index))) {
-                    sectors.get(i).setEnabled(sectorsModified.get(index).isEnabled());
-                    index = sectorsModified.size();
+            while (index < mSectorsModified.size()) {
+                if (mSectors.get(i).equals(mSectorsModified.get(index))) {
+                    mSectors.get(i).setEnabled(mSectorsModified.get(index).isEnabled());
+                    index = mSectorsModified.size();
                 } else
                     index++;
             }
@@ -146,20 +152,20 @@ public class SectorAdapter extends RecyclerView.Adapter<SectorAdapter.SectorView
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
             Sector sectorSelected = (Sector) buttonView.getTag();
             int index = 0;
-            int sectorModifiedKey = sectorsModified.size() + 1;
+            int sectorModifiedKey = mSectorsModified.size() + 1;
 
             sectorSelected.setEnabled(isChecked);
 
-            while (index < sectorsModified.size()) {
-                if (sectorSelected.equals(sectorsModified.get(index))) {
-                    sectorsModified.get(index).setEnabled(sectorSelected.isEnabled());
+            while (index < mSectorsModified.size()) {
+                if (sectorSelected.equals(mSectorsModified.get(index))) {
+                    mSectorsModified.get(index).setEnabled(sectorSelected.isEnabled());
                     index = sectorModifiedKey;
                 } else
                     index++;
             }
 
-            if (index == sectorsModified.size())
-                sectorsModified.add(sectorSelected);
+            if (index == mSectorsModified.size())
+                mSectorsModified.add(sectorSelected);
         }
     }
 }

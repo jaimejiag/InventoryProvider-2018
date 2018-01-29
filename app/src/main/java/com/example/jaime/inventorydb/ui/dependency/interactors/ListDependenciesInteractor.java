@@ -2,7 +2,7 @@ package com.example.jaime.inventorydb.ui.dependency.interactors;
 
 import com.example.jaime.inventorydb.data.db.model.Dependency;
 import com.example.jaime.inventorydb.data.db.repository.DependencyRepository;
-import com.example.jaime.inventorydb.ui.dependency.contracts.InteractorCallback;
+import com.example.jaime.inventorydb.ui.InteractorCallback;
 import com.example.jaime.inventorydb.ui.dependency.contracts.ListDependencyContract;
 
 import java.util.ArrayList;
@@ -11,8 +11,15 @@ import java.util.ArrayList;
  * Created by usuario on 27/11/17.
  */
 
-public class ListInteractorInteractor implements ListDependencyContract.Interactor,
+public class ListDependenciesInteractor implements ListDependencyContract.Interactor,
         InteractorCallback {
+    ListDependencyContract.Interactor.OnFinishedLoadDependency mListener;
+
+
+    public ListDependenciesInteractor(OnFinishedLoadDependency listener) {
+        mListener = listener;
+    }
+
 
     @Override
     public void loadDependencies(OnFinishedLoadDependency onFinishedLoadDependency) {
@@ -57,8 +64,9 @@ public class ListInteractorInteractor implements ListDependencyContract.Interact
 
     @Override
     public void onSuccess() {
-
+        
     }
+
 
     @Override
     public void onError(Error error) {

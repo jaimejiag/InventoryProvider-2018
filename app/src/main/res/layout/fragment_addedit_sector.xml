@@ -1,11 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/android.R.id.content"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.example.jaime.inventorydb.ui.dependency.AddDependencyActivity">
+    android:layout_height="match_parent">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/tb_addeditSector"
@@ -71,4 +69,79 @@
             android:layout_height="wrap_content"
             android:hint="@string/edt_dependencyDescription" />
     </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_sector_save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_fab"
+        android:clickable="true"
+        android:src="@drawable/ic_action_save"
+        app:elevation="6dp"
+        app:fabSize="normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:pressedTranslationZ="12dp" />
+
+    <TextView
+        android:id="@+id/txv_idDependency"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/txv_idDependency"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/til_sector_description" />
+
+    <Spinner
+        android:id="@+id/sp_idDependency"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txv_idDependency"
+        app:layout_constraintTop_toTopOf="@+id/txv_idDependency" />
+
+    <TextView
+        android:id="@+id/txv_isEnable"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/txv_isEnable"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txv_idDependency" />
+
+    <Spinner
+        android:id="@+id/sp_isEnable"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txv_isEnable"
+        app:layout_constraintTop_toTopOf="@+id/txv_isEnable" />
+
+    <TextView
+        android:id="@+id/txv_isDefault"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/txv_isDefault"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txv_isEnable" />
+
+    <Spinner
+        android:id="@+id/sp_isDefault"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txv_isDefault"
+        app:layout_constraintTop_toTopOf="@+id/txv_isDefault" />
+
 </android.support.constraint.ConstraintLayout>
+

@@ -47,4 +47,7 @@
     <string name="add_dependency_error">Error al añadir dependencia</string>
     <string name="edit_dependency_error">Error al editar dependencia</string>
     <string name="delete_dependency_error">Error al eliminar la dependencia</string>
+    <string name="txv_idDependency">Dependencia:</string>
+    <string name="txv_isEnable">Disponibilidad:</string>
+    <string name="txv_isDefault">Sector por defecto:</string>
 </resources>

@@ -3,7 +3,7 @@ package com.example.jaime.inventorydb.ui.dependency.presenters;
 import android.os.AsyncTask;
 
 import com.example.jaime.inventorydb.data.db.model.Dependency;
-import com.example.jaime.inventorydb.ui.dependency.interactors.ListInteractorInteractor;
+import com.example.jaime.inventorydb.ui.dependency.interactors.ListDependenciesInteractor;
 import com.example.jaime.inventorydb.ui.dependency.contracts.ListDependencyContract;
 
 import java.util.ArrayList;
@@ -20,12 +20,12 @@ public class ListDependencyPresenter implements ListDependencyContract.Presenter
     HashMap<Integer, Boolean> mSelection = new HashMap<>();
 
 
-    private ListInteractorInteractor mInteractor;
+    private ListDependenciesInteractor mInteractor;
 
 
     public ListDependencyPresenter(ListDependencyContract.View view) {
         this.view = view;
-        mInteractor = new ListInteractorInteractor();
+        mInteractor = new ListDependenciesInteractor(this);
     }
 
 

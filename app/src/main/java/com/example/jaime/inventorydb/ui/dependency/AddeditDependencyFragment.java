@@ -84,18 +84,18 @@ public class AddeditDependencyFragment extends BaseFragment implements AddeditDe
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_addedit_dependency, container, false);
 
-        mToolbar = (Toolbar) root.findViewById(R.id.tb_addeditDependency);
-        fabDependency = (FloatingActionButton) root.findViewById(R.id.fab_dependency_save);
-        tilName = (TextInputLayout) root.findViewById(R.id.til_dependency_name);
-        edtName = (EditText) root.findViewById(R.id.edt_dependency_name);
+        mToolbar = (Toolbar) root.findViewById(R.id.tb_addeditSector);
+        fabDependency = (FloatingActionButton) root.findViewById(R.id.fab_sector_save);
+        tilName = (TextInputLayout) root.findViewById(R.id.til_sector_name);
+        edtName = (EditText) root.findViewById(R.id.edt_sector_name);
         edtName.addTextChangedListener(this);
 
-        tilSortName = (TextInputLayout) root.findViewById(R.id.til_dependency_sortname);
-        edtSortname = (EditText) root.findViewById(R.id.edt_dependency_sortname);
+        tilSortName = (TextInputLayout) root.findViewById(R.id.til_sector_sortname);
+        edtSortname = (EditText) root.findViewById(R.id.edt_sector_sortname);
         edtSortname.addTextChangedListener(this);
 
-        tilDescription = (TextInputLayout) root.findViewById(R.id.til_dependency_description);
-        edtDescription = (EditText) root.findViewById(R.id.edt_dependency_description);
+        tilDescription = (TextInputLayout) root.findViewById(R.id.til_sector_description);
+        edtDescription = (EditText) root.findViewById(R.id.edt_sector_description);
         edtDescription.addTextChangedListener(this);
 
         if (getArguments() != null) {

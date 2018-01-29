@@ -19,17 +19,20 @@ import com.example.jaime.inventorydb.R;
 import com.example.jaime.inventorydb.adapters.SectorAdapter;
 import com.example.jaime.inventorydb.data.db.model.Sector;
 
+import java.util.ArrayList;
+
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ListSectorFragment extends Fragment {
+public class ListSectorFragment extends Fragment implements SectorContract.View {
     public static final String TAG = "listsectorfragment";
-    private static final String SECTORS_MODIFIED_KEY = "sector";
+    private static final String SECTORS_MODIFIED_KEY = "sectormodifiedkey";
 
     private RecyclerView rvSector;
     private SectorAdapter mAdapter;
     private Toolbar mToolbar;
     private SectorAdapter.OnItemClickListener mListener;
+    private SectorContract.Presenter mPresenter;
     //private ViewGroup mLayout;
 
 
@@ -47,6 +50,9 @@ public class ListSectorFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
+        setHasOptionsMenu(true);
+
+        mPresenter = new SectorPresenter(this);
     }
 
 
@@ -84,6 +90,7 @@ public class ListSectorFragment extends Fragment {
         else
             mAdapter = new SectorAdapter(mListener);
 
+        mPresenter.requestToLoadSectors();
         rvSector.setAdapter(mAdapter);
     }
 
@@ -100,6 +107,12 @@ public class ListSectorFragment extends Fragment {
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.menu_sector, menu);
         super.onCreateOptionsMenu(menu, inflater);
+    }
+
+
+    @Override
+    public void showSectors(ArrayList<Sector> sectors) {
+        mAdapter.addAll(sectors);
     }
 
 

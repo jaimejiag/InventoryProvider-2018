@@ -2,7 +2,7 @@ package com.example.jaime.inventorydb.data.db.repository;
 
 import com.example.jaime.inventorydb.data.db.model.Dependency;
 import com.example.jaime.inventorydb.data.db.repository.dao.DependencyDao;
-import com.example.jaime.inventorydb.ui.dependency.contracts.InteractorCallback;
+import com.example.jaime.inventorydb.ui.InteractorCallback;
 
 import java.util.ArrayList;
 import java.util.Collections;
