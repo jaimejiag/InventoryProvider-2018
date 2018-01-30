@@ -50,4 +50,12 @@
     <string name="txv_idDependency">Dependencia:</string>
     <string name="txv_isEnable">Disponibilidad:</string>
     <string name="txv_isDefault">Sector por defecto:</string>
+    <string name="error_sectorNameEmpty">Nombre vacío</string>
+    <string name="error_sectorSortnameEmpty">Nombre corto vacío</string>
+    <string name="error_sectorDescriptionEmpty">Descripción vacía</string>
+    <string name="error_sectorExists">El sector ya existe.</string>
+    <string name="sp_isEnable_true">Está disponible</string>
+    <string name="sp_isEnable_false">No está disponible</string>
+    <string name="sp_isDefault_true">Es por defecto</string>
+    <string name="sp_isDefault_false">No es por defecto</string>
 </resources>

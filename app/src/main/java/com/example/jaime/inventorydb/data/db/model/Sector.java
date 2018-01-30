@@ -29,6 +29,17 @@ public class Sector implements Parcelable {
     }
 
 
+    public Sector(int dependencyId, String name, String sortname, String description,
+                  boolean isEnabled, boolean isSectorDefault) {
+        this.name = name;
+        this.sortname = sortname;
+        this.description = description;
+        this.dependencyId = dependencyId;
+        this.isEnabled = isEnabled;
+        this.isSectorDefault = isSectorDefault;
+    }
+
+
     protected Sector(Parcel in) {
         _ID = in.readInt();
         name = in.readString();

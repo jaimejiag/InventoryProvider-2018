@@ -19,9 +19,14 @@ import java.util.ArrayList;
 
 public class SectorAdapter extends RecyclerView.Adapter<SectorAdapter.SectorViewHolder> {
     private ArrayList<Sector> mSectors;
-    private ArrayList<Sector> mSectorsModified;  //Guarda los sectores modificados en la interfaz.
     private OnSwitchCheckedChangeListener mChangeListener;
+    private OnSectorUpdatedListener mSectorUpdatedListener;
     private OnItemClickListener mClickListener;
+
+
+    public interface OnSectorUpdatedListener {
+        void onSectorUpdated(Sector sector);
+    }
 
 
     public interface OnItemClickListener {
@@ -29,25 +34,11 @@ public class SectorAdapter extends RecyclerView.Adapter<SectorAdapter.SectorView
     }
 
 
-    public SectorAdapter(OnItemClickListener clickListener) {
+    public SectorAdapter(OnSectorUpdatedListener sectorUpdatedListener, OnItemClickListener clickListener) {
         mSectors = new ArrayList<>();
-        mSectorsModified = new ArrayList<>();
         mChangeListener = new OnSwitchCheckedChangeListener();
+        mSectorUpdatedListener = sectorUpdatedListener;
         mClickListener = clickListener;
-    }
-
-
-    /**
-     * Constructor que se llamará cuando SectorActivity venga de un cambio de configuración
-     * y se haya salvado el estado dinámico.1
-     * @param
-     */
-    public SectorAdapter(ArrayList<Sector> sectorsModified, OnItemClickListener clickListener) {
-        mSectors = new ArrayList<>();
-        mClickListener = clickListener;
-        mSectorsModified = sectorsModified;
-        mChangeListener = new OnSwitchCheckedChangeListener();
-        identifySectorsModified();
     }
 
 
@@ -85,38 +76,10 @@ public class SectorAdapter extends RecyclerView.Adapter<SectorAdapter.SectorView
     }
 
 
-    /**
-     * Devuelve el Array de los sectores modificados cuando la activity estaba visible
-     * y que no se ha guardado en la base de datos (persistente).
-     * Hay que guardar el estado dinámico (cuando giras la pantalla).
-     * @return ArrayList de sectores modificados
-     */
-    public ArrayList<Sector> getSectorsModified() {
-        return mSectorsModified;
-    }
-
-
     public void addAll(ArrayList<Sector> sectors) {
         mSectors.clear();
-        mSectorsModified.clear();
+        //mSectorsModified.clear();
         mSectors = sectors;
-    }
-
-
-    private void identifySectorsModified() {
-        int index;
-
-        for (int i = 0; i < mSectors.size(); i++) {
-            index = 0;
-
-            while (index < mSectorsModified.size()) {
-                if (mSectors.get(i).equals(mSectorsModified.get(index))) {
-                    mSectors.get(i).setEnabled(mSectorsModified.get(index).isEnabled());
-                    index = mSectorsModified.size();
-                } else
-                    index++;
-            }
-        }
     }
 
 
@@ -150,22 +113,9 @@ public class SectorAdapter extends RecyclerView.Adapter<SectorAdapter.SectorView
 
         @Override
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-            Sector sectorSelected = (Sector) buttonView.getTag();
-            int index = 0;
-            int sectorModifiedKey = mSectorsModified.size() + 1;
-
-            sectorSelected.setEnabled(isChecked);
-
-            while (index < mSectorsModified.size()) {
-                if (sectorSelected.equals(mSectorsModified.get(index))) {
-                    mSectorsModified.get(index).setEnabled(sectorSelected.isEnabled());
-                    index = sectorModifiedKey;
-                } else
-                    index++;
-            }
-
-            if (index == mSectorsModified.size())
-                mSectorsModified.add(sectorSelected);
+            Sector sector = (Sector) buttonView.getTag();
+            sector.setEnabled(isChecked);
+            mSectorUpdatedListener.onSectorUpdated(sector);
         }
     }
 }

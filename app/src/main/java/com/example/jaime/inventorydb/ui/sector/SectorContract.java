@@ -1,5 +1,6 @@
 package com.example.jaime.inventorydb.ui.sector;
 
+import com.example.jaime.inventorydb.data.db.model.Dependency;
 import com.example.jaime.inventorydb.data.db.model.Sector;
 
 import java.util.ArrayList;
@@ -10,21 +11,54 @@ import java.util.ArrayList;
 
 public interface SectorContract {
 
-    interface View {
+    interface ListSectorView {
         void showSectors(ArrayList<Sector> sectors);
+    }
+
+
+    interface AddEditSectorView {
+        void navigateToListSector();
+
+        void showNameEmptyError();
+
+        void showSortnameEmptyError();
+
+        void showDescriptionEmptyError();
+
+        void showSectorExistsError();
+
+        void initializeDependencies(ArrayList<Dependency> dependencies);
     }
 
 
     interface Presenter {
         void requestToLoadSectors();
+
+        void requestToLoadDependecies();
+
+        void requestToAddSector(Sector sector);
+
+        void requestToUpdateSector(Sector sector);
     }
 
 
     interface Interactor {
         void loadSectors();
 
-        interface LoadSectorsFinished {
-            void onSuccess(ArrayList<Sector> sectors);
+        void loadDependencies();
+
+        void addSector(Sector sector);
+
+        void updateSector(Sector sector);
+
+        interface SectorOperationsFinished {
+            void onLoadSuccess(ArrayList<Sector> sectors);
+            void onLoadDependenciesSuccess(ArrayList<Dependency> dependencies);
+            void onSuccess();
+            void onNameEmpty();
+            void onSortnameEmpty();
+            void onDescriptionEmpty();
+            void onSectorExists();
         }
     }
 }

@@ -125,12 +125,7 @@ public class Dependency implements Comparable, Parcelable {
 
     @Override
     public String toString() {
-        return "Dependency{" +
-                "_ID=" + _ID +
-                ", name='" + name + '\'' +
-                ", shortname='" + shortname + '\'' +
-                ", description='" + description + '\'' +
-                '}';
+        return name;
     }
 
 

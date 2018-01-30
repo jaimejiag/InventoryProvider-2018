@@ -41,9 +41,17 @@ public class InventoryOpenHelper extends SQLiteOpenHelper {
             db.beginTransaction();
             db.execSQL(InventoryContract.DependencyEntry.SQL_CREATE_ENTRIES);
             db.execSQL(InventoryContract.SectorEntry.SQL_CREATE_ENTRIES);
+            db.execSQL(InventoryContract.CategoryEntry.SQL_CREATE_ENTRIES);
+            db.execSQL(InventoryContract.SubcategoryEntry.SQL_CREATE_ENTRIES);
+            db.execSQL(InventoryContract.ProductClassEntry.SQL_CREATE_ENTRIES);
+            db.execSQL(InventoryContract.ProductEntry.SQL_CREATE_ENTRIES);
 
             db.execSQL(InventoryContract.DependencyEntry.SQL_INSERT_ENTRIES);
             db.execSQL(InventoryContract.SectorEntry.SQL_INSERT_ENTRIES);
+            db.execSQL(InventoryContract.CategoryEntry.SQL_INSERT_ENTRIES);
+            db.execSQL(InventoryContract.SubcategoryEntry.SQL_INSERT_ENTRIES);
+            db.execSQL(InventoryContract.ProductClassEntry.SQL_INSERT_ENTRIES);
+            db.execSQL(InventoryContract.ProductEntry.SQL_INSERT_ENTRIES);
 
 
             db.setTransactionSuccessful();
@@ -62,6 +70,10 @@ public class InventoryOpenHelper extends SQLiteOpenHelper {
 
             db.execSQL(InventoryContract.DependencyEntry.SQL_DELETE_ENTRIES);
             db.execSQL(InventoryContract.SectorEntry.SQL_DELETE_ENTRIES);
+            db.execSQL(InventoryContract.CategoryEntry.SQL_DELETE_ENTRIES);
+            db.execSQL(InventoryContract.SubcategoryEntry.SQL_DELETE_ENTRIES);
+            db.execSQL(InventoryContract.ProductClassEntry.SQL_DELETE_ENTRIES);
+            db.execSQL(InventoryContract.ProductEntry.SQL_DELETE_ENTRIES);
             onCreate(db);
 
             db.setTransactionSuccessful();

@@ -53,8 +53,6 @@ public class SectorRepository {
 
         if (rows == 0)
             callback.onError(new Error());
-        else
-            callback.onSuccess();
     }
 
 
