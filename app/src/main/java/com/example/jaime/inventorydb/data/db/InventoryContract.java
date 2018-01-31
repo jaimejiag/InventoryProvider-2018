@@ -7,7 +7,7 @@ import android.provider.BaseColumns;
  */
 
 public final class InventoryContract {
-    public static final int DATABASE_VERSION = 11;
+    public static final int DATABASE_VERSION = 16;
     public static final String DATABASE_NAME = "inventory.db";
 
 
@@ -132,7 +132,7 @@ public final class InventoryContract {
         };
 
         public static final String SQL_CREATE_ENTRIES = String.format("CREATE TABLE %s (" +
-                "%s INTERGER PRIMARY KEY AUTOINCREMENT, " +
+                "%s INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "%s TEXT NOT NULL, " +
                 "%s TEXT NOT NULL, " +
                 "%s TEXT NOT NULL)",
@@ -171,7 +171,7 @@ public final class InventoryContract {
         };
 
         public static final String SQL_CREATE_ENTRIES = String.format("CREATE TABLE %s (" +
-                        "%s INTERGER PRIMARY KEY AUTOINCREMENT, " +
+                        "%s INTEGER PRIMARY KEY AUTOINCREMENT, " +
                         "%s TEXT NOT NULL, " +
                         "%s TEXT NOT NULL, " +
                         "%s TEXT NOT NULL)",
@@ -243,6 +243,7 @@ public final class InventoryContract {
         public static final String COLUMN_CATEGORY = "category";
         public static final String COLUMN_SUBCATEGORY = "subcategory";
         public static final String COLUMN_PRODUCTCLASS = "productClass";
+        public static final String COLUMN_SECTOR = "sector";
         public static final String COLUMN_QUANTITY = "quantity";
         public static final String COLUMN_VALUE = "value";
         public static final String COLUMN_VENDOR = "vendor";
@@ -254,7 +255,7 @@ public final class InventoryContract {
 
         public static final String[] ALL_COLUMNS = new String[] {
                 _ID, COLUMN_SERIAL, COLUMN_MODELCODE, COLUMN_SORTNAME, COLUMN_DESCRIPTION, COLUMN_CATEGORY,
-                COLUMN_SUBCATEGORY, COLUMN_PRODUCTCLASS, COLUMN_QUANTITY, COLUMN_VALUE, COLUMN_VENDOR,
+                COLUMN_SUBCATEGORY, COLUMN_PRODUCTCLASS, COLUMN_SECTOR, COLUMN_QUANTITY, COLUMN_VALUE, COLUMN_VENDOR,
                 COLUMN_BITMAP, COLUMN_IMAGENAME, COLUMN_URL, COLUMN_DATEPURCHASE, COLUMN_NOTES
         };
 
@@ -270,12 +271,17 @@ public final class InventoryContract {
                 "REFERENCES %s (%s) ON DELETE RESTRICT ON UPDATE CASCADE",
                 ProductClassEntry.TABLE_NAME, _ID);
 
+        public static final String REFERENCES_SECTOR_ID = String.format(
+                "REFERENCES %s (%s) ON DELETE RESTRICT ON UPDATE CASCADE",
+                SectorEntry.TABLE_NAME, _ID);
+
         public static final String SQL_CREATE_ENTRIES = String.format("CREATE TABLE %s (" +
                 "%s INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "%s TEXT NOT NULL, " +
                 "%s TEXT NOT NULL, " +
                 "%s TEXT NOT NULL, " +
                 "%s TEXT NOT NULL, " +
+                "%s INTEGER NOT NULL %s, " +
                 "%s INTEGER NOT NULL %s, " +
                 "%s INTEGER NOT NULL %s, " +
                 "%s INTEGER NOT NULL %s, " +
@@ -296,6 +302,7 @@ public final class InventoryContract {
                 COLUMN_CATEGORY, REFERENCES_CATEGORY_ID,
                 COLUMN_SUBCATEGORY, REFERENCES_SUBCATEGORY_ID,
                 COLUMN_PRODUCTCLASS, REFERENCES_PRODUCTCLASS_ID,
+                COLUMN_SECTOR, REFERENCES_SECTOR_ID,
                 COLUMN_QUANTITY,
                 COLUMN_VALUE,
                 COLUMN_VENDOR,
@@ -308,8 +315,8 @@ public final class InventoryContract {
         public static final String SQL_DELETE_ENTRIES = String.format("DROP TABLE IF EXISTS %s", TABLE_NAME);
 
         public static final String SQL_INSERT_ENTRIES = String.format("INSERT INTO %s " +
-                "(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) VALUES " +
-                "('%s', '%s', '%s', '%s', %s, %s, %s, %s, %s, '%s', '%s', '%s', '%s', '%s', '%s')",
+                "(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) VALUES " +
+                "('%s', '%s', '%s', '%s', %s, %s, %s, %s, %s, %s, '%s', '%s', '%s', '%s', '%s', '%s')",
                 TABLE_NAME,
                 COLUMN_SERIAL,
                 COLUMN_MODELCODE,
@@ -318,6 +325,7 @@ public final class InventoryContract {
                 COLUMN_CATEGORY,
                 COLUMN_SUBCATEGORY,
                 COLUMN_PRODUCTCLASS,
+                COLUMN_SECTOR,
                 COLUMN_QUANTITY,
                 COLUMN_VALUE,
                 COLUMN_VENDOR,
@@ -330,9 +338,10 @@ public final class InventoryContract {
                 "569L",
                 "Producto",
                 "Descripción de producto",
-                0,
-                0,
-                0,
+                1,
+                1,
+                1,
+                1,
                 50,
                 9.99,
                 "LG",

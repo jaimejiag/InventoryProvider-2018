@@ -135,7 +135,7 @@ public class ListSectorFragment extends Fragment implements SectorContract.ListS
 
 
     @Override
-    public void showSectors(ArrayList<Sector> sectors) {
+        public void showSectors(ArrayList<Sector> sectors) {
         mAdapter.addAll(sectors);
     }
 }

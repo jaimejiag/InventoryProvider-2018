@@ -28,6 +28,7 @@ public class SectorDao {
         SQLiteDatabase database = InventoryOpenHelper.getInstance().openDatabase();
         boolean isEnable;
         boolean isSectorDefault;
+        mSectors.clear();
 
         Cursor cursor = database.query(InventoryContract.SectorEntry.TABLE_NAME,
                 InventoryContract.SectorEntry.ALL_COLUMNS, null, null, null, null, null);
