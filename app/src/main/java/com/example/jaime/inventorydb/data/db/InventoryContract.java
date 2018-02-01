@@ -409,6 +409,10 @@ public final class InventoryContract {
         static {
             sProductInnerProjectionMap = new HashMap<>();
             sProductInnerProjectionMap.put(ProductEntry._ID, ProductEntry.TABLE_NAME + "." + ProductEntry._ID);
+            sProductInnerProjectionMap.put(CategoryEntry._ID, CategoryEntry.TABLE_NAME + "." + CategoryEntry._ID);
+            sProductInnerProjectionMap.put(SubcategoryEntry._ID, SubcategoryEntry.TABLE_NAME + "." + SubcategoryEntry._ID);
+            sProductInnerProjectionMap.put(ProductClassEntry._ID, ProductClassEntry.TABLE_NAME + "." + ProductClassEntry._ID);
+            sProductInnerProjectionMap.put(SectorEntry._ID, SectorEntry.TABLE_NAME + "." + SectorEntry._ID);
         }
     }
 }
