@@ -58,4 +58,5 @@
     <string name="sp_isEnable_false">No está disponible</string>
     <string name="sp_isDefault_true">Es por defecto</string>
     <string name="sp_isDefault_false">No es por defecto</string>
+    <string name="product_sector">Sector:</string>
 </resources>

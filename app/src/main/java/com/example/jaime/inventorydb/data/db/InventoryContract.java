@@ -2,6 +2,8 @@ package com.example.jaime.inventorydb.data.db;
 
 import android.provider.BaseColumns;
 
+import java.util.HashMap;
+
 /**
  * Created by usuario on 19/01/18.
  */
@@ -350,5 +352,63 @@ public final class InventoryContract {
                 "Sin url",
                 "29-04-2017",
                 "Producto de prueba");
+    }
+
+
+    public static class ProductInnerEntry implements BaseColumns {
+        public static final String TABLE_NAME = "product";
+        public static final String COLUMN_SERIAL = "serial";
+        public static final String COLUMN_MODELCODE = "modelCode";
+        public static final String COLUMN_SORTNAME = "sortname";
+        public static final String COLUMN_DESCRIPTION = "description";
+        public static final String COLUMN_CATEGORY = "category";
+        public static final String COLUMN_CATEGORYNAME = "categoryName";
+        public static final String COLUMN_SUBCATEGORY = "subcategory";
+        public static final String COLUMN_SUBCATEGORYNAME = "subcategoryName";
+        public static final String COLUMN_PRODUCTCLASS = "productClass";
+        public static final String COLUMN_PRODUCTCLASSDESCRIPTION = "productDescription";
+        public static final String COLUMN_SECTOR = "sector";
+        public static final String COLUMN_SECTORNAME = "sectorName";
+        public static final String COLUMN_QUANTITY = "quantity";
+        public static final String COLUMN_VALUE = "value";
+        public static final String COLUMN_VENDOR = "vendor";
+        public static final String COLUMN_BITMAP = "bitmap";
+        public static final String COLUMN_IMAGENAME = "imageName";
+        public static final String COLUMN_URL = "url";
+        public static final String COLUMN_DATEPURCHASE = "datePurchase";
+        public static final String COLUMN_NOTES = "notes";
+
+        public static final String[] ALL_COLUMNS = new String[] {
+                _ID, COLUMN_SERIAL, COLUMN_MODELCODE, COLUMN_SORTNAME, COLUMN_DESCRIPTION, COLUMN_CATEGORY,
+                COLUMN_CATEGORYNAME, COLUMN_SUBCATEGORY, COLUMN_SUBCATEGORYNAME, COLUMN_PRODUCTCLASS,
+                COLUMN_PRODUCTCLASSDESCRIPTION, COLUMN_SECTOR, COLUMN_SECTORNAME, COLUMN_QUANTITY,
+                COLUMN_VALUE, COLUMN_VENDOR, COLUMN_BITMAP, COLUMN_IMAGENAME, COLUMN_URL, COLUMN_DATEPURCHASE, COLUMN_NOTES
+        };
+
+        public static final String PRODUCT_INNER = String.format("%s INNER JOIN %s ON %s=%s.%s " +
+                "INNER JOIN %s ON %s=%s.%s INNER JOIN %s ON %s=%s.%s INNER JOIN %s ON %s=%s.%s",
+                TABLE_NAME,
+                CategoryEntry.TABLE_NAME,
+                COLUMN_CATEGORY,
+                CategoryEntry.TABLE_NAME,
+                CategoryEntry._ID,
+                SubcategoryEntry.TABLE_NAME,
+                COLUMN_SUBCATEGORY,
+                SubcategoryEntry.TABLE_NAME,
+                SubcategoryEntry._ID,
+                ProductClassEntry.TABLE_NAME,
+                COLUMN_PRODUCTCLASS,
+                ProductClassEntry.TABLE_NAME,
+                ProductClassEntry._ID,
+                SectorEntry.TABLE_NAME,
+                COLUMN_SECTOR,
+                SectorEntry.TABLE_NAME,
+                SectorEntry._ID);
+
+        public static HashMap<String, String> sProductInnerProjectionMap;
+        static {
+            sProductInnerProjectionMap = new HashMap<>();
+            sProductInnerProjectionMap.put(ProductEntry._ID, ProductEntry.TABLE_NAME + "." + ProductEntry._ID);
+        }
     }
 }
