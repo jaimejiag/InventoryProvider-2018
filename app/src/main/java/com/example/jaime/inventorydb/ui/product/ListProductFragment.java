@@ -15,12 +15,14 @@ import android.widget.ListView;
 import com.example.jaime.inventorydb.R;
 import com.example.jaime.inventorydb.adapters.ProductAdapter;
 import com.example.jaime.inventorydb.data.db.model.Product;
+import com.example.jaime.inventorydb.data.db.model.ProductView;
 
 import java.util.ArrayList;
 
 
 public class ListProductFragment extends Fragment implements ProductContract.View {
     public static final String TAG = "listproductfragment";
+    public static final String KEY_PRODUCTVIEW = "keyproductview";
 
     private ListView lvProduct;
     private FloatingActionButton fabAdd;
@@ -89,7 +91,7 @@ public class ListProductFragment extends Fragment implements ProductContract.Vie
         lvProduct.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                mCallback.onShowProduct(null);
+                mPresenter.requetsToShowProduct(null);
             }
         });
         
@@ -106,5 +108,13 @@ public class ListProductFragment extends Fragment implements ProductContract.Vie
     public void showProducts(ArrayList<Product> products) {
         mAdapater.clear();
         mAdapater.addAll(products);
+    }
+
+
+    @Override
+    public void showProductView(ProductView productView) {
+        Bundle arguments = new Bundle();
+        arguments.putParcelable(KEY_PRODUCTVIEW, productView);
+        mCallback.onShowProduct(arguments);
     }
 }

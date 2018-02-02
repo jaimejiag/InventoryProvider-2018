@@ -1,6 +1,7 @@
 package com.example.jaime.inventorydb.ui.product;
 
 import com.example.jaime.inventorydb.data.db.model.Product;
+import com.example.jaime.inventorydb.data.db.model.ProductView;
 
 import java.util.ArrayList;
 
@@ -26,7 +27,19 @@ public class ProductPresenter implements ProductContract.Presenter, ProductContr
 
 
     @Override
+    public void requetsToShowProduct(Product product) {
+        mInteractor.getProductView(product);
+    }
+
+
+    @Override
     public void onLoadSuccess(ArrayList<Product> products) {
         mView.showProducts(products);
+    }
+
+
+    @Override
+    public void onLoadProductView(ProductView productView) {
+        mView.showProductView(productView);
     }
 }
