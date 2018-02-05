@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.jaime.inventorydb">
+    package="com.example.jaime.inventoryprovider">
 
     <application
         android:allowBackup="true"
@@ -8,8 +8,8 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:name="com.example.jaime.inventorydb.InventoryApplication">
-        <activity android:name="com.example.jaime.inventorydb.SplashActivity">
+        android:name="com.example.jaime.inventoryprovider.InventoryApplication">
+        <activity android:name="com.example.jaime.inventoryprovider.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -17,18 +17,18 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.jaime.inventorydb.ui.login.LoginViewImpl"
+            android:name="com.example.jaime.inventoryprovider.ui.login.LoginViewImpl"
             android:theme="@style/LoginTheme" />
-        <activity android:name="com.example.jaime.inventorydb.ui.inventory.InventoryActivity" />
+        <activity android:name="com.example.jaime.inventoryprovider.ui.inventory.InventoryActivity" />
         <activity
-            android:name="com.example.jaime.inventorydb.DashBoardActivity"
+            android:name="com.example.jaime.inventoryprovider.DashBoardActivity"
             android:theme="@style/ActionBarTheme" />
-        <activity android:name="com.example.jaime.inventorydb.ui.product.ProductActivity" />
-        <activity android:name="com.example.jaime.inventorydb.ui.dependency.DependencyActivity"/>
-        <activity android:name="com.example.jaime.inventorydb.ui.sector.SectorActivity" />
-        <activity android:name="com.example.jaime.inventorydb.ui.prefs.AccountSettingActivity" />
-        <activity android:name="com.example.jaime.inventorydb.ui.prefs.GeneralSettingActivity" />
-        <activity android:name="com.example.jaime.inventorydb.ui.about.AboutUsActivity" />
+        <activity android:name="com.example.jaime.inventoryprovider.ui.product.ProductActivity" />
+        <activity android:name="com.example.jaime.inventoryprovider.ui.dependency.DependencyActivity"/>
+        <activity android:name="com.example.jaime.inventoryprovider.ui.sector.SectorActivity" />
+        <activity android:name="com.example.jaime.inventoryprovider.ui.prefs.AccountSettingActivity" />
+        <activity android:name="com.example.jaime.inventoryprovider.ui.prefs.GeneralSettingActivity" />
+        <activity android:name="com.example.jaime.inventoryprovider.ui.about.AboutUsActivity" />
     </application>
 
 </manifest>

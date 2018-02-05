@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.jaime.inventorydb.SplashActivity"
+    tools:context="com.example.jaime.inventoryprovider.SplashActivity"
     android:background="@color/colorPrimary">
 
     <ImageView

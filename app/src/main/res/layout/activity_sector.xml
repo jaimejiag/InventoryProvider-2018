@@ -5,6 +5,6 @@
     android:id="@android:id/content"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.jaime.inventorydb.ui.sector.SectorActivity">
+    tools:context="com.example.jaime.inventoryprovider.ui.sector.SectorActivity">
 
 </FrameLayout>

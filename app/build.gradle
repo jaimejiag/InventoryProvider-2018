@@ -4,7 +4,7 @@ android {
     compileSdkVersion 25
     buildToolsVersion '26.0.2'
     defaultConfig {
-        applicationId "com.example.jaime.inventorydb"
+        applicationId "com.example.jaime.inventoryprovider"
         minSdkVersion 18
         targetSdkVersion 22
         versionCode 1

@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="com.example.jaime.inventorydb.ui.product.ListProductFragment">
+    tools:context="com.example.jaime.inventoryprovider.ui.product.ListProductFragment">
 
     <ListView
         android:id="@+id/lv_product"
