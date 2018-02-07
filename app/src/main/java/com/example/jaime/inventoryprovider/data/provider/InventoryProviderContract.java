@@ -86,27 +86,27 @@ public final class InventoryProviderContract {
         public static HashMap<String, String> sProductInnerProjectionMap;
         static {
             sProductInnerProjectionMap = new HashMap<>();
-            sProductInnerProjectionMap.put(InventoryProviderContract.Product._ID, InventoryContract.ProductEntry.TABLE_NAME + "." + InventoryContract.ProductEntry._ID);
-            sProductInnerProjectionMap.put(SERIAL, SERIAL);
-            sProductInnerProjectionMap.put(MODELCODE, MODELCODE);
-            sProductInnerProjectionMap.put(COLUMN_SORTNAME, InventoryContract.ProductInnerEntry.TABLE_NAME + "." + InventoryContract.ProductInnerEntry.COLUMN_SORTNAME);
-            sProductInnerProjectionMap.put(COLUMN_DESCRIPTION, InventoryContract.ProductInnerEntry.TABLE_NAME + "." + InventoryContract.ProductInnerEntry.COLUMN_DESCRIPTION);
-            sProductInnerProjectionMap.put(COLUMN_CATEGORY, InventoryContract.CategoryEntry.TABLE_NAME + "." + InventoryContract.CategoryEntry._ID);
-            sProductInnerProjectionMap.put(COLUMN_CATEGORYNAME, InventoryContract.CategoryEntry.TABLE_NAME + "." + InventoryContract.CategoryEntry.COLUMN_NAME);
-            sProductInnerProjectionMap.put(COLUMN_SUBCATEGORY, COLUMN_SUBCATEGORY);
-            sProductInnerProjectionMap.put(COLUMN_SUBCATEGORYNAME, InventoryContract.SubcategoryEntry.TABLE_NAME + "." + InventoryContract.SubcategoryEntry.COLUMN_NAME);
-            sProductInnerProjectionMap.put(COLUMN_PRODUCTCLASS, InventoryContract.ProductClassEntry.TABLE_NAME + "." + InventoryContract.ProductClassEntry._ID);
-            sProductInnerProjectionMap.put(COLUMN_PRODUCTCLASSDESCRIPTION, InventoryContract.ProductClassEntry.TABLE_NAME + "." + InventoryContract.ProductClassEntry.COLUMN_DESCRIPTION);
-            sProductInnerProjectionMap.put(COLUMN_SECTOR, InventoryContract.SectorEntry.TABLE_NAME + "." + InventoryContract.SectorEntry._ID);
-            sProductInnerProjectionMap.put(COLUMN_SECTORNAME, InventoryContract.SectorEntry.TABLE_NAME + "." + InventoryContract.SectorEntry.COLUMN_NAME);
-            sProductInnerProjectionMap.put(COLUMN_QUANTITY, COLUMN_QUANTITY);
-            sProductInnerProjectionMap.put(COLUMN_VALUE, COLUMN_VALUE);
-            sProductInnerProjectionMap.put(COLUMN_VENDOR, COLUMN_VENDOR);
-            sProductInnerProjectionMap.put(COLUMN_BITMAP, COLUMN_BITMAP);
-            sProductInnerProjectionMap.put(COLUMN_IMAGENAME, COLUMN_IMAGENAME);
-            sProductInnerProjectionMap.put(COLUMN_URL, COLUMN_URL);
-            sProductInnerProjectionMap.put(COLUMN_DATEPURCHASE, COLUMN_DATEPURCHASE);
-            sProductInnerProjectionMap.put(COLUMN_NOTES, COLUMN_NOTES);
+            sProductInnerProjectionMap.put(BaseColumns._ID, InventoryContract.ProductEntry.TABLE_NAME + "." + InventoryContract.ProductEntry._ID);
+            sProductInnerProjectionMap.put(SERIAL, InventoryContract.ProductInnerEntry.COLUMN_SERIAL);
+            sProductInnerProjectionMap.put(MODELCODE, InventoryContract.ProductInnerEntry.COLUMN_MODELCODE);
+            sProductInnerProjectionMap.put(SORTNAME, InventoryContract.ProductInnerEntry.TABLE_NAME + "." + InventoryContract.ProductInnerEntry.COLUMN_SORTNAME);
+            sProductInnerProjectionMap.put(DESCRIPTION, InventoryContract.ProductInnerEntry.TABLE_NAME + "." + InventoryContract.ProductInnerEntry.COLUMN_DESCRIPTION);
+            sProductInnerProjectionMap.put(CATEGORY, InventoryContract.CategoryEntry.TABLE_NAME + "." + InventoryContract.CategoryEntry._ID);
+            sProductInnerProjectionMap.put(CATEGORYNAME, InventoryContract.CategoryEntry.TABLE_NAME + "." + InventoryContract.CategoryEntry.COLUMN_NAME);
+            sProductInnerProjectionMap.put(SUBCATEGORY, InventoryContract.ProductInnerEntry.COLUMN_SUBCATEGORY);
+            sProductInnerProjectionMap.put(SUBCATEGORYNAME, InventoryContract.SubcategoryEntry.TABLE_NAME + "." + InventoryContract.SubcategoryEntry.COLUMN_NAME);
+            sProductInnerProjectionMap.put(PRODUCTCLASS, InventoryContract.ProductClassEntry.TABLE_NAME + "." + InventoryContract.ProductClassEntry._ID);
+            sProductInnerProjectionMap.put(PRODUCTCLASSDESCRIPTION, InventoryContract.ProductClassEntry.TABLE_NAME + "." + InventoryContract.ProductClassEntry.COLUMN_DESCRIPTION);
+            sProductInnerProjectionMap.put(SECTOR, InventoryContract.SectorEntry.TABLE_NAME + "." + InventoryContract.SectorEntry._ID);
+            sProductInnerProjectionMap.put(SECTORNAME, InventoryContract.SectorEntry.TABLE_NAME + "." + InventoryContract.SectorEntry.COLUMN_NAME);
+            sProductInnerProjectionMap.put(QUANTITY, InventoryContract.ProductInnerEntry.COLUMN_QUANTITY);
+            sProductInnerProjectionMap.put(VALUE, InventoryContract.ProductInnerEntry.COLUMN_VALUE);
+            sProductInnerProjectionMap.put(VENDOR, InventoryContract.ProductInnerEntry.COLUMN_VENDOR);
+            sProductInnerProjectionMap.put(BITMAP, InventoryContract.ProductInnerEntry.COLUMN_BITMAP);
+            sProductInnerProjectionMap.put(IMAGENAME, InventoryContract.ProductInnerEntry.COLUMN_IMAGENAME);
+            sProductInnerProjectionMap.put(URL, InventoryContract.ProductInnerEntry.COLUMN_URL);
+            sProductInnerProjectionMap.put(DATEPURCHASE, InventoryContract.ProductInnerEntry.COLUMN_DATEPURCHASE);
+            sProductInnerProjectionMap.put(NOTES, InventoryContract.ProductInnerEntry.COLUMN_NOTES);
         }
     }
 

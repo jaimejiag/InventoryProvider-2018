@@ -1,8 +1,9 @@
 package com.example.jaime.inventoryprovider.data.db.repository;
 
+import com.example.jaime.inventoryprovider.data.base.DependencyDao;
 import com.example.jaime.inventoryprovider.data.db.model.Dependency;
-import com.example.jaime.inventoryprovider.data.db.repository.dao.DependencyDao;
 import com.example.jaime.inventoryprovider.ui.InteractorCallback;
+import com.example.jaime.inventoryprovider.data.provider.dao.DependencyDaoImpl;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -16,7 +17,7 @@ public class DependencyRepository {
 
 
     private DependencyRepository() {
-        this.mDao = new DependencyDao();
+        this.mDao = new DependencyDaoImpl();
     }
 
 
@@ -83,10 +84,4 @@ public class DependencyRepository {
         else
             callback.onSuccess();
     }
-
-
-    /*public Dependency getDependencyAtPosition(int position){
-        return mDependencies.get(position);
-    }
-    */
 }

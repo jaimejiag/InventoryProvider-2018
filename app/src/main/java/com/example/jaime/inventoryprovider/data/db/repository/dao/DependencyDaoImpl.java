@@ -14,7 +14,7 @@ import java.util.ArrayList;
  * Created by jaime on 24/01/2018.
  */
 
-public class DependencyDao {
+public class DependencyDaoImpl {
     ArrayList<Dependency> mDependencies;
 
 
