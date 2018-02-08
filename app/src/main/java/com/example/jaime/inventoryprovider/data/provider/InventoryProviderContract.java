@@ -53,7 +53,9 @@ public final class InventoryProviderContract {
 
     public static class Product implements BaseColumns {
         public static final String CONTENT_PATH = "product";
+        public static final String CONTENT_PATH_VIEW = "productView";
         public static final Uri CONTENT_URI = Uri.withAppendedPath(AUTHORITY_URI, CONTENT_PATH);
+        public static final Uri CONTENT_URI_VIEW = Uri.withAppendedPath(AUTHORITY_URI, CONTENT_PATH_VIEW);
         public static final String SERIAL = "serial";
         public static final String MODELCODE = "modelCode";
         public static final String SORTNAME = "sortname";

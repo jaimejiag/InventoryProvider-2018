@@ -85,9 +85,8 @@ public class SectorAdapter extends RecyclerView.Adapter<SectorAdapter.SectorView
 
 
     public void addAll(ArrayList<Sector> sectors) {
-        mSectors.clear();
-        //mSectorsModified.clear();
         mSectors = sectors;
+        notifyDataSetChanged();
     }
 
 

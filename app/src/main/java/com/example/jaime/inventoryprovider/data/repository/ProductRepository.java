@@ -1,8 +1,9 @@
 package com.example.jaime.inventoryprovider.data.repository;
 
+import com.example.jaime.inventoryprovider.data.base.ProductDao;
 import com.example.jaime.inventoryprovider.data.model.Product;
 import com.example.jaime.inventoryprovider.data.model.ProductView;
-import com.example.jaime.inventoryprovider.data.db.dao.ProductDao;
+import com.example.jaime.inventoryprovider.data.provider.dao.ProductDaoImpl;
 
 import java.util.ArrayList;
 
@@ -16,7 +17,7 @@ public class ProductRepository {
 
 
     private ProductRepository() {
-        mDao = new ProductDao();
+        mDao = new ProductDaoImpl();
     }
 
 
@@ -34,6 +35,6 @@ public class ProductRepository {
 
 
     public ProductView getProductView(int id) {
-        return mDao.search(id);
+        return mDao.getProductView(id);
     }
 }

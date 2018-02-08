@@ -2,10 +2,12 @@ package com.example.jaime.inventoryprovider.ui.sector;
 
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -117,7 +119,7 @@ public class ListSectorFragment extends Fragment implements SectorContract.ListS
         mLongClickListener = new SectorAdapter.OnItemLongClickListener() {
             @Override
             public void onItemLongClick(Sector sector) {
-                //TODO finish alertdialog and delete sector
+                showDeleteDialog(sector);
             }
         };
 
@@ -143,7 +145,26 @@ public class ListSectorFragment extends Fragment implements SectorContract.ListS
 
 
     @Override
-        public void showSectors(ArrayList<Sector> sectors) {
+    public void showSectors(ArrayList<Sector> sectors) {
         mAdapter.addAll(sectors);
+    }
+
+
+    private void showDeleteDialog(final Sector sector) {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setTitle(getResources().getString(R.string.delete_title))
+                .setMessage(getResources().getString(R.string.delete_sector_message))
+                .setPositiveButton(getResources().getString(R.string.btnOk), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        mPresenter.requestToDeleteSector(sector);
+                    }
+                })
+                .setNegativeButton(getResources().getString(R.string.btnCancel), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                }).show();
     }
 }

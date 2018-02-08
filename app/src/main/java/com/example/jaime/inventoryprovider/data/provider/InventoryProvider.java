@@ -5,6 +5,7 @@ import android.content.ContentValues;
 import android.content.UriMatcher;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
 
 import com.example.jaime.inventoryprovider.data.db.InventoryContract;
@@ -21,6 +22,7 @@ public class InventoryProvider extends ContentProvider {
     private static final int DEPENDENCY_ID = 4;
     private static final int SECTOR = 5;
     private static final int SECTOR_ID = 6;
+    private static final int PRODUCTVIEW = 7;
 
     private SQLiteDatabase mDatabase;
 
@@ -32,6 +34,7 @@ public class InventoryProvider extends ContentProvider {
         uriMatcher.addURI(InventoryProviderContract.AUTHORITY, InventoryProviderContract.Dependency.CONTENT_PATH + "/#", DEPENDENCY_ID);
         uriMatcher.addURI(InventoryProviderContract.AUTHORITY, InventoryProviderContract.Sector.CONTENT_PATH, SECTOR);
         uriMatcher.addURI(InventoryProviderContract.AUTHORITY, InventoryProviderContract.Sector.CONTENT_PATH + "/#", SECTOR_ID);
+        uriMatcher.addURI(InventoryProviderContract.AUTHORITY, InventoryProviderContract.Product.CONTENT_PATH_VIEW, PRODUCTVIEW);
     }
 
 
@@ -48,6 +51,8 @@ public class InventoryProvider extends ContentProvider {
 
         switch (uriMatcher.match(uri)) {
             case PRODUCT:
+                cursor = mDatabase.query(InventoryContract.ProductEntry.TABLE_NAME, projection, selection,
+                        selectionArgs, null, null, sortOrder);
                 break;
 
             case PRODUCT_ID:
@@ -69,6 +74,15 @@ public class InventoryProvider extends ContentProvider {
             case SECTOR_ID:
                 break;
 
+            case PRODUCTVIEW:
+                SQLiteQueryBuilder queryBuilder = new SQLiteQueryBuilder();
+                queryBuilder.setTables(InventoryContract.ProductInnerEntry.PRODUCT_INNER);
+                queryBuilder.setProjectionMap(InventoryProviderContract.Product.sProductInnerProjectionMap);
+
+                cursor = queryBuilder.query(mDatabase, projection, selection, selectionArgs, null,
+                        null, null);
+                break;
+
             case UriMatcher.NO_MATCH:
                 throw new IllegalArgumentException("Invalid Uri: " + uri);
         }
@@ -83,9 +97,13 @@ public class InventoryProvider extends ContentProvider {
 
         switch (uriMatcher.match(uri)) {
             case PRODUCT:
+                result = "vnd.android.cursor.dir/vnd.com.example.jaime.inventoryprovider/" +
+                        InventoryProviderContract.Product.CONTENT_PATH;
                 break;
 
             case PRODUCT_ID:
+                result = "vnd.android.cursor.item/vnd.com.example.jaime.inventoryprovider/" +
+                        InventoryProviderContract.Product.CONTENT_PATH;
                 break;
 
             case DEPENDENCY:
@@ -123,7 +141,7 @@ public class InventoryProvider extends ContentProvider {
 
         switch (uriMatcher.match(uri)) {
             case PRODUCT:
-
+                rows = mDatabase.insert(InventoryContract.ProductEntry.TABLE_NAME, null, values);
                 break;
 
             case DEPENDENCY:
@@ -152,6 +170,7 @@ public class InventoryProvider extends ContentProvider {
 
         switch (uriMatcher.match(uri)) {
             case PRODUCT:
+                rows = mDatabase.delete(InventoryContract.ProductEntry.TABLE_NAME, selection, selectionArgs);
                 break;
 
             case DEPENDENCY:
@@ -176,6 +195,7 @@ public class InventoryProvider extends ContentProvider {
 
         switch (uriMatcher.match(uri)) {
             case PRODUCT:
+                rows = mDatabase.update(InventoryContract.ProductEntry.TABLE_NAME, values, selection, selectionArgs);
                 break;
 
             case DEPENDENCY:

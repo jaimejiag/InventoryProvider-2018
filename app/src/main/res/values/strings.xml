@@ -59,4 +59,6 @@
     <string name="sp_isDefault_true">Es por defecto</string>
     <string name="sp_isDefault_false">No es por defecto</string>
     <string name="product_sector">Sector:</string>
+    <string name="delete_sector_message">¿Desea eliminar el sector?</string>
+    <string name="delete_title">Eliminar</string>
 </resources>
