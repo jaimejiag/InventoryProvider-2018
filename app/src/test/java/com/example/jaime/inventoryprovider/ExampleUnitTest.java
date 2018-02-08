@@ -1,7 +1,7 @@
 package com.example.jaime.inventoryprovider;
 
-import com.example.jaime.inventoryprovider.data.db.model.User;
-import com.example.jaime.inventoryprovider.data.db.repository.UserRepository;
+import com.example.jaime.inventoryprovider.data.model.User;
+import com.example.jaime.inventoryprovider.data.repository.UserRepository;
 import com.example.jaime.inventoryprovider.ui.utils.CommonUtils;
 
 import org.junit.Before;

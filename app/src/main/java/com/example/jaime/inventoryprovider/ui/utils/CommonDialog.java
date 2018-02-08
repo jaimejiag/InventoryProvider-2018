@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 
 import com.example.jaime.inventoryprovider.R;
-import com.example.jaime.inventoryprovider.data.db.model.Dependency;
+import com.example.jaime.inventoryprovider.data.model.Dependency;
 import com.example.jaime.inventoryprovider.ui.dependency.contracts.ListDependencyContract;
 
 /**

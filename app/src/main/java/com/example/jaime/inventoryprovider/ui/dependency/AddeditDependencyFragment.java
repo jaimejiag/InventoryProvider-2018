@@ -17,7 +17,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 import com.example.jaime.inventoryprovider.R;
-import com.example.jaime.inventoryprovider.data.db.model.Dependency;
+import com.example.jaime.inventoryprovider.data.model.Dependency;
 import com.example.jaime.inventoryprovider.ui.base.BaseFragment;
 import com.example.jaime.inventoryprovider.ui.dependency.contracts.AddeditDependencyContract;
 import com.example.jaime.inventoryprovider.ui.dependency.presenters.AddeditDependencyPresenter;

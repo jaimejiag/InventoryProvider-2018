@@ -1,7 +1,7 @@
 package com.example.jaime.inventoryprovider.ui.dependency.interactors;
 
-import com.example.jaime.inventoryprovider.data.db.model.Dependency;
-import com.example.jaime.inventoryprovider.data.db.repository.DependencyRepository;
+import com.example.jaime.inventoryprovider.data.model.Dependency;
+import com.example.jaime.inventoryprovider.data.repository.DependencyRepository;
 import com.example.jaime.inventoryprovider.ui.dependency.contracts.AddeditDependencyContract;
 import com.example.jaime.inventoryprovider.ui.InteractorCallback;
 

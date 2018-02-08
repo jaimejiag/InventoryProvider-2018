@@ -1,8 +1,8 @@
-package com.example.jaime.inventoryprovider.data.db.repository;
+package com.example.jaime.inventoryprovider.data.repository;
 
-import com.example.jaime.inventoryprovider.data.db.model.Product;
-import com.example.jaime.inventoryprovider.data.db.model.ProductView;
-import com.example.jaime.inventoryprovider.data.db.repository.dao.ProductDao;
+import com.example.jaime.inventoryprovider.data.model.Product;
+import com.example.jaime.inventoryprovider.data.model.ProductView;
+import com.example.jaime.inventoryprovider.data.db.dao.ProductDao;
 
 import java.util.ArrayList;
 

@@ -11,7 +11,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.jaime.inventoryprovider.R;
-import com.example.jaime.inventoryprovider.data.db.model.ProductView;
+import com.example.jaime.inventoryprovider.data.model.ProductView;
 
 public class AddEditProductFragment extends Fragment {
     public static final String TAG = "addeditproductfragment";

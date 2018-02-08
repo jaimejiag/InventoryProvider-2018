@@ -24,7 +24,7 @@ import android.widget.ListView;
 
 import com.example.jaime.inventoryprovider.R;
 import com.example.jaime.inventoryprovider.adapters.DependencyAdapter;
-import com.example.jaime.inventoryprovider.data.db.model.Dependency;
+import com.example.jaime.inventoryprovider.data.model.Dependency;
 import com.example.jaime.inventoryprovider.ui.dependency.contracts.ListDependencyContract;
 import com.example.jaime.inventoryprovider.ui.dependency.presenters.ListDependencyPresenter;
 import com.example.jaime.inventoryprovider.ui.utils.CommonDialog;

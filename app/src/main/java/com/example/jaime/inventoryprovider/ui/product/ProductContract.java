@@ -1,7 +1,7 @@
 package com.example.jaime.inventoryprovider.ui.product;
 
-import com.example.jaime.inventoryprovider.data.db.model.Product;
-import com.example.jaime.inventoryprovider.data.db.model.ProductView;
+import com.example.jaime.inventoryprovider.data.model.Product;
+import com.example.jaime.inventoryprovider.data.model.ProductView;
 
 import java.util.ArrayList;
 

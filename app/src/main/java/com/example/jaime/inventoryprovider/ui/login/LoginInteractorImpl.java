@@ -1,6 +1,6 @@
 package com.example.jaime.inventoryprovider.ui.login;
 
-import com.example.jaime.inventoryprovider.data.db.repository.UserRepository;
+import com.example.jaime.inventoryprovider.data.repository.UserRepository;
 import com.example.jaime.inventoryprovider.ui.utils.CommonUtils;
 
 /**

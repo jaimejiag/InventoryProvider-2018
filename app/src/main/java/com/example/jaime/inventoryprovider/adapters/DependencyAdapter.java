@@ -8,7 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.example.jaime.inventoryprovider.R;
-import com.example.jaime.inventoryprovider.data.db.model.Dependency;
+import com.example.jaime.inventoryprovider.data.model.Dependency;
 import com.github.ivbaranov.mli.MaterialLetterIcon;
 
 import java.util.ArrayList;

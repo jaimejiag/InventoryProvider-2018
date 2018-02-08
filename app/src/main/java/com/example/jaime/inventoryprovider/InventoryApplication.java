@@ -3,7 +3,7 @@ package com.example.jaime.inventoryprovider;
 import android.app.Application;
 import android.content.Context;
 
-import com.example.jaime.inventoryprovider.data.db.model.InventoryOpenHelper;
+import com.example.jaime.inventoryprovider.data.model.InventoryOpenHelper;
 import com.example.jaime.inventoryprovider.data.prefs.AppPreferencesHelper;
 
 /**

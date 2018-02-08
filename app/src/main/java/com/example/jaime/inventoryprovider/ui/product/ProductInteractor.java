@@ -1,7 +1,7 @@
 package com.example.jaime.inventoryprovider.ui.product;
 
-import com.example.jaime.inventoryprovider.data.db.model.Product;
-import com.example.jaime.inventoryprovider.data.db.repository.ProductRepository;
+import com.example.jaime.inventoryprovider.data.model.Product;
+import com.example.jaime.inventoryprovider.data.repository.ProductRepository;
 
 /**
  * Created by usuario on 1/02/18.

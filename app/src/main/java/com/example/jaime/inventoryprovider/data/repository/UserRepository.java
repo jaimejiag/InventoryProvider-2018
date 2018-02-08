@@ -1,6 +1,6 @@
-package com.example.jaime.inventoryprovider.data.db.repository;
+package com.example.jaime.inventoryprovider.data.repository;
 
-import com.example.jaime.inventoryprovider.data.db.model.User;
+import com.example.jaime.inventoryprovider.data.model.User;
 
 import java.util.ArrayList;
 

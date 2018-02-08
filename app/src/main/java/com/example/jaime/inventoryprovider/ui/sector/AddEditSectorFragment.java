@@ -20,8 +20,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 import com.example.jaime.inventoryprovider.R;
-import com.example.jaime.inventoryprovider.data.db.model.Dependency;
-import com.example.jaime.inventoryprovider.data.db.model.Sector;
+import com.example.jaime.inventoryprovider.data.model.Dependency;
+import com.example.jaime.inventoryprovider.data.model.Sector;
 
 import java.util.ArrayList;
 

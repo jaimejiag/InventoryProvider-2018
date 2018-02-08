@@ -6,11 +6,9 @@ import android.content.UriMatcher;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 
 import com.example.jaime.inventoryprovider.data.db.InventoryContract;
-import com.example.jaime.inventoryprovider.data.db.model.InventoryOpenHelper;
+import com.example.jaime.inventoryprovider.data.model.InventoryOpenHelper;
 
 /**
  * Created by usuario on 5/02/18.
@@ -50,7 +48,6 @@ public class InventoryProvider extends ContentProvider {
 
         switch (uriMatcher.match(uri)) {
             case PRODUCT:
-
                 break;
 
             case PRODUCT_ID:
@@ -65,6 +62,8 @@ public class InventoryProvider extends ContentProvider {
                 break;
 
             case SECTOR:
+                cursor = mDatabase.query(InventoryContract.SectorEntry.TABLE_NAME, projection, selection,
+                        selectionArgs, null, null, sortOrder);
                 break;
 
             case SECTOR_ID:
@@ -80,24 +79,117 @@ public class InventoryProvider extends ContentProvider {
 
     @Override
     public String getType(Uri uri) {
-        return null;
+        String result = "";
+
+        switch (uriMatcher.match(uri)) {
+            case PRODUCT:
+                break;
+
+            case PRODUCT_ID:
+                break;
+
+            case DEPENDENCY:
+                result = "vnd.android.cursor.dir/vnd.com.example.jaime.inventoryprovider/" +
+                        InventoryProviderContract.Dependency.CONTENT_PATH;
+                break;
+
+            case DEPENDENCY_ID:
+                result = "vnd.android.cursor.item/vnd.com.example.jaime.inventoryprovider/" +
+                        InventoryProviderContract.Dependency.CONTENT_PATH;
+                break;
+
+            case SECTOR:
+                result = "vnd.android.cursor.dir/vnd.com.example.jaime.inventoryprovider/" +
+                        InventoryProviderContract.Sector.CONTENT_PATH;
+                break;
+
+            case SECTOR_ID:
+                result = "vnd.android.cursor.item/vnd.com.example.jaime.inventoryprovider/" +
+                        InventoryProviderContract.Sector.CONTENT_PATH;
+                break;
+
+            case UriMatcher.NO_MATCH:
+                throw new IllegalArgumentException("Invalid Uri: " + uri);
+        }
+
+        return result;
     }
 
 
     @Override
     public Uri insert(Uri uri, ContentValues values) {
-        return null;
+        Uri result = null;
+        long rows = 0;
+
+        switch (uriMatcher.match(uri)) {
+            case PRODUCT:
+
+                break;
+
+            case DEPENDENCY:
+                rows = mDatabase.insert(InventoryContract.DependencyEntry.TABLE_NAME, null, values);
+                result = Uri.parse(InventoryProviderContract.AUTHORITY + InventoryProviderContract.Dependency.CONTENT_URI +
+                    "/" + rows);
+                break;
+
+            case SECTOR:
+                rows = mDatabase.insert(InventoryContract.SectorEntry.TABLE_NAME, null, values);
+                result = Uri.parse(InventoryProviderContract.AUTHORITY + InventoryProviderContract.Sector.CONTENT_URI +
+                    "/" + rows);
+                break;
+
+            case UriMatcher.NO_MATCH:
+                throw new IllegalArgumentException("Invalid Uri: " + uri);
+        }
+
+        return result;
     }
 
 
     @Override
     public int delete(Uri uri, String selection, String[] selectionArgs) {
-        return 0;
+        int rows = 0;
+
+        switch (uriMatcher.match(uri)) {
+            case PRODUCT:
+                break;
+
+            case DEPENDENCY:
+                rows = mDatabase.delete(InventoryContract.DependencyEntry.TABLE_NAME, selection, selectionArgs);
+                break;
+
+            case SECTOR:
+                rows = mDatabase.delete(InventoryContract.SectorEntry.TABLE_NAME, selection, selectionArgs);
+                break;
+
+            case UriMatcher.NO_MATCH:
+                throw new IllegalArgumentException("Invalid Uri: " + uri);
+        }
+
+        return rows;
     }
 
 
     @Override
     public int update(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
-        return 0;
+        int rows = 0;
+
+        switch (uriMatcher.match(uri)) {
+            case PRODUCT:
+                break;
+
+            case DEPENDENCY:
+                rows = mDatabase.update(InventoryContract.DependencyEntry.TABLE_NAME, values, selection, selectionArgs);
+                break;
+
+            case SECTOR:
+                rows = mDatabase.update(InventoryContract.SectorEntry.TABLE_NAME, values, selection, selectionArgs);
+                break;
+
+            case UriMatcher.NO_MATCH:
+                throw new IllegalArgumentException("Invalid Uri: " + uri);
+        }
+
+        return rows;
     }
 }

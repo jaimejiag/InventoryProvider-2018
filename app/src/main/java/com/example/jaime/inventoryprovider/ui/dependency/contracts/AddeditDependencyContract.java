@@ -1,6 +1,6 @@
 package com.example.jaime.inventoryprovider.ui.dependency.contracts;
 
-import com.example.jaime.inventoryprovider.data.db.model.Dependency;
+import com.example.jaime.inventoryprovider.data.model.Dependency;
 import com.example.jaime.inventoryprovider.ui.base.BasePresenter;
 import com.example.jaime.inventoryprovider.ui.base.BaseView;
 

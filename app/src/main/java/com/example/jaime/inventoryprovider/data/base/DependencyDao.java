@@ -1,6 +1,6 @@
 package com.example.jaime.inventoryprovider.data.base;
 
-import com.example.jaime.inventoryprovider.data.db.model.Dependency;
+import com.example.jaime.inventoryprovider.data.model.Dependency;
 
 import java.util.ArrayList;
 

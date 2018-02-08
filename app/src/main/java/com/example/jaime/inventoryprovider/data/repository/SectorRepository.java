@@ -1,7 +1,8 @@
-package com.example.jaime.inventoryprovider.data.db.repository;
+package com.example.jaime.inventoryprovider.data.repository;
 
-import com.example.jaime.inventoryprovider.data.db.model.Sector;
-import com.example.jaime.inventoryprovider.data.db.repository.dao.SectorDao;
+import com.example.jaime.inventoryprovider.data.base.SectorDao;
+import com.example.jaime.inventoryprovider.data.model.Sector;
+import com.example.jaime.inventoryprovider.data.provider.dao.SectorDaoImpl;
 import com.example.jaime.inventoryprovider.ui.InteractorCallback;
 
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ public class SectorRepository {
 
 
     private SectorRepository() {
-        mDao = new SectorDao();
+        mDao = new SectorDaoImpl();
     }
 
 
@@ -61,7 +62,5 @@ public class SectorRepository {
 
         if (rows == 0)
             callback.onError(new Error());
-        else
-            callback.onSuccess();
     }
 }

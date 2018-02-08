@@ -1,26 +1,22 @@
-package com.example.jaime.inventoryprovider.data.db.model;
+package com.example.jaime.inventoryprovider.data.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
 /**
- * Created by usuario on 2/02/18.
+ * Created by jaime on 31/01/2018.
  */
 
-public class ProductView implements Parcelable {
+public class Product implements Parcelable {
     private int _id;
     private String serial;
     private String modelCode;
     private String sortname;
     private String description;
     private int category;
-    private String categoryName;
     private int subcategory;
-    private String subcategoryName;
     private int productClass;
-    private String productClassDescription;
     private int sector;
-    private String sectorName;
     private int quantity;
     private double value;
     private String vendor;
@@ -31,20 +27,18 @@ public class ProductView implements Parcelable {
     private String note;
 
 
-    public ProductView(int _id, String serial, String modelCode, String sortname, String description, int category, String categoryName, int subcategory, String subcategoryName, int productClass, String productClassDescription, int sector, String sectorName, int quantity, double value, String vendor, String bitmap, String imageName, String url, String datePurchase, String note) {
+    public Product(int _id, String serial, String modelCode, String sortname, String description,
+                   int category, int subcategory, int productClass, int sector, int quantity, double value,
+                   String vendor, String bitmap, String imageName, String url, String datePurchase, String note) {
         this._id = _id;
         this.serial = serial;
         this.modelCode = modelCode;
         this.sortname = sortname;
         this.description = description;
         this.category = category;
-        this.categoryName = categoryName;
         this.subcategory = subcategory;
-        this.subcategoryName = subcategoryName;
         this.productClass = productClass;
-        this.productClassDescription = productClassDescription;
         this.sector = sector;
-        this.sectorName = sectorName;
         this.quantity = quantity;
         this.value = value;
         this.vendor = vendor;
@@ -56,52 +50,38 @@ public class ProductView implements Parcelable {
     }
 
 
-    @Override
-    public int describeContents() {
-        return 0;
+    public Product(String serial, String modelCode, String sortname, String description, int category,
+                   int subcategory, int productClass, int sector, int quantity, double value, String vendor,
+                   String bitmap, String imageName, String url, String datePurchase, String note) {
+        this.serial = serial;
+        this.modelCode = modelCode;
+        this.sortname = sortname;
+        this.description = description;
+        this.category = category;
+        this.subcategory = subcategory;
+        this.productClass = productClass;
+        this.sector = sector;
+        this.quantity = quantity;
+        this.value = value;
+        this.vendor = vendor;
+        this.bitmap = bitmap;
+        this.imageName = imageName;
+        this.url = url;
+        this.datePurchase = datePurchase;
+        this.note = note;
     }
 
 
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(_id);
-        dest.writeString(serial);
-        dest.writeString(modelCode);
-        dest.writeString(sortname);
-        dest.writeString(description);
-        dest.writeInt(category);
-        dest.writeString(categoryName);
-        dest.writeInt(subcategory);
-        dest.writeString(subcategoryName);
-        dest.writeInt(productClass);
-        dest.writeString(productClassDescription);
-        dest.writeInt(sector);
-        dest.writeString(sectorName);
-        dest.writeInt(quantity);
-        dest.writeDouble(value);
-        dest.writeString(vendor);
-        dest.writeString(bitmap);
-        dest.writeString(imageName);
-        dest.writeString(url);
-        dest.writeString(datePurchase);
-        dest.writeString(note);
-    }
-
-
-    protected ProductView(Parcel in) {
+    protected Product(Parcel in) {
         _id = in.readInt();
         serial = in.readString();
         modelCode = in.readString();
         sortname = in.readString();
         description = in.readString();
         category = in.readInt();
-        categoryName = in.readString();
         subcategory = in.readInt();
-        subcategoryName = in.readString();
         productClass = in.readInt();
-        productClassDescription = in.readString();
         sector = in.readInt();
-        sectorName = in.readString();
         quantity = in.readInt();
         value = in.readDouble();
         vendor = in.readString();
@@ -113,17 +93,45 @@ public class ProductView implements Parcelable {
     }
 
 
-    public static final Creator<ProductView> CREATOR = new Creator<ProductView>() {
+    public static final Creator<Product> CREATOR = new Creator<Product>() {
         @Override
-        public ProductView createFromParcel(Parcel in) {
-            return new ProductView(in);
+        public Product createFromParcel(Parcel in) {
+            return new Product(in);
         }
 
         @Override
-        public ProductView[] newArray(int size) {
-            return new ProductView[size];
+        public Product[] newArray(int size) {
+            return new Product[size];
         }
     };
+
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeInt(_id);
+        parcel.writeString(serial);
+        parcel.writeString(modelCode);
+        parcel.writeString(sortname);
+        parcel.writeString(description);
+        parcel.writeInt(category);
+        parcel.writeInt(subcategory);
+        parcel.writeInt(productClass);
+        parcel.writeInt(sector);
+        parcel.writeInt(quantity);
+        parcel.writeDouble(value);
+        parcel.writeString(vendor);
+        parcel.writeString(bitmap);
+        parcel.writeString(imageName);
+        parcel.writeString(url);
+        parcel.writeString(datePurchase);
+        parcel.writeString(note);
+    }
 
 
     public int get_id() {
@@ -174,28 +182,11 @@ public class ProductView implements Parcelable {
         this.category = category;
     }
 
-    public String getCategoryName() {
-        return categoryName;
-    }
-
-    public void setCategoryName(String categoryName) {
-        this.categoryName = categoryName;
-    }
-
     public int getSubcategory() {
         return subcategory;
     }
-
     public void setSubcategory(int subcategory) {
         this.subcategory = subcategory;
-    }
-
-    public String getSubcategoryName() {
-        return subcategoryName;
-    }
-
-    public void setSubcategoryName(String subcategoryName) {
-        this.subcategoryName = subcategoryName;
     }
 
     public int getProductClass() {
@@ -206,28 +197,12 @@ public class ProductView implements Parcelable {
         this.productClass = productClass;
     }
 
-    public String getProductClassDescription() {
-        return productClassDescription;
-    }
-
-    public void setProductClassDescription(String productClassDescription) {
-        this.productClassDescription = productClassDescription;
-    }
-
     public int getSector() {
         return sector;
     }
 
     public void setSector(int sector) {
         this.sector = sector;
-    }
-
-    public String getSectorName() {
-        return sectorName;
-    }
-
-    public void setSectorName(String sectorName) {
-        this.sectorName = sectorName;
     }
 
     public int getQuantity() {
@@ -293,4 +268,5 @@ public class ProductView implements Parcelable {
     public void setNote(String note) {
         this.note = note;
     }
+
 }

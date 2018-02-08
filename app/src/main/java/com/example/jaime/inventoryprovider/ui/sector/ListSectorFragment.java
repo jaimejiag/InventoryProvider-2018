@@ -19,7 +19,7 @@ import android.widget.Toast;
 
 import com.example.jaime.inventoryprovider.R;
 import com.example.jaime.inventoryprovider.adapters.SectorAdapter;
-import com.example.jaime.inventoryprovider.data.db.model.Sector;
+import com.example.jaime.inventoryprovider.data.model.Sector;
 
 import java.util.ArrayList;
 
@@ -36,6 +36,7 @@ public class ListSectorFragment extends Fragment implements SectorContract.ListS
     private Toolbar mToolbar;
     private SectorAdapter.OnSectorUpdatedListener mSectorUpdatedListener;
     private SectorAdapter.OnItemClickListener mClickListener;
+    private SectorAdapter.OnItemLongClickListener mLongClickListener;
     private SectorContract.Presenter mPresenter;
     private ListSectorListener mCallback;
 
@@ -113,7 +114,14 @@ public class ListSectorFragment extends Fragment implements SectorContract.ListS
             }
         };
 
-        mAdapter = new SectorAdapter(mSectorUpdatedListener, mClickListener);
+        mLongClickListener = new SectorAdapter.OnItemLongClickListener() {
+            @Override
+            public void onItemLongClick(Sector sector) {
+                //TODO finish alertdialog and delete sector
+            }
+        };
+
+        mAdapter = new SectorAdapter(mSectorUpdatedListener, mClickListener, mLongClickListener);
 
         mPresenter.requestToLoadSectors();
         rvSector.setAdapter(mAdapter);

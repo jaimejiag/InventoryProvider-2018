@@ -1,7 +1,7 @@
-package com.example.jaime.inventoryprovider.data.db.repository;
+package com.example.jaime.inventoryprovider.data.repository;
 
 import com.example.jaime.inventoryprovider.data.base.DependencyDao;
-import com.example.jaime.inventoryprovider.data.db.model.Dependency;
+import com.example.jaime.inventoryprovider.data.model.Dependency;
 import com.example.jaime.inventoryprovider.ui.InteractorCallback;
 import com.example.jaime.inventoryprovider.data.provider.dao.DependencyDaoImpl;
 

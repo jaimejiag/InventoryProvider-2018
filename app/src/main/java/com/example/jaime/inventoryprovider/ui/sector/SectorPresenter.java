@@ -1,7 +1,7 @@
 package com.example.jaime.inventoryprovider.ui.sector;
 
-import com.example.jaime.inventoryprovider.data.db.model.Dependency;
-import com.example.jaime.inventoryprovider.data.db.model.Sector;
+import com.example.jaime.inventoryprovider.data.model.Dependency;
+import com.example.jaime.inventoryprovider.data.model.Sector;
 
 import java.util.ArrayList;
 
@@ -48,6 +48,12 @@ public class SectorPresenter implements SectorContract.Presenter, SectorContract
     @Override
     public void requestToUpdateSector(Sector sector) {
         mInteractor.updateSector(sector);
+    }
+
+
+    @Override
+    public void requestToDeleteSector(Sector sector) {
+        mInteractor.deleteSector(sector);
     }
 
 

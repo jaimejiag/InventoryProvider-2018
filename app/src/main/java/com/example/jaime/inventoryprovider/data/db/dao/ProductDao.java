@@ -1,4 +1,4 @@
-package com.example.jaime.inventoryprovider.data.db.repository.dao;
+package com.example.jaime.inventoryprovider.data.db.dao;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -6,9 +6,9 @@ import android.database.sqlite.SQLiteQueryBuilder;
 import android.provider.BaseColumns;
 
 import com.example.jaime.inventoryprovider.data.db.InventoryContract;
-import com.example.jaime.inventoryprovider.data.db.model.InventoryOpenHelper;
-import com.example.jaime.inventoryprovider.data.db.model.Product;
-import com.example.jaime.inventoryprovider.data.db.model.ProductView;
+import com.example.jaime.inventoryprovider.data.model.InventoryOpenHelper;
+import com.example.jaime.inventoryprovider.data.model.Product;
+import com.example.jaime.inventoryprovider.data.model.ProductView;
 
 import java.util.ArrayList;
 

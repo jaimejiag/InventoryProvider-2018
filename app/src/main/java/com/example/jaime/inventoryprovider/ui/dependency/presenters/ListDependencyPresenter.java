@@ -2,7 +2,7 @@ package com.example.jaime.inventoryprovider.ui.dependency.presenters;
 
 import android.os.AsyncTask;
 
-import com.example.jaime.inventoryprovider.data.db.model.Dependency;
+import com.example.jaime.inventoryprovider.data.model.Dependency;
 import com.example.jaime.inventoryprovider.ui.dependency.interactors.ListDependenciesInteractor;
 import com.example.jaime.inventoryprovider.ui.dependency.contracts.ListDependencyContract;
 

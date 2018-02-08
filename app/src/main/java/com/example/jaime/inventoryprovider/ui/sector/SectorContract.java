@@ -1,7 +1,7 @@
 package com.example.jaime.inventoryprovider.ui.sector;
 
-import com.example.jaime.inventoryprovider.data.db.model.Dependency;
-import com.example.jaime.inventoryprovider.data.db.model.Sector;
+import com.example.jaime.inventoryprovider.data.model.Dependency;
+import com.example.jaime.inventoryprovider.data.model.Sector;
 
 import java.util.ArrayList;
 
@@ -39,6 +39,8 @@ public interface SectorContract {
         void requestToAddSector(Sector sector);
 
         void requestToUpdateSector(Sector sector);
+
+        void requestToDeleteSector(Sector sector);
     }
 
 
@@ -50,6 +52,8 @@ public interface SectorContract {
         void addSector(Sector sector);
 
         void updateSector(Sector sector);
+
+        void deleteSector(Sector sector);
 
         interface SectorOperationsFinished {
             void onLoadSuccess(ArrayList<Sector> sectors);

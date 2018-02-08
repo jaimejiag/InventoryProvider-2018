@@ -14,8 +14,8 @@ import android.widget.ListView;
 
 import com.example.jaime.inventoryprovider.R;
 import com.example.jaime.inventoryprovider.adapters.ProductAdapter;
-import com.example.jaime.inventoryprovider.data.db.model.Product;
-import com.example.jaime.inventoryprovider.data.db.model.ProductView;
+import com.example.jaime.inventoryprovider.data.model.Product;
+import com.example.jaime.inventoryprovider.data.model.ProductView;
 
 import java.util.ArrayList;
 

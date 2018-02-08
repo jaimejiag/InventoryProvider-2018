@@ -9,7 +9,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import com.example.jaime.inventoryprovider.R;
-import com.example.jaime.inventoryprovider.data.db.model.Sector;
+import com.example.jaime.inventoryprovider.data.model.Sector;
 
 import java.util.ArrayList;
 
@@ -22,6 +22,7 @@ public class SectorAdapter extends RecyclerView.Adapter<SectorAdapter.SectorView
     private OnSwitchCheckedChangeListener mChangeListener;
     private OnSectorUpdatedListener mSectorUpdatedListener;
     private OnItemClickListener mClickListener;
+    private OnItemLongClickListener mLongClickListener;
 
 
     public interface OnSectorUpdatedListener {
@@ -34,11 +35,18 @@ public class SectorAdapter extends RecyclerView.Adapter<SectorAdapter.SectorView
     }
 
 
-    public SectorAdapter(OnSectorUpdatedListener sectorUpdatedListener, OnItemClickListener clickListener) {
+    public interface OnItemLongClickListener {
+        void onItemLongClick(Sector sector);
+    }
+
+
+    public SectorAdapter(OnSectorUpdatedListener sectorUpdatedListener, OnItemClickListener clickListener,
+                         OnItemLongClickListener longClickListener) {
         mSectors = new ArrayList<>();
         mChangeListener = new OnSwitchCheckedChangeListener();
         mSectorUpdatedListener = sectorUpdatedListener;
         mClickListener = clickListener;
+        mLongClickListener = longClickListener;
     }
 
 
@@ -62,7 +70,7 @@ public class SectorAdapter extends RecyclerView.Adapter<SectorAdapter.SectorView
         if (mSectors.get(position).isSectorDefault())
             holder.txvSectorDefault.setText(R.string.txv_sectorDefault);
 
-        holder.bind(mSectors.get(position), mClickListener);
+        holder.bind(mSectors.get(position), mClickListener, mLongClickListener);
     }
 
 
@@ -98,11 +106,20 @@ public class SectorAdapter extends RecyclerView.Adapter<SectorAdapter.SectorView
         }
 
 
-        public void bind(final Sector sector, final OnItemClickListener listener) {
+        public void bind(final Sector sector, final OnItemClickListener clickListener,
+                         final OnItemLongClickListener longClickListener) {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    listener.onItemClick(sector);
+                    clickListener.onItemClick(sector);
+                }
+            });
+
+            itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    longClickListener.onItemLongClick(sector);
+                    return true;
                 }
             });
         }

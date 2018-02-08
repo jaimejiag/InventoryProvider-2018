@@ -1,4 +1,4 @@
-package com.example.jaime.inventoryprovider.data.db.model;
+package com.example.jaime.inventoryprovider.data.model;
 
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;

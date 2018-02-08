@@ -1,8 +1,8 @@
 package com.example.jaime.inventoryprovider.ui.sector;
 
-import com.example.jaime.inventoryprovider.data.db.model.Sector;
-import com.example.jaime.inventoryprovider.data.db.repository.DependencyRepository;
-import com.example.jaime.inventoryprovider.data.db.repository.SectorRepository;
+import com.example.jaime.inventoryprovider.data.model.Sector;
+import com.example.jaime.inventoryprovider.data.repository.DependencyRepository;
+import com.example.jaime.inventoryprovider.data.repository.SectorRepository;
 import com.example.jaime.inventoryprovider.ui.InteractorCallback;
 
 import java.util.ArrayList;
@@ -51,6 +51,13 @@ public class SectorInteractor implements SectorContract.Interactor, InteractorCa
     @Override
     public void updateSector(Sector sector) {
         SectorRepository.getInstance().updateSector(sector, this);
+    }
+
+
+    @Override
+    public void deleteSector(Sector sector) {
+        SectorRepository.getInstance().deleteSector(sector, this);
+        mListener.onLoadSuccess(SectorRepository.getInstance().getSectors());
     }
 
 

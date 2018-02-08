@@ -1,4 +1,4 @@
-package com.example.jaime.inventoryprovider.data.db.model;
+package com.example.jaime.inventoryprovider.data.model;
 
 /**
  * Created by usuario on 8/11/17.
